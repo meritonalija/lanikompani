@@ -227,11 +227,12 @@ img {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 28px;
+  gap: 22px;
 }
 
 .met-menu li {
   position: relative;
+  white-space: nowrap;
 }
 
 .met-menu a {
@@ -241,17 +242,18 @@ img {
   color: #e2e2e2;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 32px 0;
+  padding: 24px 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   position: relative;
+  white-space: nowrap;
 }
 
 .met-menu a::after {
   content: '';
   position: absolute;
-  bottom: 24px;
+  bottom: 18px;
   left: 0;
   width: 0;
   height: 2px;
@@ -273,15 +275,16 @@ img {
   top: 100%;
   left: 0;
   background: #191919;
-  min-width: 240px;
+  min-width: 250px;
   list-style: none;
-  padding: 12px 0;
+  padding: 10px 0;
   border-top: 2px solid var(--met-red);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: var(--met-transition);
+  border-radius: 0 0 4px 4px;
 }
 
 .has-dropdown:hover .sub-menu {
@@ -295,10 +298,12 @@ img {
 }
 
 .sub-menu a {
-  padding: 10px 20px !important;
+  padding: 11px 22px !important;
   font-size: 12px !important;
   display: block !important;
   color: #cccccc !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
 }
 
 .sub-menu a::after {
@@ -306,21 +311,129 @@ img {
 }
 
 .sub-menu a:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   color: #ffffff !important;
+  padding-left: 26px !important;
 }
 
+/* Header Right Tools & Language Switcher */
 .header-right-tools {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Language Switcher Styling */
+.met-lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 3px 5px;
+  gap: 3px;
+  align-self: center;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  color: #c0c0c0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 9px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: var(--met-transition);
+}
+
+.lang-btn .flag-icon {
+  display: none;
+}
+
+.lang-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lang-btn.active {
+  background: var(--met-red);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(195, 40, 46, 0.5);
+}
+
+/* Topbar mini language switcher */
+.topbar-lang-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  padding-right: 10px;
+}
+
+.topbar-lang-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--met-transition);
+  padding: 2px 4px;
+}
+
+.topbar-lang-btn:hover, .topbar-lang-btn.active {
+  color: #fff;
+}
+
+.topbar-lang-btn.active {
+  color: var(--met-red);
+}
+
+.topbar-lang-inline .sep {
+  color: #444;
+  font-size: 10px;
+}
+
+/* Mobile drawer language switcher */
+.mobile-lang-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 0 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-lang-wrap .met-lang-switcher {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 6px;
+}
+
+.mobile-lang-wrap .lang-btn {
+  font-size: 12px;
+  padding: 6px 12px;
 }
 
 .btn-met-red {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
+  gap: 8px;
+  padding: 10px 22px;
+  height: auto;
+  align-self: center;
   background: var(--met-red);
   color: #fff;
   font-family: 'Poppins', sans-serif;
@@ -328,13 +441,27 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: 2px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(195, 40, 46, 0.35);
   transition: var(--met-transition);
+  white-space: nowrap;
 }
 
 .btn-met-red:hover {
   background: var(--met-red-hover);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(195, 40, 46, 0.55);
+}
+
+.btn-met-red i {
+  transition: transform 0.2s ease;
+}
+
+.btn-met-red:hover i {
+  transform: translateX(3px);
 }
 
 .met-mobile-trigger {
@@ -453,48 +580,74 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 15px 36px;
+  gap: 10px;
+  padding: 14px 32px;
   background: var(--met-red);
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border-radius: 2px;
+  letter-spacing: 1.2px;
+  border-radius: 4px;
   border: 2px solid var(--met-red);
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(195, 40, 46, 0.35);
   transition: var(--met-transition);
+  white-space: nowrap;
 }
 
 .btn-met-primary:hover {
   background: var(--met-red-hover);
   border-color: var(--met-red-hover);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(195, 40, 46, 0.5);
+}
+
+.btn-met-primary i {
+  transition: transform 0.25s ease;
+}
+
+.btn-met-primary:hover i {
+  transform: translateX(4px);
 }
 
 .btn-met-bordered {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 36px;
-  background: transparent;
+  gap: 10px;
+  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border-radius: 2px;
-  border: 2px solid #ffffff;
+  letter-spacing: 1.2px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
   cursor: pointer;
   transition: var(--met-transition);
+  white-space: nowrap;
 }
 
 .btn-met-bordered:hover {
   background: #ffffff;
+  border-color: #ffffff;
   color: var(--met-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+}
+
+.btn-met-bordered i {
+  transition: transform 0.25s ease;
+}
+
+.btn-met-bordered:hover i {
+  transform: translateX(4px);
 }
 
 .btn-met-dark {

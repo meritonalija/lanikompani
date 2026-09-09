@@ -27,10 +27,15 @@
   <div class="met-topbar">
     <div class="met-container met-topbar-inner">
       <div class="topbar-left">
-        <span><i class="fa-solid fa-location-dot"></i> Orizare, Komuna e Likovës</span>
-        <span><i class="fa-regular fa-clock"></i> E Hënë - E Shtunë: 08:00 - 18:00</span>
+        <span><i class="fa-solid fa-location-dot"></i> <span data-i18n="topbar_loc">Orizare, Komuna e Likovës</span></span>
+        <span><i class="fa-regular fa-clock"></i> <span data-i18n="topbar_hours">E Hënë - E Shtunë: 08:00 - 18:00</span></span>
       </div>
       <div class="topbar-right">
+        <div class="topbar-lang-inline">
+          <button type="button" class="topbar-lang-btn active" data-lang="sq">SQ</button>
+          <span class="sep">/</span>
+          <button type="button" class="topbar-lang-btn" data-lang="en">EN</button>
+        </div>
         <a href="tel:+38971442821" class="topbar-phone"><i class="fa-solid fa-phone"></i> +389 71 442 821</a>
         <a href="tel:+38978299914" class="topbar-phone"><i class="fa-solid fa-phone"></i> +389 78 299 914</a>
         <a href="mailto:lanikompani5@gmail.com" class="topbar-email"><i class="fa-regular fa-envelope"></i> lanikompani5@gmail.com</a>
@@ -62,7 +67,7 @@
           </div>
         </a>
         <button type="button" class="btn-change-logo" id="btnChangeLogo" title="Kliko për të ngarkuar logon tënde me foto (PNG/JPG/SVG)">
-          <i class="fa-solid fa-camera"></i> Ndrysho Logon
+          <i class="fa-solid fa-camera"></i> <span data-i18n="btn_change_logo">Ndrysho Logon</span>
         </button>
       </div>
 
@@ -78,28 +83,35 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
+        <div class="mobile-lang-wrap">
+          <div class="met-lang-switcher">
+            <button type="button" class="lang-btn active" data-lang="sq">
+              <span class="flag-icon">🇦🇱</span> <span class="lang-code">SQ</span>
+            </button>
+            <button type="button" class="lang-btn" data-lang="en">
+              <span class="flag-icon">🇬🇧</span> <span class="lang-code">EN</span>
+            </button>
+          </div>
+        </div>
         <ul class="met-menu">
-          <li><a href="#ballina" class="active">Kreu</a></li>
+          <li><a href="#ballina" class="active" data-i18n="nav_home"><span>Kreu</span></a></li>
           <li class="has-dropdown">
-            <a href="#pvc-schuco" class="dropdown-toggle">Produktet <i class="fa-solid fa-angle-down"></i></a>
+            <a href="#pvc-schuco" class="dropdown-toggle" data-i18n="nav_products">
+              <span>Produktet</span> <i class="fa-solid fa-angle-down"></i>
+            </a>
             <ul class="sub-menu">
-              <li><a href="#pvc-schuco">Schüco LivIng 82 MD</a></li>
-              <li><a href="#pvc-kommerling">Kömmerling 76 MD</a></li>
-              <li><a href="#sliding-systems">Sisteme Rrëshqitëse (Sliding)</a></li>
-              <li><a href="#fasada-strukturale">Fasada Strukturale Xhami</a></li>
-              <li><a href="#roleta-alumini">Roleta Alumini &amp; Alubond</a></li>
+              <li><a href="#pvc-schuco" data-i18n="nav_schuco">Schüco LivIng 82 MD</a></li>
+              <li><a href="#pvc-kommerling" data-i18n="nav_kommerling">Kömmerling 76 MD</a></li>
+              <li><a href="#sliding-systems" data-i18n="nav_sliding">Sisteme Rrëshqitëse (Sliding)</a></li>
+              <li><a href="#fasada-strukturale" data-i18n="nav_facades">Fasada Strukturale Xhami</a></li>
+              <li><a href="#roleta-alumini" data-i18n="nav_shutters">Roleta Alumini &amp; Alubond</a></li>
             </ul>
           </li>
-          <li><a href="#pvc-schuco">Schüco</a></li>
-          <li><a href="#pvc-kommerling">Kömmerling</a></li>
-          <li><a href="#sliding-systems">Sliding</a></li>
-          <li><a href="#fasada-strukturale">Fasada</a></li>
-          <li><a href="#roleta-alumini">Roleta</a></li>
-          <li><a href="#per-ne">Për Ne</a></li>
-          <li><a href="#kontakti">Kontakti</a></li>
+          <li><a href="#per-ne" data-i18n="nav_about"><span>Për Ne</span></a></li>
+          <li><a href="#kontakti" data-i18n="nav_contact"><span>Kontakti</span></a></li>
         </ul>
         <div class="nav-mobile-footer">
-          <a href="#oferte" class="btn-met-red nav-mobile-btn">Kërko Ofertë</a>
+          <a href="#oferte" class="btn-met-red nav-mobile-btn" data-i18n="btn_quote"><span>Kërko Ofertë</span></a>
           <div class="nav-mobile-contacts">
             <a href="tel:+38971442821"><i class="fa-solid fa-phone"></i> +389 71 442 821</a>
             <a href="mailto:lanikompani5@gmail.com"><i class="fa-regular fa-envelope"></i> lanikompani5@gmail.com</a>
@@ -107,9 +119,21 @@
         </div>
       </nav>
 
-      <!-- Butoni Ofertë në të djathtë -->
+      <!-- Butoni Ofertë dhe Ndërrimi i Gjuhës në të djathtë -->
       <div class="header-right-tools">
-        <a href="#oferte" class="btn-met-red">Kërko Ofertë</a>
+        <div class="met-lang-switcher" id="metLangSwitcher">
+          <button type="button" class="lang-btn active" data-lang="sq" title="Gjuha Shqipe">
+            <span class="flag-icon">🇦🇱</span> <span class="lang-code">SQ</span>
+          </button>
+          <button type="button" class="lang-btn" data-lang="en" title="English Language">
+            <span class="flag-icon">🇬🇧</span> <span class="lang-code">EN</span>
+          </button>
+        </div>
+
+        <a href="#oferte" class="btn-met-red" data-i18n="btn_quote">
+          <span>Kërko Ofertë</span> <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
         <button class="met-mobile-trigger" id="metMobileTrigger" aria-label="Hap menunë">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -123,19 +147,23 @@
        ========================================================================== -->
   <section class="met-hero-slider" id="ballina">
     <button type="button" class="hero-change-photo-btn" id="btnChangeHeroBg" title="Kliko për të ndryshuar foton e sfondit të ballinës">
-      <i class="fa-solid fa-camera"></i> Ndrysho Sfondin e Ballinës
+      <i class="fa-solid fa-camera"></i> <span data-i18n="btn_change_hero_bg">Ndrysho Sfondin e Ballinës</span>
     </button>
     <div class="hero-slide active">
       <div class="met-container hero-container">
         <div class="hero-text-content">
-          <p class="hero-eyebrow">CHOOSE BEST</p>
-          <h1 class="hero-heading">WINDOWS &amp; DOORS</h1>
-          <p class="hero-lead">Për shtëpinë dhe ambientet tuaja afariste.</p>
-          <p class="hero-provenance"><strong>Dizajn modern, profile cilësore gjermane &amp; evropiane</strong></p>
+          <p class="hero-eyebrow" data-i18n="hero_eyebrow">CHOOSE BEST</p>
+          <h1 class="hero-heading" data-i18n="hero_heading">WINDOWS &amp; DOORS</h1>
+          <p class="hero-lead" data-i18n="hero_lead">Për shtëpinë dhe ambientet tuaja afariste.</p>
+          <p class="hero-provenance"><strong data-i18n="hero_provenance">Dizajn modern, profile cilësore gjermane &amp; evropiane</strong></p>
           
           <div class="hero-btn-group">
-            <a href="#pvc-schuco" class="btn-met-primary">Shiko Produktet</a>
-            <a href="#oferte" class="btn-met-bordered">Kërko Ofertë</a>
+            <a href="#pvc-schuco" class="btn-met-primary" data-i18n="btn_view_products">
+              <span>Shiko Produktet</span> <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="#oferte" class="btn-met-bordered" data-i18n="btn_quote">
+              <span>Kërko Ofertë</span> <i class="fa-solid fa-paper-plane"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -153,17 +181,17 @@
           <div class="brands-ticker-group">
             <a href="#pvc-schuco" class="brand-item" title="SCHÜCO - Sisteme Gjermane Alumini & PVC">
               <img src="images/logo_schuco_white.png" alt="SCHÜCO" class="brand-logo schuco-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#pvc-kommerling" class="brand-item" title="KÖMMERLING - Profile Gjermane PVC">
               <img src="images/logo_kommerling_white.png" alt="KÖMMERLING" class="brand-logo kommerling-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#sliding-systems" class="brand-item" title="ASISTAL - Aluminium Profiles Company">
               <img src="images/logo_asistal_white.png" alt="ASISTAL Aluminium" class="brand-logo asistal-logo">
-              <span class="brand-tag">Profile Alumini</span>
+              <span class="brand-tag" data-i18n="brand_tag_alu">Profile Alumini</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
           </div>
@@ -172,17 +200,17 @@
           <div class="brands-ticker-group" aria-hidden="true">
             <a href="#pvc-schuco" class="brand-item" tabindex="-1">
               <img src="images/logo_schuco_white.png" alt="SCHÜCO" class="brand-logo schuco-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#pvc-kommerling" class="brand-item" tabindex="-1">
               <img src="images/logo_kommerling_white.png" alt="KÖMMERLING" class="brand-logo kommerling-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#sliding-systems" class="brand-item" tabindex="-1">
               <img src="images/logo_asistal_white.png" alt="ASISTAL Aluminium" class="brand-logo asistal-logo">
-              <span class="brand-tag">Profile Alumini</span>
+              <span class="brand-tag" data-i18n="brand_tag_alu">Profile Alumini</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
           </div>
@@ -191,17 +219,17 @@
           <div class="brands-ticker-group" aria-hidden="true">
             <a href="#pvc-schuco" class="brand-item" tabindex="-1">
               <img src="images/logo_schuco_white.png" alt="SCHÜCO" class="brand-logo schuco-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#pvc-kommerling" class="brand-item" tabindex="-1">
               <img src="images/logo_kommerling_white.png" alt="KÖMMERLING" class="brand-logo kommerling-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#sliding-systems" class="brand-item" tabindex="-1">
               <img src="images/logo_asistal_white.png" alt="ASISTAL Aluminium" class="brand-logo asistal-logo">
-              <span class="brand-tag">Profile Alumini</span>
+              <span class="brand-tag" data-i18n="brand_tag_alu">Profile Alumini</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
           </div>
@@ -210,17 +238,17 @@
           <div class="brands-ticker-group" aria-hidden="true">
             <a href="#pvc-schuco" class="brand-item" tabindex="-1">
               <img src="images/logo_schuco_white.png" alt="SCHÜCO" class="brand-logo schuco-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#pvc-kommerling" class="brand-item" tabindex="-1">
               <img src="images/logo_kommerling_white.png" alt="KÖMMERLING" class="brand-logo kommerling-logo">
-              <span class="brand-tag">Gjermani</span>
+              <span class="brand-tag" data-i18n="brand_tag_de">Gjermani</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
             <a href="#sliding-systems" class="brand-item" tabindex="-1">
               <img src="images/logo_asistal_white.png" alt="ASISTAL Aluminium" class="brand-logo asistal-logo">
-              <span class="brand-tag">Profile Alumini</span>
+              <span class="brand-tag" data-i18n="brand_tag_alu">Profile Alumini</span>
             </a>
             <div class="brand-separator"><i class="fa-solid fa-diamond"></i></div>
           </div>
@@ -234,9 +262,9 @@
        ========================================================================== -->
   <div class="met-page-title-banner">
     <div class="met-container">
-      <span class="banner-eyebrow">TEKNOLOGJI GJERMANE &amp; EVROPIANE</span>
-      <h2>Katalogu Teknik i Sistemeve PVC, Alumini &amp; Fasadave</h2>
-      <p class="banner-sub">
+      <span class="banner-eyebrow" data-i18n="banner_eyebrow">TEKNOLOGJI GJERMANE &amp; EVROPIANE</span>
+      <h2 data-i18n="banner_title">Katalogu Teknik i Sistemeve PVC, Alumini &amp; Fasadave</h2>
+      <p class="banner-sub" data-i18n="banner_sub">
         Profile me efiçiencë të lartë energjetike, termoizolim superior dhe certifikime të standardeve evropiane për shtëpi pasive dhe arkitekturë moderne.
       </p>
     </div>
@@ -251,9 +279,9 @@
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
           <h2 class="met-section-title">Schüco LivIng 82 MD</h2>
-          <span class="met-badge-profile">SCHÜCO GJERMANI • 82mm</span>
+          <span class="met-badge-profile" data-i18n="schuco_badge">SCHÜCO GJERMANI • 82mm</span>
         </div>
-        <p class="met-section-desc">
+        <p class="met-section-desc" data-i18n="schuco_desc">
           Sistem gjerman elitar me 7 dhoma ajri dhe termoizolim të standardit të shtëpive pasive (Uw deri 0.72 W/m²K).
         </p>
         <div class="met-title-divider"></div>
@@ -339,7 +367,7 @@
 
       <div class="met-tech-btn-box">
         <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Dritaret%20PVC%20Schuco%2082mm." target="_blank" class="btn-met-primary">
-          Pyet për Schüco 82mm <i class="fa-solid fa-arrow-right"></i>
+          <span data-i18n="schuco_cta">Pyet për Schüco 82mm</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -355,9 +383,9 @@
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
           <h2 class="met-section-title">Kömmerling 76 MD</h2>
-          <span class="met-badge-profile">KÖMMERLING GJERMANI • 76mm</span>
+          <span class="met-badge-profile" data-i18n="kom_badge">KÖMMERLING GJERMANI • 76mm</span>
         </div>
-        <p class="met-section-desc">
+        <p class="met-section-desc" data-i18n="kom_desc">
           Sistem gjerman lider me gomina qendrore MD, eko-formulë greenline® pa plumb dhe kursim deri në 30% të energjisë.
         </p>
         <div class="met-title-divider"></div>
@@ -443,7 +471,7 @@
 
       <div class="met-tech-btn-box">
         <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Dritaret%20PVC%20Kommerling%2076mm." target="_blank" class="btn-met-primary">
-          Pyet për Kömmerling 76mm <i class="fa-solid fa-arrow-right"></i>
+          <span data-i18n="kom_cta">Pyet për Kömmerling 76mm</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -458,10 +486,10 @@
       
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
-          <h2 class="met-section-title">Sliding Systems Panoramike</h2>
-          <span class="met-badge-profile">HEBESCHIEBE &amp; ASISTAL</span>
+          <h2 class="met-section-title" data-i18n="slide_title">Sliding Systems Panoramike</h2>
+          <span class="met-badge-profile" data-i18n="slide_badge">HEBESCHIEBE &amp; ASISTAL</span>
         </div>
-        <p class="met-section-desc">
+        <p class="met-section-desc" data-i18n="slide_desc">
           Zgjidhje luksoze me hapje panoramike, mekanizma ngritës-rrëshqitës gjermanë dhe prag të rrafshët me dyshemenë pa pengesa.
         </p>
         <div class="met-title-divider"></div>
@@ -543,7 +571,7 @@
 
       <div class="met-tech-btn-box">
         <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Sistemet%20Rr%C3%ABshqit%C3%ABse%20Panoramike." target="_blank" class="btn-met-primary">
-          Pyet për Sistemet Rrëshqitëse <i class="fa-solid fa-arrow-right"></i>
+          <span data-i18n="slide_cta">Pyet për Sistemet Rrëshqitëse</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -558,10 +586,10 @@
       
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
-          <h2 class="met-section-title">Fasada Strukturale Xhami &amp; Alumini</h2>
-          <span class="met-badge-profile">ASISTAL &amp; ALUMINI</span>
+          <h2 class="met-section-title" data-i18n="facade_title">Fasada Strukturale Xhami &amp; Alumini</h2>
+          <span class="met-badge-profile" data-i18n="facade_badge">ASISTAL &amp; ALUMINI</span>
         </div>
-        <p class="met-section-desc">
+        <p class="met-section-desc" data-i18n="facade_desc">
           Zgjidhje inxhinierike të nivelit më të lartë për objekte afariste, qendra tregtare, spitale dhe vila moderne me profile të padukshme.
         </p>
         <div class="met-title-divider"></div>
@@ -643,7 +671,7 @@
 
       <div class="met-tech-btn-box">
         <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Fasada%20Strukturale." target="_blank" class="btn-met-primary">
-          Pyet për Fasada Strukturale <i class="fa-solid fa-arrow-right"></i>
+          <span data-i18n="facade_cta">Pyet për Fasada Strukturale</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -658,10 +686,10 @@
       
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
-          <h2 class="met-section-title">Roleta Alumini &amp; Veshje Alubond</h2>
-          <span class="met-badge-profile">SMART PROTECTION &amp; ALUBOND</span>
+          <h2 class="met-section-title" data-i18n="shutter_title">Roleta Alumini &amp; Veshje Alubond</h2>
+          <span class="met-badge-profile" data-i18n="shutter_badge">SMART PROTECTION &amp; ALUBOND</span>
         </div>
-        <p class="met-section-desc">
+        <p class="met-section-desc" data-i18n="shutter_desc">
           Roleta të jashtme dhe të brendshme alumini me shkumë poliuretani, mekanizma automatikë me motor elektrik dhe veshje fasadash Alubond.
         </p>
         <div class="met-title-divider"></div>
@@ -743,7 +771,7 @@
 
       <div class="met-tech-btn-box">
         <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Roleta%20Alumini%20dhe%20Alubond." target="_blank" class="btn-met-primary">
-          Pyet për Roleta &amp; Alubond <i class="fa-solid fa-arrow-right"></i>
+          <span data-i18n="shutter_cta">Pyet për Roleta &amp; Alubond</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -763,8 +791,8 @@
             <img src="images/foto_1788829371409.jpg" alt="Materiale Cilësore" loading="lazy">
           </div>
           <div class="promo-card-overlay">
-            <h4 class="promo-card-title">Materiale të Certifikuara</h4>
-            <a href="#pvc-schuco" class="btn-met-card">Shiko Detajet</a>
+            <h4 class="promo-card-title" data-i18n="promo1_title">Materiale të Certifikuara</h4>
+            <a href="#pvc-schuco" class="btn-met-card" data-i18n="promo1_btn">Shiko Detajet</a>
           </div>
         </div>
 
@@ -774,8 +802,8 @@
             <img src="images/foto_1788829214409.jpg" alt="Njihuni me Lani Kompani" loading="lazy">
           </div>
           <div class="promo-card-overlay">
-            <h4 class="promo-card-title">Njihuni me LANI KOMPANI</h4>
-            <a href="#kontakti" class="btn-met-card">Rreth Kompanisë</a>
+            <h4 class="promo-card-title" data-i18n="promo2_title">Njihuni me LANI KOMPANI</h4>
+            <a href="#kontakti" class="btn-met-card" data-i18n="promo2_btn">Rreth Kompanisë</a>
           </div>
         </div>
 
@@ -785,8 +813,8 @@
             <img src="images/foto_1788828304789.jpg" alt="Bota e Produkteve" loading="lazy">
           </div>
           <div class="promo-card-overlay">
-            <h4 class="promo-card-title">Bota e Produkteve Tona</h4>
-            <a href="#sliding-systems" class="btn-met-card">Shiko Produktet</a>
+            <h4 class="promo-card-title" data-i18n="promo3_title">Bota e Produkteve Tona</h4>
+            <a href="#sliding-systems" class="btn-met-card" data-i18n="promo3_btn">Shiko Produktet</a>
           </div>
         </div>
 
@@ -802,8 +830,8 @@
       <div class="met-quote-box">
         
         <div class="quote-info-col">
-          <h2 class="quote-title">Kërkoni Ofertë të Shpejtë</h2>
-          <p class="quote-text">
+          <h2 class="quote-title" data-i18n="form_heading">Kërkoni Ofertë të Shpejtë</h2>
+          <p class="quote-text" data-i18n="form_sub">
             Plotësoni të dhënat dhe me 1 klikim dërgoni kërkesën tuaj direkt në WhatsApp tek <strong>LANI KOMPANI</strong>. Ekipi ynë do t'ju përgjigjet menjëherë me llogaritjen dhe këshillimin e duhur!
           </p>
 
@@ -848,46 +876,46 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label for="userName">Emri dhe Mbiemri *</label>
-                <input type="text" id="userName" placeholder="p.sh. Agron Berisha" required="">
+                <label for="userName" data-i18n="form_name_lbl">Emri dhe Mbiemri *</label>
+                <input type="text" id="userName" placeholder="p.sh. Agron Berisha" required="" data-i18n-ph="form_name_ph">
               </div>
               <div class="form-group">
-                <label for="userPhone">Telefoni juaj *</label>
-                <input type="tel" id="userPhone" placeholder="07X XXX XXX" required="">
+                <label for="userPhone" data-i18n="form_phone_lbl">Telefoni juaj *</label>
+                <input type="tel" id="userPhone" placeholder="07X XXX XXX" required="" data-i18n-ph="form_phone_ph">
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="userCity">Vendbanimi / Qyteti</label>
-                <input type="text" id="userCity" placeholder="p.sh. Likovë, Kumanovë, Shkup">
+                <label for="userCity" data-i18n="form_city_lbl">Vendbanimi / Qyteti</label>
+                <input type="text" id="userCity" placeholder="p.sh. Likovë, Kumanovë, Shkup" data-i18n-ph="form_city_ph">
               </div>
               <div class="form-group">
-                <label for="userService">Lloji i Produktit *</label>
+                <label for="userService" data-i18n="form_service_lbl">Lloji i Produktit *</label>
                 <select id="userService" required="">
-                  <option value="" disabled="" selected="">Zgjidhni produktin...</option>
-                  <option value="PVC Windows &amp; Dyer">Dyer &amp; Dritare PVC</option>
-                  <option value="Sisteme Rrëshqitëse (Sliding)">Sisteme Rrëshqitëse (Sliding)</option>
-                  <option value="Alu Windows &amp; Dyer">Dyer &amp; Dritare Alumini (ALU)</option>
-                  <option value="Fasada Strukturale Xhami">Fasada Strukturale Xhami</option>
-                  <option value="Fasada Alumini / Alubond">Fasada Alumini / Alubond</option>
-                  <option value="Roleta Alumini">Roleta Alumini &amp; Grila</option>
-                  <option value="Tjetër / Projekt i plotë">Tjetër / Projekt i plotë</option>
+                  <option value="" disabled="" selected="" data-i18n-opt="form_opt_default">Zgjidhni produktin...</option>
+                  <option value="PVC Windows &amp; Dyer" data-i18n-opt="form_opt_pvc">Dyer &amp; Dritare PVC</option>
+                  <option value="Sisteme Rrëshqitëse (Sliding)" data-i18n-opt="form_opt_slide">Sisteme Rrëshqitëse (Sliding)</option>
+                  <option value="Alu Windows &amp; Dyer" data-i18n-opt="form_opt_alu">Dyer &amp; Dritare Alumini (ALU)</option>
+                  <option value="Fasada Strukturale Xhami" data-i18n-opt="form_opt_facade">Fasada Strukturale Xhami</option>
+                  <option value="Fasada Alumini / Alubond" data-i18n-opt="form_opt_alubond">Fasada Alumini / Alubond</option>
+                  <option value="Roleta Alumini" data-i18n-opt="form_opt_shutter">Roleta Alumini &amp; Grila</option>
+                  <option value="Tjetër / Projekt i plotë" data-i18n-opt="form_opt_all">Tjetër / Projekt i plotë</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="userNotes">Përshkrimi i Kërkesës (Dimensionet / sasia)</label>
-              <textarea id="userNotes" rows="3" placeholder="Përshkruani përmasat ose numrin e dritareve/dyerve që kërkoni..."></textarea>
+              <label for="userNotes" data-i18n="form_notes_lbl">Përshkrimi i Kërkesës (Dimensionet / sasia)</label>
+              <textarea id="userNotes" rows="3" placeholder="Përshkruani përmasat ose numrin e dritareve/dyerve që kërkoni..." data-i18n-ph="form_notes_ph"></textarea>
             </div>
 
             <div class="form-actions-stack">
               <button type="button" id="submitWhatsapp" class="btn-met-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> Dërgo Menjëherë në WhatsApp
+                <i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_send_whatsapp">Dërgo Menjëherë në WhatsApp</span>
               </button>
               <button type="button" id="submitEmail" class="btn-met-email">
-                <i class="fa-regular fa-envelope"></i> Dërgo me Email
+                <i class="fa-regular fa-envelope"></i> <span data-i18n="btn_send_email">Dërgo me Email</span>
               </button>
             </div>
           </form>
@@ -904,9 +932,9 @@
     <div class="met-container">
       <div class="location-grid">
         <div class="location-text">
-          <h2 class="met-section-title">Na Vizitoni në Punëtorinë Tonë</h2>
+          <h2 class="met-section-title" data-i18n="contact_title">Na Vizitoni në Punëtorinë Tonë</h2>
           <div class="met-title-divider left"></div>
-          <p class="loc-desc">
+          <p class="loc-desc" data-i18n="contact_desc">
             Ju mirëpresim në hapësirat tona në <strong>Orizare, Komuna e Likovës</strong> për t'u njohur me profilet dhe zgjidhjet tona arkitekturore.
           </p>
 
@@ -919,7 +947,7 @@
           </div>
 
           <a href="https://maps.google.com/?q=Orizare+Likove" target="_blank" class="btn-met-dark">
-            <i class="fa-solid fa-diamond-turn-right"></i> Navigo me Google Maps
+            <i class="fa-solid fa-diamond-turn-right"></i> <span data-i18n="btn_maps">Navigo me Google Maps</span>
           </a>
         </div>
 
@@ -945,7 +973,7 @@
             <span class="f-bold">LANI</span> <span class="f-red">KOMPANI</span>
           </div>
         </div>
-        <p class="footer-desc">
+        <p class="footer-desc" data-i18n="footer_desc">
           LANI KOMPANI ofron një gamë bashkëkohore dhe me performancë të lartë të dyerve, dritareve PVC &amp; ALU, fasadave strukturale dhe roletave në Orizare, Likovë dhe në gjithë rajonin.
         </p>
         <div class="footer-social-row">
@@ -957,19 +985,19 @@
 
       <!-- Kolona 2: Produktet -->
       <div class="footer-col">
-        <h4 class="footer-heading">Produktet</h4>
+        <h4 class="footer-heading" data-i18n="footer_col_prod">Produktet</h4>
         <ul class="footer-menu">
-          <li><a href="#pvc-schuco">Schüco LivIng 82 MD</a></li>
-          <li><a href="#pvc-kommerling">Kömmerling 76 MD</a></li>
-          <li><a href="#sliding-systems">Sisteme Rrëshqitëse (Sliding)</a></li>
-          <li><a href="#fasada-strukturale">Fasada Strukturale Xhami</a></li>
-          <li><a href="#roleta-alumini">Roleta Alumini &amp; Alubond</a></li>
+          <li><a href="#pvc-schuco" data-i18n="nav_schuco">Schüco LivIng 82 MD</a></li>
+          <li><a href="#pvc-kommerling" data-i18n="nav_kommerling">Kömmerling 76 MD</a></li>
+          <li><a href="#sliding-systems" data-i18n="nav_sliding">Sisteme Rrëshqitëse (Sliding)</a></li>
+          <li><a href="#fasada-strukturale" data-i18n="nav_facades">Fasada Strukturale Xhami</a></li>
+          <li><a href="#roleta-alumini" data-i18n="nav_shutters">Roleta Alumini &amp; Alubond</a></li>
         </ul>
       </div>
 
       <!-- Kolona 3: Navigimi -->
       <div class="footer-col">
-        <h4 class="footer-heading">Navigimi</h4>
+        <h4 class="footer-heading" data-i18n="footer_col_nav">Navigimi</h4>
         <ul class="footer-menu">
           <li><a href="#ballina">Kreu (Home)</a></li>
           <li><a href="#pvc-schuco">Schüco</a></li>
@@ -984,7 +1012,7 @@
 
       <!-- Kolona 4: Kontakt i Drejtpërdrejtë -->
       <div class="footer-col col-contact">
-        <h4 class="footer-heading">Kontakt Zyrtar</h4>
+        <h4 class="footer-heading" data-i18n="footer_col_contact">Kontakt Zyrtar</h4>
         <p><i class="fa-solid fa-location-dot"></i> Orizare, Komuna e Likovës</p>
         <p><i class="fa-solid fa-phone"></i> <a href="tel:+38971442821">+389 71 442 821</a></p>
         <p><i class="fa-solid fa-phone"></i> <a href="tel:+38978299914">+389 78 299 914</a></p>
@@ -997,8 +1025,8 @@
     <!-- Shiriti i Fundit -->
     <div class="footer-copyright-bar">
       <div class="met-container copyright-flex">
-        <p>© 2026 LANI KOMPANI. All rights reserved.</p>
-        <p>European Standards • High-Performance Systems • Orizare, Likovë</p>
+        <p data-i18n="footer_copy_left">© 2026 LANI KOMPANI. All rights reserved.</p>
+        <p data-i18n="footer_copy_right">European Standards • High-Performance Systems • Orizare, Likovë</p>
       </div>
     </div>
   </footer>
@@ -1067,5 +1095,6 @@
   </div>
 
   <!-- JavaScript -->
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body></html>
