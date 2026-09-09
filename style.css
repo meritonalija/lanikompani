@@ -657,17 +657,39 @@ img {
 
 /* Page Title Banner */
 .met-page-title-banner {
-  background: #1c1c1c;
-  padding: 30px 0;
+  background: linear-gradient(180deg, #18191c 0%, #111214 100%);
+  padding: 45px 0 40px;
   text-align: center;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid #282a2e;
+}
+
+.banner-eyebrow {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--met-red);
+  margin-bottom: 8px;
 }
 
 .met-page-title-banner h2 {
   font-family: 'Poppins', sans-serif;
   color: #ffffff;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.banner-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: #94a3b8;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -676,6 +698,7 @@ img {
 .met-tech-section {
   padding: 85px 0;
   background: #ffffff;
+  position: relative;
 }
 
 .met-tech-section.bg-subtle {
@@ -683,7 +706,7 @@ img {
 }
 
 .met-heading-wrap {
-  margin-bottom: 60px;
+  margin-bottom: 45px;
 }
 
 .met-section-title {
@@ -708,6 +731,159 @@ img {
 
 .met-heading-badge-wrap .met-section-title {
   margin-bottom: 0;
+}
+
+/* PVC Brand Profile Switcher */
+.pvc-brand-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f3f6;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  padding: 4px;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pvc-brand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #64748b;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  user-select: none;
+}
+
+.pvc-brand-btn .brand-btn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+  transition: all 0.25s ease;
+}
+
+.pvc-brand-btn:hover:not(.active) {
+  color: #1e293b;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.pvc-brand-btn.active {
+  background: var(--met-red);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(195, 40, 46, 0.35);
+}
+
+.pvc-brand-btn.active .brand-btn-dot {
+  background: #ffffff;
+}
+
+/* Profile Panel Switcher Animation */
+.pvc-profile-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.pvc-profile-panel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: pvcPanelSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pvcPanelSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Quick Specs Ribbon inside profile panels */
+.profile-specs-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 30px auto 40px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  max-width: 980px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.spec-ribbon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  border-right: 1px solid #e2e8f0;
+  flex: 1;
+  min-width: 120px;
+}
+
+.spec-ribbon-item:last-child {
+  border-right: none;
+}
+
+.spec-ribbon-item .ribbon-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--met-title);
+  line-height: 1.2;
+}
+
+.spec-ribbon-item .ribbon-num span {
+  font-size: 13px;
+  color: var(--met-red);
+  margin-left: 2px;
+}
+
+.spec-ribbon-item .ribbon-lbl {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.6px;
+  margin-top: 3px;
+}
+
+.diagram-caption-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 6px 16px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.diagram-caption-badge i {
+  color: var(--met-red);
 }
 
 .met-badge-profile {
@@ -878,8 +1054,49 @@ img {
 .split-desc {
   font-size: 15px;
   color: var(--met-text);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   line-height: 1.7;
+}
+
+.split-tag-pill {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--met-red);
+  background: rgba(195, 40, 46, 0.08);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.split-specs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.split-specs-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.split-specs-list li i {
+  color: var(--met-red);
+  font-size: 13px;
+  width: 16px;
+  text-align: center;
 }
 
 /* ==========================================================================

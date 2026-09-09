@@ -532,4 +532,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ==========================================================================
+  // PVC WINDOWS PROFILE BRAND SWITCHER (SCHÜCO 82mm vs KÖMMERLING 76mm)
+  // ==========================================================================
+  window.switchPvcBrand = function(targetBrand) {
+    const btns = document.querySelectorAll('.pvc-brand-btn');
+    const panelSchuco = document.getElementById('panelSchuco');
+    const panelKommerling = document.getElementById('panelKommerling');
+
+    btns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-target') === targetBrand;
+      btn.classList.toggle('active', isTarget);
+      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+    });
+
+    if (targetBrand === 'schuco') {
+      if (panelSchuco) panelSchuco.classList.add('active');
+      if (panelKommerling) panelKommerling.classList.remove('active');
+    } else if (targetBrand === 'kommerling') {
+      if (panelKommerling) panelKommerling.classList.add('active');
+      if (panelSchuco) panelSchuco.classList.remove('active');
+    }
+  };
+
+  // Event listener për butonat e markës
+  document.querySelectorAll('.pvc-brand-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const brand = this.getAttribute('data-target');
+      if (brand) window.switchPvcBrand(brand);
+    });
+  });
 });

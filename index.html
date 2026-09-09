@@ -227,147 +227,307 @@
   </div>
 
   <!-- ==========================================================================
-       PAGE TITLE BANNER
+       PAGE TITLE BANNER (Elegancë Arkitekturore)
        ========================================================================== -->
   <div class="met-page-title-banner">
     <div class="met-container">
-      <h2>PVC Windows &amp; Sliding Systems</h2>
+      <span class="banner-eyebrow">TEKNOLOGJI GJERMANE &amp; EVROPIANE</span>
+      <h2>Katalogu Teknik i Sistemeve PVC, Alumini &amp; Fasadave</h2>
+      <p class="banner-sub">
+        Profile me efiçiencë të lartë energjetike, termoizolim superior dhe certifikime të standardeve evropiane për shtëpi pasive dhe arkitekturë moderne.
+      </p>
     </div>
   </div>
 
   <!-- ==========================================================================
-       SIGNATURE SECTION 1: PVC Windows (3-Kolona me Diagram Presek Teknik)
+       SIGNATURE SECTION 1: PVC Windows me Brand Switcher (SCHÜCO 82mm & KÖMMERLING 76mm)
        ========================================================================== -->
   <section class="met-tech-section" id="pvc-windows">
     <div class="met-container">
       
       <div class="met-heading-wrap text-center">
         <div class="met-heading-badge-wrap">
-          <h2 class="met-section-title">PVC Windows</h2>
-          <span class="met-badge-profile">SCHUCO 82mm</span>
+          <h2 class="met-section-title">Dritare PVC të Avancuara</h2>
+          <div class="pvc-brand-toggle" role="tablist" aria-label="Zgjidh Brendin e Profilit">
+            <button type="button" class="pvc-brand-btn active" data-target="schuco" id="btnPvcSchuco" role="tab" aria-selected="true" aria-controls="panelSchuco" onclick="switchPvcBrand('schuco')">
+              <span class="brand-btn-dot"></span>
+              <span>SCHÜCO 82mm</span>
+            </button>
+            <button type="button" class="pvc-brand-btn" data-target="kommerling" id="btnPvcKommerling" role="tab" aria-selected="false" aria-controls="panelKommerling" onclick="switchPvcBrand('kommerling')">
+              <span class="brand-btn-dot"></span>
+              <span>KÖMMERLING 76mm</span>
+            </button>
+          </div>
         </div>
+        <p class="met-section-desc">
+          Zgjidhni midis dy gjigantëve gjermanë të industrisë së profileve termoizoluese me certifikim ndërkombëtar dhe saktësi milimetrike.
+        </p>
         <div class="met-title-divider"></div>
       </div>
 
-      <div class="met-three-col-layout">
-        <!-- Kolona Majtas -->
-        <div class="met-col-features left-align">
-          
-          <div class="met-feature-unit">
-            <span class="feat-category">PROFILE SYSTEMS</span>
-            <h4 class="feat-title">Sistem Modern i Profileve</h4>
-            <p class="feat-text">
-              Me një thellësi ndërtimi optimale prej 70mm dhe 82mm, sistemi i profileve ka veti të avancuara të termoizolimit (Uf) si dhe qëndrueshmëri dhe stabilitet maksimal statik.
-            </p>
+      <!-- SCHÜCO 82mm PROFILE PANEL -->
+      <div class="pvc-profile-panel active" id="panelSchuco">
+        
+        <!-- Shiriti i Specifikimeve Teknike të Certifikuara -->
+        <div class="profile-specs-ribbon">
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">82<span>mm</span></div>
+            <div class="ribbon-lbl">Thellësi Ndërtimi</div>
           </div>
-
-          <div class="met-feature-unit">
-            <span class="feat-category">PROFILE SYSTEMS</span>
-            <h4 class="feat-title">3 Nivele Izolimi (Gomina)</h4>
-            <p class="feat-text">
-              Sistemi me tri nivele gomine siguron vlerat më të larta të izolimit termik dhe akustik, duke garantuar mbrojtje hermetike edhe gjatë reshjeve më të rënda dhe erërave.
-            </p>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">7</div>
+            <div class="ribbon-lbl">Dhoma Izolimi</div>
           </div>
-
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">0.96<span>W/m²K</span></div>
+            <div class="ribbon-lbl">Termoizolimi Uf</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">47<span>dB</span></div>
+            <div class="ribbon-lbl">Izolim Akustik</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">3<span>Nivele</span></div>
+            <div class="ribbon-lbl">Gomina EPDM</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">52<span>mm</span></div>
+            <div class="ribbon-lbl">Xham deri në</div>
+          </div>
         </div>
 
-        <!-- Kolona Qendrore: Diagrami Teknik i Profilit -->
-        <div class="met-col-diagram">
-          <div class="diagram-img-wrap">
-            <img src="images/foto_1788827279996.jpg" alt="PVC Profile Presek LANI KOMPANI" class="presek-image" loading="lazy">
+        <div class="met-three-col-layout">
+          <!-- Kolona Majtas -->
+          <div class="met-col-features left-align">
+            <div class="met-feature-unit">
+              <span class="feat-category">SCHÜCO LivIng 82 MD</span>
+              <h4 class="feat-title">Sistem Gjerman me 7 Dhoma</h4>
+              <p class="feat-text">
+                Me një thellësi ndërtimi optimale prej 82mm me 7 dhoma ajri në kornizë e krah, profili Schüco LivIng arrin vlerën Uf prej 0.96 W/(m²K) – duke plotësuar plotësisht kërkesat e rrepta të shtëpive pasive.
+              </p>
+            </div>
+
+            <div class="met-feature-unit">
+              <span class="feat-category">HERMETIZIM TOTAL</span>
+              <h4 class="feat-title">3 Nivele Guarnicionesh EPDM</h4>
+              <p class="feat-text">
+                Gominat elastike EPDM me cilësi të lartë saldohen edhe në qoshe, duke krijuar mbrojtje hermetike 100% ndaj erërave të forta, reshjeve të dendura të shiut dhe depërtimit të ajrit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Kolona Qendrore: Diagrami Teknik i Profilit Schuco -->
+          <div class="met-col-diagram">
+            <div class="diagram-img-wrap">
+              <img src="images/foto_1788827279996.jpg" alt="Schüco 82mm Profile Presek LANI KOMPANI" class="presek-image" loading="lazy">
+            </div>
+            <div>
+              <span class="diagram-caption-badge"><i class="fa-solid fa-certificate"></i> Schüco LivIng 82 • Made in Germany</span>
+            </div>
+          </div>
+
+          <!-- Kolona Djathtas -->
+          <div class="met-col-features right-align">
+            <div class="met-feature-unit">
+              <span class="feat-category">AKUSTIKË ELITARE</span>
+              <h4 class="feat-title">Izolim Zëri deri 47 dB</h4>
+              <p class="feat-text">
+                Kombinimi i profileve të thella me xham akustik special absorbon zhurmat e trafikut urban dhe ambientit të jashtëm, duke garantuar rehati dhe qetësi absolute.
+              </p>
+            </div>
+
+            <div class="met-feature-unit">
+              <span class="feat-category">XHAM TERMOIZOLUES</span>
+              <h4 class="feat-title">Paketë Xhami 4-Stinët me Argon</h4>
+              <p class="feat-text">
+                Mundësi pajisjeje me xham tresh termo-akustik deri në 52mm gjerësi me mbushje gazi argon dhe distancer Warm-Edge, duke parandaluar kondensimin dhe ulur faturat e energjisë.
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- Kolona Djathtas -->
-        <div class="met-col-features right-align">
-          
-          <div class="met-feature-unit">
-            <span class="feat-category">PROFILE SYSTEMS</span>
-            <h4 class="feat-title">Xham i Ngjitur Teknologjik</h4>
-            <p class="feat-text">
-              Xhami izolues ngjitet hermetikisht në profilin e krahut duke përdorur teknologji speciale precize. Kjo rrit ndjeshëm qëndrueshmërinë dhe izolimin akustik.
-            </p>
-          </div>
-
-          <div class="met-feature-unit">
-            <span class="feat-category">PROFILE SYSTEMS</span>
-            <h4 class="feat-title">Xham me 3 Shtresa (4-Stinët)</h4>
-            <p class="feat-text">
-              Mundësi pajisjeje me xham termo-izolues tresh deri në 48mm gjerësi, me mbushje gazi argon për ruajtjen maksimale të ngrohtësisë dhe freskisë.
-            </p>
-          </div>
-
+        <div class="met-tech-btn-box">
+          <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Dritaret%20PVC%20Schuco%2082mm." target="_blank" class="btn-met-primary">
+            Pyet për Schüco 82mm <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
 
-      <div class="met-tech-btn-box">
-        <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Dritaret%20PVC." target="_blank" class="btn-met-primary">
-          Pyet për PVC Windows <i class="fa-solid fa-arrow-right"></i>
-        </a>
+      <!-- KÖMMERLING 76mm PROFILE PANEL -->
+      <div class="pvc-profile-panel" id="panelKommerling">
+        
+        <!-- Shiriti i Specifikimeve Teknike të Certifikuara -->
+        <div class="profile-specs-ribbon">
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">76<span>mm</span></div>
+            <div class="ribbon-lbl">Thellësi Ndërtimi</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">6</div>
+            <div class="ribbon-lbl">Dhoma Izolimi</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">1.0<span>W/m²K</span></div>
+            <div class="ribbon-lbl">Termoizolimi Uf</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">48<span>dB</span></div>
+            <div class="ribbon-lbl">Izolim Akustik</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">Sistem MD</div>
+            <div class="ribbon-lbl">Gominë Qendrore</div>
+          </div>
+          <div class="spec-ribbon-item">
+            <div class="ribbon-num">50<span>mm</span></div>
+            <div class="ribbon-lbl">Xham deri në</div>
+          </div>
+        </div>
+
+        <div class="met-three-col-layout">
+          <!-- Kolona Majtas -->
+          <div class="met-col-features left-align">
+            <div class="met-feature-unit">
+              <span class="feat-category">KÖMMERLING 76 MD</span>
+              <h4 class="feat-title">Sistem Gjerman me 6 Dhoma</h4>
+              <p class="feat-text">
+                Me thellësi 76mm dhe 6 dhoma izoluese me përforcime çeliku të galvanizuar, profili ofron stabilitet statik të lartë, efiçiencë energjetike të shkëlqyer dhe kursim deri në 30% të energjisë.
+              </p>
+            </div>
+
+            <div class="met-feature-unit">
+              <span class="feat-category">SISTEM ME GOMINË QENDRORE</span>
+              <h4 class="feat-title">Izolim Qendror MD (Middle Seal)</h4>
+              <p class="feat-text">
+                Tre nivele guarnicionesh me izolim të veçantë qendror sigurojnë mbrojtje maksimale ndaj shiut të rrëmbyeshëm (Klasi 9A), depërtimit të ajrit (Klasi 4) dhe erërave të forta (Klasi C5/B5).
+              </p>
+            </div>
+          </div>
+
+          <!-- Kolona Qendrore: Diagrami Teknik i Profilit Kömmerling -->
+          <div class="met-col-diagram">
+            <div class="diagram-img-wrap">
+              <img src="images/profile_kommerling_cutaway.jpg" alt="Kömmerling 76 MD Profile Presek LANI KOMPANI" class="presek-image" loading="lazy">
+            </div>
+            <div>
+              <span class="diagram-caption-badge"><i class="fa-solid fa-leaf"></i> Kömmerling 76 MD • greenline®</span>
+            </div>
+          </div>
+
+          <!-- Kolona Djathtas -->
+          <div class="met-col-features right-align">
+            <div class="met-feature-unit">
+              <span class="feat-category">EKO-TEKNOLOGJI</span>
+              <h4 class="feat-title">Formula Ekologjike greenline®</h4>
+              <p class="feat-text">
+                Përbërje 100% pa plumb me stabilizues me bazë kalcium-zink (Ca-Zn), me qëndrueshmëri maksimale ndaj rrezatimit diellor UV dhe jetëgjatësi shumëdekadëshe pa ndryshim ngjyre.
+              </p>
+            </div>
+
+            <div class="met-feature-unit">
+              <span class="feat-category">IZOLIM MAKSIMAL</span>
+              <h4 class="feat-title">Xham me 3 Shtresa (Uw deri 0.73)</h4>
+              <p class="feat-text">
+                Mundësi pajisjeje me xham tresh termo-akustik deri në 50mm me mbushje gazi argon, duke arritur vlerën totale Uw prej 0.73 W/(m²K) për komoditet të përsosur gjatë 4 stinëve.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="met-tech-btn-box">
+          <a href="https://wa.me/38971442821?text=P%C3%ABrsh%C3%ABndetje%20Lani%20Kompani,%20interesohem%20p%C3%ABr%20Dritaret%20PVC%20Kommerling%2076mm." target="_blank" class="btn-met-primary">
+            Pyet për Kömmerling 76mm <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- ==========================================================================
-       SIGNATURE SECTION 2: Sliding Systems (3-Kolona me Slide Diagram)
+       SIGNATURE SECTION 2: Sliding Systems (Hebeschiebe - Sisteme Rrëshqitëse Ngritëse)
        ========================================================================== -->
   <section class="met-tech-section bg-subtle" id="sliding-systems">
     <div class="met-container">
       
       <div class="met-heading-wrap text-center">
-        <h2 class="met-section-title">Sliding Systems</h2>
+        <div class="met-heading-badge-wrap">
+          <h2 class="met-section-title">Sliding Systems</h2>
+          <span class="met-badge-profile">HEBESCHIEBE &amp; ASISTAL</span>
+        </div>
+        <p class="met-section-desc">
+          Zgjidhje luksoze me hapje panoramike, mekanizma ngritës-rrëshqitës gjermanë dhe prag të rrafshët pa pengesa.
+        </p>
         <div class="met-title-divider"></div>
+      </div>
+
+      <!-- Shiriti i Specifikimeve Teknike të Sistemeve Rrëshqitëse -->
+      <div class="profile-specs-ribbon">
+        <div class="spec-ribbon-item">
+          <div class="ribbon-num">400<span>kg</span></div>
+          <div class="ribbon-lbl">Kapacitet për Krah</div>
+        </div>
+        <div class="spec-ribbon-item">
+          <div class="ribbon-num">Zero<span>mm</span></div>
+          <div class="ribbon-lbl">Prag i Rrafshët</div>
+        </div>
+        <div class="spec-ribbon-item">
+          <div class="ribbon-num">34<span>mm</span></div>
+          <div class="ribbon-lbl">Termo-Thyerje Poliamidi</div>
+        </div>
+        <div class="spec-ribbon-item">
+          <div class="ribbon-num">6.5<span>m</span></div>
+          <div class="ribbon-lbl">Hapje Panoramike</div>
+        </div>
       </div>
 
       <div class="met-three-col-layout">
         <!-- Kolona Majtas -->
         <div class="met-col-features left-align">
-          
           <div class="met-feature-unit">
-            <span class="feat-category">SLIDING SYSTEMS</span>
-            <h4 class="feat-title">Dizajn Modern dhe i Pastër</h4>
+            <span class="feat-category">MEKANIZËM INOVATIV</span>
+            <h4 class="feat-title">Teknologji Ngritëse-Rrëshqitëse</h4>
             <p class="feat-text">
-              Dyer rrëshqitëse ngritëse inovative me pamje ultra-të hollë të profilit për të lejuar dritën maksimale natyrore dhe hapje të lehtë pa pengesa.
+              Krahët e rëndë të dyerve ngrihen me lehtësi me anë të dorezës ergonomike dhe rrëshqasin butësisht mbi shina çeliku inoks me kushineta të specializuara.
             </p>
           </div>
 
           <div class="met-feature-unit">
-            <span class="feat-category">SLIDING SYSTEMS</span>
-            <h4 class="feat-title">Izolim Termik i Shkëlqyer</h4>
+            <span class="feat-category">AKSES PA PENGE SA</span>
+            <h4 class="feat-title">Prag i Rrafshët (Zero-Barrier)</h4>
             <p class="feat-text">
-              Profile të izoluara me shumë dhoma ajri dhe xham termik tresh, të përshtatshme për shtëpi me efiçiencë të lartë energjetike.
+              Dizajn modern me prag të integruar në nivel me dyshemenë, duke ofruar kalim të lirë, elegant dhe të sigurt midis ambientit të brendshëm dhe tarracës.
             </p>
           </div>
-
         </div>
 
         <!-- Kolona Qendrore: Diagrami i Sistemit Rrëshqitës -->
         <div class="met-col-diagram">
           <div class="diagram-img-wrap">
-            <img src="https://met.mk/wp-content/uploads/2024/11/slide.png" alt="Sliding Systems Diagram LANI KOMPANI" class="presek-image" loading="lazy">
+            <img src="images/foto_1788827375791.jpg" alt="Sliding Systems Diagram LANI KOMPANI" class="presek-image" loading="lazy">
+          </div>
+          <div>
+            <span class="diagram-caption-badge"><i class="fa-solid fa-arrows-left-right"></i> Asistal &amp; Schüco Hebeschiebe</span>
           </div>
         </div>
 
         <!-- Kolona Djathtas -->
         <div class="met-col-features right-align">
-          
           <div class="met-feature-unit">
-            <span class="feat-category">SLIDING SYSTEMS</span>
-            <h4 class="feat-title">Stabilitet &amp; Rigiditet i Besueshëm</h4>
+            <span class="feat-category">EFIÇIENCË ENERGJETIKE</span>
+            <h4 class="feat-title">Termo-Urë Alumini me Poliamid</h4>
             <p class="feat-text">
-              Përforcimet prej çeliku me përmasa të mëdha garantojnë funksionim të lehtë dhe afatgjatë për dyer me peshë dhe sipërfaqe të madhe xhami.
+              Profile alumini me thyerje termike të gjerë dhe guarnicione shumëfishe EPDM sigurojnë izolim termik të lartë dhe eliminim të plotë të kondensimit.
             </p>
           </div>
 
           <div class="met-feature-unit">
-            <span class="feat-category">SLIDING SYSTEMS</span>
-            <h4 class="feat-title">Mbyllje Hermetike Optimale</h4>
+            <span class="feat-category">SIGURI &amp; STATIKË</span>
+            <h4 class="feat-title">Xham Panoramik i Sigurt (ESG/VSG)</h4>
             <p class="feat-text">
-              Gomina rrethuese dhe pjesë izoluese me cilësi të lartë garantojnë hermetizim ndaj shiut dhe ajrit edhe pas shumë vitesh përdorimi.
+              Xham me 3 shtresa i kalitur dhe i laminuar për siguri maksimale ndaj thyerjeve, me mbrojtje nga rrezatimi diellor dhe izolim akustik deri 45 dB.
             </p>
           </div>
-
         </div>
       </div>
 
@@ -381,64 +541,88 @@
   </section>
 
   <!-- ==========================================================================
-       SPLIT SHOWCASE ROWS (Foto të përshtatura saktësisht me arkitekturën)
+       SPLIT SHOWCASE ROWS (Prezantim i Renditur me Specifikime Teknike)
        ========================================================================== -->
   <section class="met-split-showcase-section">
     
-    <!-- Row 1: Sliding Systems (me foton origjinale arkitekturore të met.mk) -->
+    <!-- Row 1: Sliding Systems -->
     <div class="met-split-row">
       <div class="split-col-image">
         <img src="images/foto_1788827375791.jpg" alt="Sliding Systems LANI KOMPANI" loading="lazy">
       </div>
       <div class="split-col-content">
-        <p class="split-sub">Sistemet Tona Rrëshqitëse - Cilësi Jete në Nivel të Ri</p>
-        <h3 class="split-main-title">Sliding Systems</h3>
+        <span class="split-tag-pill">SISTEME RRËSHQITËSE</span>
+        <p class="split-sub">Arkitekturë Moderne me Hapje Panoramike</p>
+        <h3 class="split-main-title">Sliding Systems Panoramike</h3>
         <p class="split-desc">
-          Elemente rrëshqitëse që kursejnë dhe hapin hapësirën – një zgjidhje luksoze dhe elegante për çdo ambient banimi apo zyre moderne.
+          Zgjidhje elitare për vila, penthouses dhe ambiente moderne që kërkojnë dritë maksimale natyrore dhe lidhje të papenguar me ambientin e jashtëm.
         </p>
-        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Sliding%20Systems." target="_blank" class="btn-met-dark">Më Shumë Informacion</a>
+        <ul class="split-specs-list">
+          <li><i class="fa-solid fa-check-circle"></i> Mekanizëm Ngritës-Rrëshqitës (Hebeschiebe) deri 400kg për krah</li>
+          <li><i class="fa-solid fa-check-circle"></i> Prag i rrafshët me dyshemenë pa pengesa (Barrier-Free)</li>
+          <li><i class="fa-solid fa-check-circle"></i> Xham tresh termoizolues 4-Stinët me gaz argon</li>
+        </ul>
+        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Sliding%20Systems." target="_blank" class="btn-met-dark">Kërko Ofertë për Sisteme Rrëshqitëse</a>
       </div>
     </div>
 
-    <!-- Row 2: Windows Art (me foton origjinale arkitekturore të met.mk) -->
+    <!-- Row 2: Windows & Doors -->
     <div class="met-split-row reverse">
       <div class="split-col-content">
-        <p class="split-sub">Arti i Dritareve</p>
-        <h3 class="split-main-title">Dritare</h3>
+        <span class="split-tag-pill">DRITARE &amp; DYER HYRËSE</span>
+        <p class="split-sub">Saktësi Gjermane dhe Siguri Maksimale</p>
+        <h3 class="split-main-title">Dritare &amp; Dyer PVC / Alumini</h3>
         <p class="split-desc">
-          Dizajn i hollë, i sigurt, jetëgjatë dhe me mirëmbajtje minimale – ky është standardi ynë për dritaret dhe dyert tuaja.
+          Kombinim perfekt i dizajnit të rafinuar, izolimit termik superior dhe mekanizmave të sigurisë kundër thyerjes (RC2).
         </p>
-        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Dritare%20dhe%20Dyer." target="_blank" class="btn-met-dark">Më Shumë Informacion</a>
+        <ul class="split-specs-list">
+          <li><i class="fa-solid fa-check-circle"></i> Profile origjinale gjermane Schüco LivIng 82 &amp; Kömmerling 76 MD</li>
+          <li><i class="fa-solid fa-check-circle"></i> Tre nivele izolimi me guarnicione EPDM të saldueshme</li>
+          <li><i class="fa-solid fa-check-circle"></i> Izolim zëri deri 48 dB dhe kursim energjie deri në 30%</li>
+        </ul>
+        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Dritare%20dhe%20Dyer." target="_blank" class="btn-met-dark">Kërko Ofertë për Dritare &amp; Dyer</a>
       </div>
       <div class="split-col-image">
         <img src="images/foto_1788828508241.webp" alt="Windows LANI KOMPANI" loading="lazy">
       </div>
     </div>
 
-    <!-- Row 3: Fasada Strukturale (Specialiteti i LANI KOMPANI) -->
+    <!-- Row 3: Fasada Strukturale -->
     <div class="met-split-row" id="fasada-strukturale">
       <div class="split-col-image">
         <img src="images/foto_1788828133911.webp" alt="Fasada Strukturale Xhami" loading="lazy">
       </div>
       <div class="split-col-content">
-        <p class="split-sub">Arkitekturë Bashkëkohore</p>
-        <h3 class="split-main-title">Fasada Strukturale</h3>
+        <span class="split-tag-pill">FASADA STRUKTURALE</span>
+        <p class="split-sub">Specialiteti dhe Ekselenca e LANI KOMPANI</p>
+        <h3 class="split-main-title">Fasada Strukturale Xhami &amp; Alumini</h3>
         <p class="split-desc">
-          Zgjidhje elitare për objekte afariste, qendra tregtare dhe vila me profile të padukshme, xham Stopsol me reflektim diellor dhe izolim termik superior.
+          Zgjidhje inxhinierike të nivelit më të lartë për objekte afariste, seli korporative, spitale dhe vila moderne me profile të fshehura.
         </p>
-        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Fasada%20Strukturale." target="_blank" class="btn-met-dark">Më Shumë Informacion</a>
+        <ul class="split-specs-list">
+          <li><i class="fa-solid fa-check-circle"></i> Profile alumini Asistal me thyerje termike për fasada me shtylla dhe traversa</li>
+          <li><i class="fa-solid fa-check-circle"></i> Xhama solar kontroll Stopsol / Low-E për efiçiencë termike maksimale</li>
+          <li><i class="fa-solid fa-check-circle"></i> Hermetizim me silikon strukturor rezistent ndaj erërave të forta dhe tërmeteve (EN 13830)</li>
+        </ul>
+        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Fasada%20Strukturale." target="_blank" class="btn-met-dark">Kërko Ofertë për Fasada Strukturale</a>
       </div>
     </div>
 
     <!-- Row 4: Roleta Alumini & Alubond -->
     <div class="met-split-row reverse" id="roleta-alumini">
       <div class="split-col-content">
-        <p class="split-sub">Siguri dhe Mbrojtje Termike</p>
-        <h3 class="split-main-title">Roleta Alumini</h3>
+        <span class="split-tag-pill">ROLETA &amp; ALUBOND</span>
+        <p class="split-sub">Mbrojtje Termike, Diellore dhe Privatësi</p>
+        <h3 class="split-main-title">Roleta Alumini &amp; Veshje Fasadash</h3>
         <p class="split-desc">
-          Roleta alumini me shkumë poliuretani, mekanizma automatikë me motor elektrik dhe telekomandë, si dhe veshje fasadash me panele Alubond.
+          Roleta të jashtme dhe të brendshme alumini me mbushje shkume poliuretani për izolim termo-akustik maksimal dhe veshje me panele kompozite Alubond.
         </p>
-        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Roleta%20Alumini%20dhe%20Alubond." target="_blank" class="btn-met-dark">Më Shumë Informacion</a>
+        <ul class="split-specs-list">
+          <li><i class="fa-solid fa-check-circle"></i> Lamele alumini të mbushura me shkumë poliuretani ekologjike</li>
+          <li><i class="fa-solid fa-check-circle"></i> Motori elektrik me telekomandë dhe integrim me shtëpi inteligjente (Smart Home)</li>
+          <li><i class="fa-solid fa-check-circle"></i> Panele fasade Alubond rezistente ndaj zjarrit dhe kushteve atmosferike</li>
+        </ul>
+        <a href="https://wa.me/38971442821?text=Interesohem%20p%C3%ABr%20Roleta%20Alumini%20dhe%20Alubond." target="_blank" class="btn-met-dark">Kërko Ofertë për Roleta &amp; Alubond</a>
       </div>
       <div class="split-col-image">
         <img src="images/foto_1788828668962.webp" alt="Roleta Alumini LANI KOMPANI" loading="lazy">
@@ -448,7 +632,7 @@
   </section>
 
   <!-- ==========================================================================
-       PROMO BANNERS SECTION (3 Kartat origjinale të met.mk)
+       PROMO BANNERS SECTION (Përparësitë dhe Vlerat e Kompanisë)
        ========================================================================== -->
   <section class="met-promo-section" id="per-ne">
     <div class="met-container">
@@ -460,7 +644,7 @@
             <img src="images/foto_1788829371409.jpg" alt="Materiale Cilësore" loading="lazy">
           </div>
           <div class="promo-card-overlay">
-            <h4 class="promo-card-title">Materiale Cilësore</h4>
+            <h4 class="promo-card-title">Materiale të Certifikuara</h4>
             <a href="#pvc-windows" class="btn-met-card">Shiko Detajet</a>
           </div>
         </div>
@@ -479,7 +663,7 @@
         <!-- Banner 3: Product World -->
         <div class="met-promo-card">
           <div class="promo-img-holder">
-            <img src="https://met.mk/wp-content/uploads/2024/11/1311212.jpg" alt="Bota e Produkteve" loading="lazy">
+            <img src="images/foto_1788828304789.jpg" alt="Bota e Produkteve" loading="lazy">
           </div>
           <div class="promo-card-overlay">
             <h4 class="promo-card-title">Bota e Produkteve Tona</h4>
