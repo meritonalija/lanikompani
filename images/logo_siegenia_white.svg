@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <!-- SIEGENIA® wordmark - exact brand blue, transparent background -->
+  <text
+    x="50%"
+    y="44%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Franklin Gothic Heavy', 'Impact', sans-serif"
+    font-size="42"
+    font-weight="900"
+    fill="#1A5BA8"
+    letter-spacing="-0.5"
+  >SIEGENIA</text>
+  <!-- ® superscript -->
+  <text
+    x="298"
+    y="22"
+    font-family="'Arial', sans-serif"
+    font-size="14"
+    font-weight="700"
+    fill="#1A5BA8"
+  >®</text>
+  <!-- Tagline -->
+  <text
+    x="50%"
+    y="78%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Arial', 'Helvetica Neue', sans-serif"
+    font-size="13"
+    font-weight="400"
+    fill="#444444"
+    letter-spacing="0.3"
+  >brings spaces to life</text>
+</svg>

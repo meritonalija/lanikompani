@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <!-- HOPPE® wordmark - exact brand light blue, transparent background -->
+  <text
+    x="148"
+    y="38"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Franklin Gothic Heavy', 'Impact', sans-serif"
+    font-size="42"
+    font-weight="900"
+    fill="#7BC8E2"
+    letter-spacing="1"
+  >HOPPE</text>
+  <!-- ® superscript -->
+  <text
+    x="242"
+    y="18"
+    font-family="'Arial', sans-serif"
+    font-size="13"
+    font-weight="700"
+    fill="#7BC8E2"
+  >®</text>
+
+  <!-- H hexagon icon (red) -->
+  <polygon
+    points="258,12 270,19 270,33 258,40 246,33 246,19"
+    fill="#D42B2B"
+  />
+  <text
+    x="258"
+    y="27"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Arial Black', sans-serif"
+    font-size="16"
+    font-weight="900"
+    fill="#ffffff"
+  >H</text>
+
+  <!-- Tagline -->
+  <text
+    x="148"
+    y="62"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Arial', 'Helvetica Neue', sans-serif"
+    font-size="12"
+    font-weight="400"
+    fill="#555555"
+    letter-spacing="0.2"
+  >Handle of excellence.</text>
+</svg>
