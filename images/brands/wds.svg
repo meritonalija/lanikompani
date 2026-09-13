@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 400" role="img" aria-label="WDS">
+  <rect width="1100" height="400" fill="none"/>
+  <g transform="translate(40,60)">
+    <rect x="0" y="55" width="250" height="210" fill="#1FAF5A"/>
+    <rect x="175" y="0" width="90" height="230" fill="#31C0F7"/>
+    <rect x="0" y="110" width="250" height="150" fill="#31C0F7" opacity="0.25"/>
+    <rect x="0" y="0" width="160" height="160" fill="#31C0F7" opacity="0.8"/>
+    <rect x="82" y="0" width="170" height="160" fill="#1FAF5A" opacity="0.2"/>
+  </g>
+  <text x="405" y="215" font-size="220" font-weight="800" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" letter-spacing="-10">WDS</text>
+  <text x="420" y="320" font-size="52" font-weight="500" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">WINDOW DOOR SYSTEMS</text>
+</svg>

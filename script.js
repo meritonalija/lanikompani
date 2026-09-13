@@ -169,7 +169,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Subnav Active State Tracking
+  // 3. Profile summary toggle for compact product cards
+  const profileSummaryToggles = document.querySelectorAll('.profile-summary-toggle');
+
+  profileSummaryToggles.forEach(button => {
+    const panel = button.nextElementSibling;
+    if (!panel || !panel.classList.contains('profile-details-panel')) {
+      return;
+    }
+
+    button.addEventListener('click', () => {
+      const isOpen = panel.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(isOpen));
+      panel.setAttribute('aria-hidden', String(!isOpen));
+    });
+  });
+
+  // 4. Subnav Active State Tracking
   const subnavTabs = document.querySelectorAll('.subnav-tab');
   const sections = document.querySelectorAll('section[id], div[id]');
 
