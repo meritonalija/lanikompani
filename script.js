@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const userPhone = document.getElementById('userPhone');
   const userCity = document.getElementById('userCity');
   const userService = document.getElementById('userService');
+  const userHeight = document.getElementById('userHeight');
+  const userWidth = document.getElementById('userWidth');
   const userNotes = document.getElementById('userNotes');
 
   const WHATSAPP_NUMBER = '38971442821';
@@ -128,14 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = userPhone.value.trim();
       const city = userCity.value.trim() || 'I paspecifikuar';
       const service = userService.value;
-      const notes = userNotes.value.trim() || 'Kërkoj më shumë informacion dhe matje në terren.';
+      const height = userHeight.value.trim() || 'N/A';
+      const width = userWidth.value.trim() || 'N/A';
+      const notes = userNotes.value.trim() || 'Nuk ka shënime shtesë.';
 
       const message = `*KËRKESË PËR OFERTË - LANI KOMPANI*%0A%0A` +
                       `👤 *Klienti:* ${encodeURIComponent(name)}%0A` +
                       `📞 *Telefoni:* ${encodeURIComponent(phone)}%0A` +
                       `📍 *Qyteti:* ${encodeURIComponent(city)}%0A` +
                       `🪟 *Produkti:* ${encodeURIComponent(service)}%0A` +
-                      `📝 *Përshkrimi:* ${encodeURIComponent(notes)}%0A%0A` +
+                      `📏 *Lartësia:* ${encodeURIComponent(height)} cm%0A` +
+                      `📐 *Gjerësia:* ${encodeURIComponent(width)} cm%0A` +
+                      `📝 *Shënime / Numri i njësive:* ${encodeURIComponent(notes)}%0A%0A` +
                       `_Dërguar nga uebsajti zyrtar i LANI KOMPANI._`;
 
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
@@ -151,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = userPhone.value.trim();
       const city = userCity.value.trim() || 'I paspecifikuar';
       const service = userService.value;
-      const notes = userNotes.value.trim() || 'Kërkoj më shumë informacion dhe ofertë.';
+      const height = userHeight.value.trim() || 'N/A';
+      const width = userWidth.value.trim() || 'N/A';
+      const notes = userNotes.value.trim() || 'Nuk ka shënime shtesë.';
 
       const subject = encodeURIComponent(`Kërkesë për Ofertë: ${name} - ${service}`);
       const body = encodeURIComponent(
@@ -161,7 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `Telefoni: ${phone}\n` +
         `Vendbanimi: ${city}\n` +
         `Produkti: ${service}\n` +
-        `Përshkrimi: ${notes}\n\n` +
+        `Lartësia: ${height} cm\n` +
+        `Gjerësia: ${width} cm\n` +
+        `Shënime / Numri i njësive: ${notes}\n\n` +
         `Ju faleminderit!`
       );
 
@@ -228,9 +238,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const imagePreviewImg = document.getElementById('imagePreviewImg');
   const btnChangeHeroBg = document.getElementById('btnChangeHeroBg');
 
+  const workGalleryModal = document.getElementById('workGalleryModal');
+  const workGalleryImage = document.getElementById('workGalleryImage');
+  const workGalleryThumbs = document.getElementById('workGalleryThumbs');
+  const workGalleryPrev = document.getElementById('workGalleryPrev');
+  const workGalleryNext = document.getElementById('workGalleryNext');
+  const workGalleryClose = document.getElementById('workGalleryClose');
+
+  const workGalleryImages = [
+    'images/foto_1788827279996.jpg',
+    'images/foto_1788827375791.jpg',
+    'images/foto_1788828133911.webp',
+    'images/foto_1788828508241.webp',
+    'images/foto_1788828668962.webp',
+    'images/foto_1788829214409.jpg',
+    'images/foto_1788829371409.jpg'
+  ];
+
   let isEditing = false;
   let currentTarget = null; // img ose element sfondi
   let currentPendingImageData = null;
+  let activeWorkGalleryIndex = 0;
 
   const editableTextSelectors = 'h1, h2, h3, h4, h5, p, span.feat-title, span.feat-text, span.feat-category, a.btn-met-primary, a.btn-met-bordered, a.btn-met-dark, a.btn-met-card, a.subnav-tab, .loc-desc, .quote-title, .quote-text, .logo-primary, .logo-accent, .logo-sub, .f-bold, .f-red';
 
@@ -320,11 +348,81 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPendingImageData = null;
   }
 
+  function renderWorkGalleryThumbs() {
+    if (!workGalleryThumbs) return;
+    workGalleryThumbs.innerHTML = '';
+
+    workGalleryImages.forEach((src, index) => {
+      const thumb = document.createElement('button');
+      thumb.type = 'button';
+      thumb.className = 'work-gallery-thumb' + (index === activeWorkGalleryIndex ? ' active' : '');
+      thumb.setAttribute('aria-label', `Shfaq foto ${index + 1}`);
+      thumb.innerHTML = `<img src="${src}" alt="Punime tona ${index + 1}">`;
+      thumb.addEventListener('click', () => {
+        openWorkGallery(index);
+      });
+      workGalleryThumbs.appendChild(thumb);
+    });
+  }
+
+  function openWorkGallery(index = 0) {
+    if (!workGalleryModal || !workGalleryImage) return;
+
+    activeWorkGalleryIndex = ((index % workGalleryImages.length) + workGalleryImages.length) % workGalleryImages.length;
+    workGalleryImage.src = workGalleryImages[activeWorkGalleryIndex];
+    workGalleryImage.alt = `Punime tona ${activeWorkGalleryIndex + 1}`;
+    renderWorkGalleryThumbs();
+    workGalleryModal.classList.add('active');
+    workGalleryModal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeWorkGallery() {
+    if (!workGalleryModal) return;
+    workGalleryModal.classList.remove('active');
+    workGalleryModal.setAttribute('aria-hidden', 'true');
+  }
+
+  if (workGalleryPrev) {
+    workGalleryPrev.addEventListener('click', () => openWorkGallery(activeWorkGalleryIndex - 1));
+  }
+
+  if (workGalleryNext) {
+    workGalleryNext.addEventListener('click', () => openWorkGallery(activeWorkGalleryIndex + 1));
+  }
+
+  if (workGalleryClose) {
+    workGalleryClose.addEventListener('click', closeWorkGallery);
+  }
+
+  if (workGalleryModal) {
+    workGalleryModal.addEventListener('click', (event) => {
+      if (event.target === workGalleryModal) closeWorkGallery();
+    });
+  }
+
   if (btnCloseImgModal) btnCloseImgModal.addEventListener('click', closeImageModal);
   if (btnCancelImgModal) btnCancelImgModal.addEventListener('click', closeImageModal);
 
-  // Klikimi mbi cdo foto, karte promo ose buton kamere gjate kohes kur editimi eshte aktiv
   document.addEventListener('click', (e) => {
+    const galleryTrigger = e.target.closest('[data-gallery-trigger="work"]');
+    if (galleryTrigger) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!isEditing) {
+        const triggerIndex = Number(galleryTrigger.dataset.galleryIndex || 0);
+        openWorkGallery(triggerIndex);
+      }
+      return;
+    }
+
+    const galleryCard = e.target.closest('[data-gallery="work"]');
+    if (galleryCard && !isEditing) {
+      e.preventDefault();
+      e.stopPropagation();
+      const cardIndex = Number(galleryCard.dataset.galleryIndex || 0);
+      openWorkGallery(cardIndex);
+      return;
+    }
     if (!isEditing) return;
 
     // Injoro klikimet brenda shiritit te editorit ose brenda modalit

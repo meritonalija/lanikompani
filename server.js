@@ -37,7 +37,6 @@ const server = http.createServer((req, res) => {
           fs.writeFileSync(targetFile, payload.html, 'utf8');
           res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
           res.end(JSON.stringify({ success: true, message: 'Faqja u ruajt me sukses!' }));
-          console.log('[LIVE EDITOR] Skedari index.html u përditësua.');
           return;
         }
       } catch (err) {
@@ -75,7 +74,6 @@ const server = http.createServer((req, res) => {
 
           res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
           res.end(JSON.stringify({ success: true, url: relativeUrl }));
-          console.log('[LIVE EDITOR] Foto e re u ngarkua me sukses:', relativeUrl);
           return;
         }
       } catch (err) {
@@ -106,6 +104,4 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`LANI KOMPANI uebsajti me Live Editor & Image Uploader: http://localhost:${PORT}`);
-  console.log(`Server is listening on ${HOST}:${PORT}`);
 });
