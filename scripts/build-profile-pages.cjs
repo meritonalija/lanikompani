@@ -21,8 +21,45 @@ profiles.forEach((profile, index) => {
 <footer class="profile-page-footer"><a href="../index.html">© LANI KOMPANI</a><a href="tel:+38971442821">+389 71 442 821</a><a href="../index.html#kontakti" data-i18n="nav_contact">Kontakti</a></footer><dialog id="galleryDialog" aria-label="Pamje e zmadhuar"><button class="dialog-close" aria-label="Mbyll fotografinë">×</button><img src="../images/${escape(profile.image || "logo.png")}" alt=""></dialog></body></html>\n`;
   fs.writeFileSync(path.join(root, view.path(profile)), html);
 });
+const others = profiles.filter(
+  (p) => !["schuco-living-md", "kommerling-88-md"].includes(p.id),
+);
+const collectionPath = "profilet/profilet-e-tjera.html";
+let collectionHtml = fs.readFileSync(
+  path.join(root, view.path(profiles[0])),
+  "utf8",
+);
+collectionHtml = collectionHtml
+  .replace(
+    /<title>.*?<\/title>/,
+    "<title>Profilet e tjera PVC | LANI KOMPANI</title>",
+  )
+  .replace(
+    /<meta name="description" content="[^"]*">/,
+    '<meta name="description" content="Profilet e tjera PVC Schüco dhe Kömmerling, me foto, karakteristika dhe parametra teknikë, të paraqitura me radhë.">',
+  )
+  .replace(
+    "https://www.lanikompani.com/" + view.path(profiles[0]),
+    "https://www.lanikompani.com/" + collectionPath,
+  )
+  .replace(
+    'class="product-page" data-profile-page="' + profiles[0].id + '"',
+    'class="product-page profile-collection" data-profile-collection="other"',
+  )
+  .replace(
+    'href="../index.html?profile=' + profiles[0].id + '#oferte"',
+    'href="../index.html#oferte"',
+  );
+const start = collectionHtml.indexOf('<div id="profilePageContent">');
+const end = collectionHtml.indexOf("</main>", start);
+collectionHtml =
+  collectionHtml.slice(0, start) +
+  `<h1 class="profile-collection-title" data-i18n="other_profiles_page_title">Profilet e tjera PVC</h1><div id="profilePageContent">${others.map((p) => view.render(p, { assetPrefix: "../", quoteHref: `../index.html?profile=${p.id}#oferte`, heading: "h2" })).join("")}</div><a class="collection-back" href="${home}">${view.arrow(true)}<span data-i18n="back_profiles">Kthehu te profilet</span></a>` +
+  collectionHtml.slice(end);
+fs.writeFileSync(path.join(root, collectionPath), collectionHtml);
 const locations = [
   "https://www.lanikompani.com/",
+  "https://www.lanikompani.com/" + collectionPath,
   ...profiles.map((p) => "https://www.lanikompani.com/" + view.path(p)),
 ];
 fs.writeFileSync(

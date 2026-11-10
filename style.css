@@ -3523,3 +3523,62 @@ dialog img {
     font-size: 16px;
   }
 }
+#profileCards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+.all-other-profiles {
+  margin-top: 22px;
+  min-height: 48px;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-collection #profilePageContent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+.profile-collection-title {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin: 0 0 28px;
+}
+.profile-detail-heading h2 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.collection-back {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--blue);
+  padding: 25px 0;
+}
+@media (max-width: 800px) {
+  .profile-collection-title {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+  .profile-detail-heading h2 {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .profile-collection #profilePageContent {
+    gap: 22px;
+  }
+  #profileCards {
+    gap: 20px;
+  }
+  .all-other-profiles {
+    font-size: 12px;
+  }
+}

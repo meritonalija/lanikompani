@@ -5,7 +5,6 @@
   const featured = featuredIds.map((id) =>
     profileCatalog.find((p) => p.id === id),
   );
-  let activeProfile = featuredIds[0];
   const technicalBreakpoint = matchMedia("(min-width:801px)");
   technicalBreakpoint.addEventListener("change", (event) =>
     document.querySelectorAll(".profile-technical").forEach((detail) => {
@@ -15,40 +14,18 @@
   const en = () => document.documentElement.lang === "en";
   const text = (sq, english) => (en() ? english : sq);
   function renderCatalog() {
-    $("#profileModelNav").innerHTML = featured
-      .map(
-        (p) =>
-          `<button data-profile-select="${p.id}" aria-pressed="${p.id === activeProfile}" aria-controls="profile-${p.id}">${view.name(p)}</button>`,
-      )
-      .join("");
-    $("#mobileProfileSelect").innerHTML = featured
-      .map((p) => `<option value="${p.id}">${view.name(p)}</option>`)
-      .join("");
-    $("#mobileProfileSelect").value = activeProfile;
     $("#profileCards").innerHTML = featured
       .map((p) =>
         view.render(p, {
           en: en(),
-          active: p.id === activeProfile,
+          active: true,
           technicalOpen: technicalBreakpoint.matches,
         }),
       )
       .join("");
     document.dispatchEvent(new Event("catalogrender"));
   }
-  $("#mobileProfileSelect").addEventListener("change", (event) => {
-    activeProfile = event.target.value;
-    renderCatalog();
-  });
   document.addEventListener("click", (event) => {
-    const select = event.target.closest("[data-profile-select]");
-    if (select && featuredIds.includes(select.dataset.profileSelect)) {
-      activeProfile = select.dataset.profileSelect;
-      renderCatalog();
-      document
-        .querySelector(`[data-profile-select="${activeProfile}"]`)
-        ?.focus({ preventScroll: true });
-    }
     const quote = event.target.closest("[data-profile-quote]");
     if (quote) {
       const p = profileCatalog.find((p) => p.id === quote.dataset.profileQuote);
@@ -107,11 +84,9 @@
     const profile = profileCatalog.find((p) => p.id === id);
     if (!profile) return;
     if (!featuredIds.includes(id)) {
-      location.assign(view.path(profile));
+      location.assign("profilet/profilet-e-tjera.html#profile-" + id);
       return;
     }
-    activeProfile = id;
-    renderCatalog();
     document
       .getElementById("profile-" + id)
       ?.scrollIntoView({ behavior: "instant" });

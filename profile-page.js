@@ -3,21 +3,30 @@
   const profile = profileCatalog.find(
     (p) => p.id === document.body.dataset.profilePage,
   );
-  if (!profile) return;
+  const collection = document.body.dataset.profileCollection === "other";
+  const visibleProfiles = collection
+    ? profileCatalog.filter(
+        (p) => !["schuco-living-md", "kommerling-88-md"].includes(p.id),
+      )
+    : profile
+      ? [profile]
+      : [];
+  if (!visibleProfiles.length) return;
   const breakpoint = matchMedia("(min-width:801px)");
   function render() {
     const en = document.documentElement.lang === "en";
-    document.getElementById("profilePageContent").innerHTML = view.render(
-      profile,
-      {
-        en,
-        assetPrefix: "../",
-        technicalOpen: breakpoint.matches,
-        quoteHref: `../index.html?profile=${encodeURIComponent(profile.id)}#oferte`,
-        heading: "h1",
-      },
-    );
-    document.title = `${view.name(profile)} | LANI KOMPANI`;
+    document.getElementById("profilePageContent").innerHTML = visibleProfiles
+      .map((p) =>
+        view.render(p, {
+          en,
+          assetPrefix: "../",
+          technicalOpen: breakpoint.matches,
+          quoteHref: `../index.html?profile=${encodeURIComponent(p.id)}#oferte`,
+          heading: collection ? "h2" : "h1",
+        }),
+      )
+      .join("");
+    document.title = `${collection ? (en ? "Other PVC profiles" : "Profilet e tjera PVC") : view.name(profile)} | LANI KOMPANI`;
   }
   document.addEventListener("languagechange", render);
   breakpoint.addEventListener("change", (event) =>

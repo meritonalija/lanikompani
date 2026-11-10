@@ -1,4 +1,5 @@
 const english = {
+  other_profiles_page_title: "Other PVC profiles",
   catalog_mobile_title: "PVC profiles",
   continue_below: "Continue below",
   choose_profile: "Choose a profile",
@@ -87,7 +88,7 @@ const english = {
   catalog_kicker: "PVC CATALOGUE",
   catalog_title: "Schüco 82.<br>Kömmerling 88.",
   catalog_intro:
-    "Two featured systems in one place. The other models open separately, each with its own photo and characteristics.",
+    "Both featured systems together. The other profiles are shown in order on one page.",
   all_profiles: "All profiles",
   seal_rebate: "Rebate sealing",
   seal_rebate_desc:

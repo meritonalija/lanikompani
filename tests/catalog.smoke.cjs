@@ -38,22 +38,16 @@ const models = [
         0,
       );
     await page.goto(base, { waitUntil: "networkidle" });
-    assert.equal(await page.locator(".profile-card").count(), 2);
-    assert.deepEqual(
-      await page
-        .locator("#mobileProfileSelect option")
-        .evaluateAll((a) => a.map((o) => o.value)),
-      featured,
+    assert.equal(await page.locator(".profile-card:visible").count(), 2);
+    assert.equal(
+      await page.locator("#mobileProfileSelect,[data-profile-select]").count(),
+      0,
+    );
+    assert.equal(
+      await page.locator("#otherProfiles").getAttribute("href"),
+      "profilet/profilet-e-tjera.html",
     );
     await noSources();
-    assert.deepEqual(
-      await page
-        .locator("#otherProfiles a")
-        .evaluateAll((a) => a.map((e) => e.getAttribute("href"))),
-      models
-        .filter(([id]) => !featured.includes(id))
-        .map(([id]) => "profilet/" + id + ".html"),
-    );
     for (const lang of ["sq", "en"]) {
       await page.locator(`[data-lang="${lang}"]`).click();
       for (const width of [320, 390, 768, 1024, 1440]) {
@@ -69,21 +63,53 @@ const models = [
     }
     await page.setViewportSize({ width: 390, height: 844 });
     for (const id of featured) {
-      await page.locator("#mobileProfileSelect").selectOption(id);
       assert(await page.locator("#profile-" + id).isVisible());
       assert.equal(
         await page
           .locator("#profile-" + id + " .profile-technical")
-          .evaluate((e) => e.open),
+          .evaluate((el) => el.open),
         false,
       );
     }
-    assert((await page.locator("#profilet").boundingBox()).height < 900);
-    await page.locator("#otherProfiles>summary").click();
-    await page.locator("#otherProfiles a").first().click();
-    await page.waitForURL("**/profilet/schuco-living-as.html");
+    const first = await page.locator("#profile-schuco-living-md").boundingBox();
+    const second = await page
+      .locator("#profile-kommerling-88-md")
+      .boundingBox();
+    assert(second.y >= first.y + first.height);
+    await page.locator("#otherProfiles").click();
+    await page.waitForURL("**/profilet/profilet-e-tjera.html");
+    const expected = models.filter(([id]) => !featured.includes(id));
+    assert.deepEqual(
+      await page
+        .locator(".profile-detail")
+        .evaluateAll((els) => els.map((el) => el.id)),
+      expected.map(([id]) => "profile-" + id),
+    );
+    assert.equal(await page.locator(".profile-detail:visible").count(), 5);
+    assert.equal(await page.locator("h1").count(), 1);
+    assert.equal(await page.locator(".profile-detail h2").count(), 5);
+    await noSources();
+    for (const lang of ["sq", "en"]) {
+      await page.locator(`[data-lang="${lang}"]`).click();
+      for (const width of [320, 390, 768, 1440]) {
+        await page.setViewportSize({ width, height: 900 });
+        assert.equal(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth > innerWidth,
+          ),
+          false,
+          "collection overflow " + width,
+        );
+      }
+    }
+    await page.locator("#profile-kommerling-76-md .profile-quote").click();
+    await page.waitForURL("**/index.html?profile=kommerling-76-md#oferte");
+    assert.equal(
+      await page.locator("#userService").inputValue(),
+      "Kömmerling 76 MD",
+    );
     console.log(
-      "PASS: two homepage models, five ordered page links and compact SQ/EN layout at five widths.",
+      "PASS: both homepage models are visible and stacked, no switching controls; other five profiles share one ordered page.",
     );
     for (let i = 0; i < models.length; i++) {
       const [id, name] = models[i];
@@ -159,7 +185,9 @@ const models = [
     await page.goto(base + "/#profile-kommerling-76-md", {
       waitUntil: "networkidle",
     });
-    await page.waitForURL("**/profilet/kommerling-76-md.html");
+    await page.waitForURL(
+      "**/profilet/profilet-e-tjera.html#profile-kommerling-76-md",
+    );
     await page.goto(base + "/index.html?profile=kommerling-88-md#oferte", {
       waitUntil: "networkidle",
     });
