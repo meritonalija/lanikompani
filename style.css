@@ -3664,7 +3664,7 @@ dialog img {
     font-size: 9px;
   }
 }
-.profile-technical > summary > span:first-child {
+.profile-detail .profile-technical > summary > span:first-child {
   font: inherit;
   color: inherit;
   transform: none;
