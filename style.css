@@ -3062,3 +3062,256 @@ dialog img {
     font-size: 11px;
   }
 }
+/* Keep the mobile catalogue short; full specifications remain one tap away. */
+.catalog-mobile-title,
+.mobile-profile-picker {
+  display: none;
+}
+.profile-technical > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  border-left: 3px solid #81b7d5;
+  padding: 3px 0 3px 12px;
+  margin-bottom: 15px;
+}
+.profile-technical > summary::-webkit-details-marker {
+  display: none;
+}
+.profile-technical > summary > span:last-child {
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--blue);
+}
+.profile-technical[open] > summary > span:last-child {
+  transform: rotate(45deg);
+}
+.profile-technical:not([open]) > summary {
+  margin-bottom: 0;
+}
+@media (max-width: 800px) {
+  .profile-catalog.section-pad {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+  .catalog-mobile-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .catalog-mobile-title h2 {
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+  }
+  .catalog-mobile-title > a {
+    font-size: 10px;
+    color: var(--blue);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .profile-catalog > .section-heading,
+  .catalog-toolbar,
+  .profile-model-nav {
+    display: none;
+  }
+  .mobile-profile-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .mobile-profile-picker > span {
+    font-size: 10px;
+    color: var(--text);
+  }
+  .mobile-profile-picker select {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 11px 35px 11px 12px;
+    background: #f4f8fa;
+    border: 1px solid #cddfe9;
+    border-radius: 4px;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .profile-detail-heading {
+    padding: 17px 18px;
+  }
+  .profile-detail-heading .profile-type {
+    display: none;
+  }
+  .profile-detail-heading h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .profile-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 10px 17px;
+    padding: 18px;
+  }
+  .profile-detail-copy {
+    display: contents;
+  }
+  .profile-cutaway-figure {
+    grid-column: 1;
+    grid-row: 1/3;
+    align-self: start;
+  }
+  .profile-cutaway-figure figcaption {
+    display: none;
+  }
+  .profile-cutaway-button {
+    max-width: none;
+  }
+  .profile-cutaway {
+    height: 180px;
+    padding: 5px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .cutaway-zoom {
+    font-size: 9px;
+    padding: 9px 3px;
+    gap: 8px;
+    min-height: 32px;
+  }
+  .profile-model-label {
+    height: 180px;
+    padding: 16px 10px;
+    gap: 18px;
+  }
+  .profile-model-label img {
+    max-width: 100%;
+    height: 24px;
+  }
+  .profile-model-label strong {
+    font-size: 24px;
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .profile-model-label > span {
+    font-size: 9px;
+  }
+  .profile-detail-copy > h4 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .profile-feature-list {
+    grid-column: 2;
+    grid-row: 2;
+    padding-left: 13px;
+    margin: 0;
+    align-self: start;
+  }
+  .profile-feature-list li {
+    font-size: 10px;
+    line-height: 1.75;
+    padding-left: 0;
+    margin: 0 0 7px;
+  }
+  .profile-technical {
+    grid-column: 1/-1;
+    grid-row: 3;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    margin-top: 5px;
+    min-width: 0;
+  }
+  .profile-technical > summary {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    border-left: 0;
+    padding: 7px 0;
+    margin-bottom: 5px;
+    min-height: 35px;
+  }
+  .profile-technical > summary > span:last-child {
+    font-size: 19px;
+  }
+  .profile-technical-table {
+    font-size: 11px;
+  }
+  .profile-detail-actions {
+    grid-column: 1/-1;
+    grid-row: 4;
+    margin: 0;
+    padding-top: 13px;
+    gap: 15px;
+  }
+  .profile-detail-actions .profile-quote {
+    font-size: 11px;
+  }
+  .profile-maker {
+    font-size: 9px;
+  }
+  .profile-reference-note {
+    font-size: 9px;
+  }
+  .profile-catalog .comparison {
+    margin-top: 18px;
+  }
+  .profile-catalog .comparison > summary {
+    padding: 17px 0;
+    font-size: 12px;
+  }
+  .profile-catalog > .catalog-note,
+  .profile-catalog > .manufacturer-references {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .catalog-mobile-title h2 {
+    font-size: 23px;
+  }
+  .catalog-mobile-title > a {
+    font-size: 9px;
+  }
+  .profile-detail-grid {
+    gap: 10px 12px;
+    padding: 16px;
+  }
+  .profile-cutaway {
+    height: 165px;
+  }
+  .profile-detail-heading {
+    padding: 16px;
+  }
+  .profile-detail-heading h3 {
+    font-size: 18px;
+  }
+  .profile-detail-copy > h4 {
+    font-size: 11px;
+  }
+  .profile-feature-list li {
+    font-size: 10px;
+    line-height: 1.65;
+    margin-bottom: 6px;
+  }
+  .profile-model-label {
+    height: 165px;
+  }
+  .profile-model-label strong {
+    font-size: 21px;
+  }
+}

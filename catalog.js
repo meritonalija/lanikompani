@@ -219,6 +219,12 @@ profileCatalog.unshift(
   const $ = (s) => document.querySelector(s);
   let brand = "all";
   let activeProfile = "schuco-living-md";
+  const technicalBreakpoint = matchMedia("(min-width: 801px)");
+  technicalBreakpoint.addEventListener("change", (event) => {
+    document.querySelectorAll(".profile-technical").forEach((detail) => {
+      detail.open = event.matches;
+    });
+  });
   const en = () => document.documentElement.lang === "en";
   const text = (sq, english) => (en() ? english : sq);
   function source(p) {
@@ -261,7 +267,7 @@ profileCatalog.unshift(
     const image = p.image
       ? `<button class="profile-cutaway-button" data-gallery="images/${p.image}" aria-label="${text("Zmadho prerjen", "Enlarge cutaway")}: ${fullName}"><img class="profile-cutaway" src="images/${p.image}" alt="${text("Prerja e profilit", "Profile cutaway")}: ${fullName}" loading="lazy"><span class="cutaway-zoom">${text("Zmadho foton", "Enlarge photo")} ↗</span></button>`
       : `<div class="profile-model-label"><img src="images/${brandImage}" alt="${p.brand}" loading="lazy"><strong>${p.family === "LivIng" ? "LivIng " : ""}${p.model}</strong><span>${p.depth} mm · ${p.seal}</span></div>`;
-    return `<article class="profile-card profile-detail" id="profile-${p.id}" ${p.id === activeProfile ? "" : "hidden"} aria-labelledby="title-${p.id}"><div class="profile-detail-heading"><span class="profile-type">${p.brand} / PVC-U</span><h3 id="title-${p.id}">${fullName}</h3></div><div class="profile-detail-grid"><figure class="profile-cutaway-figure">${image}<figcaption>${fullName}${p.image ? " · " + text("Prerja e profilit", "Profile cutaway") : ""}</figcaption></figure><div class="profile-detail-copy"><h4>${text("Karakteristikat kryesore", "Key characteristics")}</h4><ul class="profile-feature-list">${features.map((f) => `<li>${f[en() ? 1 : 0]}</li>`).join("")}</ul><section class="profile-technical" aria-label="${text("Informacion teknik", "Technical information")}: ${fullName}"><h4>${text("Informacion teknik", "Technical information")}</h4>${table(rows)}${p.extraTechnical ? `<details class="profile-extra"><summary>${text("Parametrat e tjerë", "Additional parameters")}<span>+</span></summary>${table(p.extraTechnical)}</details>` : ""}</section><p class="profile-reference-note">${p.compactTechnical ? text("Vlera të sistemit sipas materialit të referencës. Varen nga profili, xhami, mekanizmi dhe përmasat; Uf nuk është Uw.", "System values from the supplied reference material. They depend on profile, glazing, hardware and dimensions; Uf is not Uw.") : text("Vlerat e izolimit dhe klasat konfirmohen për variantin konkret.", "Insulation values and classes are confirmed for the exact variant.")}</p><div class="profile-detail-actions"><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko ofertë", "Request a quote")}<span>↗</span></a><a class="profile-maker" href="${source(p)}" target="_blank" rel="noopener noreferrer">${p.brand} ↗</a></div></div></div></article>`;
+    return `<article class="profile-card profile-detail" id="profile-${p.id}" ${p.id === activeProfile ? "" : "hidden"} aria-labelledby="title-${p.id}"><div class="profile-detail-heading"><span class="profile-type">${p.brand} / PVC-U</span><h3 id="title-${p.id}">${fullName}</h3></div><div class="profile-detail-grid"><figure class="profile-cutaway-figure">${image}<figcaption>${fullName}${p.image ? " · " + text("Prerja e profilit", "Profile cutaway") : ""}</figcaption></figure><div class="profile-detail-copy"><h4>${text("Karakteristikat kryesore", "Key characteristics")}</h4><ul class="profile-feature-list">${features.map((f) => `<li>${f[en() ? 1 : 0]}</li>`).join("")}</ul><details class="profile-technical" ${technicalBreakpoint.matches ? "open" : ""} aria-label="${text("Informacion teknik", "Technical information")}: ${fullName}"><summary><span>${text("Informacion teknik", "Technical information")}</span><span>+</span></summary>${table(rows)}${p.extraTechnical ? `<details class="profile-extra"><summary>${text("Parametrat e tjerë", "Additional parameters")}<span>+</span></summary>${table(p.extraTechnical)}</details>` : ""}<p class="profile-reference-note">${p.compactTechnical ? text("Vlera të sistemit sipas materialit të referencës. Varen nga profili, xhami, mekanizmi dhe përmasat; Uf nuk është Uw.", "System values from the supplied reference material. They depend on profile, glazing, hardware and dimensions; Uf is not Uw.") : text("Vlerat e izolimit dhe klasat konfirmohen për variantin konkret.", "Insulation values and classes are confirmed for the exact variant.")}</p></details><div class="profile-detail-actions"><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko ofertë", "Request a quote")}<span>↗</span></a><a class="profile-maker" href="${source(p)}" target="_blank" rel="noopener noreferrer">${p.brand} ↗</a></div></div></div></article>`;
   }
   function renderCatalog() {
     const shown = profileCatalog.filter(
@@ -274,6 +280,16 @@ profileCatalog.unshift(
           `<button data-profile-select="${p.id}" aria-pressed="${p.id === activeProfile}" aria-controls="profile-${p.id}">${profileName(p)}</button>`,
       )
       .join("");
+    $("#mobileProfileSelect").innerHTML = ["Schüco", "Kömmerling"]
+      .map(
+        (name) =>
+          `<optgroup label="${name}">${profileCatalog
+            .filter((p) => p.brand === name)
+            .map((p) => `<option value="${p.id}">${profileName(p)}</option>`)
+            .join("")}</optgroup>`,
+      )
+      .join("");
+    $("#mobileProfileSelect").value = activeProfile;
     $("#profileCards").innerHTML = shown.map(renderProfile).join("");
     $("#profileCount").textContent = text(
       `${shown.length} profile`,
@@ -292,6 +308,11 @@ profileCatalog.unshift(
       .join("");
     document.dispatchEvent(new Event("catalogrender"));
   }
+  $("#mobileProfileSelect").addEventListener("change", (event) => {
+    activeProfile = event.target.value;
+    brand = "all";
+    renderCatalog();
+  });
   document.querySelectorAll("[data-brand]").forEach((b) =>
     b.addEventListener("click", () => {
       brand = b.dataset.brand;

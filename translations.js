@@ -1,4 +1,7 @@
 const english = {
+  catalog_mobile_title: "PVC profiles",
+  continue_below: "Continue below",
+  choose_profile: "Choose a profile",
   skip: "Skip to content",
   nav_products: "Products",
   nav_about: "About us",
