@@ -1,5 +1,4 @@
 const $ = (selector) => document.querySelector(selector);
-const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const products = {
   schuco: {
     title: "Schüco\nLivIng 82 MD",
@@ -47,7 +46,7 @@ const products = {
     specs: [
       ["ALU", "Materiali", "Material"],
       ["↔", "Hapje rrëshqitëse", "Sliding opening"],
-      ["360°", "Perspektivë", "Perspective"],
+      ["XHAM", "Panele panoramike", "Panoramic panels"],
     ],
   },
   facade: {
@@ -87,7 +86,6 @@ const products = {
   },
 };
 let activeProduct = "schuco";
-let finish = "white";
 function renderProduct() {
   const p = products[activeProduct];
   const en = document.documentElement.lang === "en";
@@ -112,7 +110,6 @@ function renderProduct() {
       return d;
     }),
   );
-  renderFinish();
 }
 function selectProduct(key, focus = false) {
   if (!products[key]) return;
@@ -124,20 +121,6 @@ function selectProduct(key, focus = false) {
     if (active && focus) btn.focus();
   });
   renderProduct();
-}
-function renderFinish() {
-  const en = document.documentElement.lang === "en";
-  const names = {
-    white: ["E bardhë", "White"],
-    anthracite: ["Antracit", "Anthracite"],
-    wood: ["Efekt druri", "Wood effect"],
-  };
-  $("#finishName").textContent = names[finish][en ? 1 : 0];
-  document.querySelectorAll(".swatch").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.finish === finish);
-    btn.setAttribute("aria-pressed", String(btn.dataset.finish === finish));
-    btn.setAttribute("aria-label", names[btn.dataset.finish][en ? 1 : 0]);
-  });
 }
 document.querySelectorAll("[data-product]").forEach((btn) => {
   btn.addEventListener("click", () => selectProduct(btn.dataset.product));
@@ -154,24 +137,8 @@ document.querySelectorAll("[data-product]").forEach((btn) => {
     selectProduct(keys[next], true);
   });
 });
-document
-  .querySelectorAll("[data-select]")
-  .forEach((a) =>
-    a.addEventListener("click", () => selectProduct(a.dataset.select)),
-  );
-document.querySelectorAll("[data-finish]").forEach((btn) =>
-  btn.addEventListener("click", () => {
-    finish = btn.dataset.finish;
-    renderFinish();
-  }),
-);
 $("#productQuote").addEventListener("click", () => {
   $("#userService").value = products[activeProduct].quote;
-  const en = document.documentElement.lang === "en";
-  const note =
-    (en ? "Preferred finish: " : "Finitura e preferuar: ") +
-    $("#finishName").textContent;
-  if (!$("#userNotes").value.trim()) $("#userNotes").value = note;
 });
 document.addEventListener("languagechange", renderProduct);
 renderProduct();
@@ -217,11 +184,6 @@ function updateScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   $(".scroll-progress").style.width =
     (max > 0 ? (scrollY / max) * 100 : 0) + "%";
-  const section = $(".panorama");
-  const rect = section.getBoundingClientRect();
-  if (!reducedMotion.matches && rect.bottom > 0 && rect.top < innerHeight)
-    section.querySelector("img").style.transform =
-      `translateY(${(innerHeight / 2 - rect.top - rect.height / 2) * 0.075}px)`;
   scrollQueued = false;
 }
 addEventListener(
