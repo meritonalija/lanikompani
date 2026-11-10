@@ -3315,3 +3315,211 @@ dialog img {
     font-size: 21px;
   }
 }
+/* Two featured systems on the homepage; ordered detail pages for the rest. */
+.profile-model-nav {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.other-profiles {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.other-profiles > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 19px 0;
+  color: var(--ink);
+}
+.other-profiles > summary::-webkit-details-marker {
+  display: none;
+}
+.other-profiles > summary > span:last-child {
+  font-size: 20px;
+  color: var(--blue);
+}
+.other-profiles[open] > summary > span:last-child {
+  transform: rotate(45deg);
+}
+.other-profiles ol {
+  margin: 0 0 15px;
+  padding: 0 0 0 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  list-style: decimal-leading-zero;
+}
+.other-profiles li {
+  font-size: 10px;
+  color: #8b9da8;
+  padding-left: 5px;
+}
+.other-profile-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  color: var(--blue);
+  font-size: 12px;
+}
+.other-profile-link:hover {
+  text-decoration: underline;
+}
+.other-profile-link .vector-arrow {
+  font-size: 15px;
+}
+.profile-home-link {
+  font-size: 12px;
+  color: var(--text);
+}
+.profile-page-main {
+  max-width: 1440px;
+  padding: 30px var(--gutter) 50px;
+  margin: 0 auto;
+}
+.profile-breadcrumb {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  font-size: 11px;
+  color: var(--text);
+}
+.profile-breadcrumb > a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--blue);
+  min-height: 30px;
+}
+.profile-detail-heading h1 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.profile-page-order {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+}
+.profile-page-order > a {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  min-width: 0;
+}
+.profile-page-order .profile-next {
+  text-align: right;
+  justify-content: flex-end;
+}
+.profile-page-order span {
+  min-width: 0;
+}
+.profile-page-order small {
+  display: block;
+  font-size: 9px;
+  color: var(--text);
+  margin-bottom: 7px;
+}
+.profile-page-order b {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.profile-page-order .vector-arrow {
+  color: var(--blue);
+  font-size: 20px;
+}
+.profile-page-footer {
+  background: var(--ink);
+  color: #c5d5df;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 25px var(--gutter);
+  font-size: 11px;
+}
+.product-page .profile-detail-grid {
+  min-height: 360px;
+}
+@media (max-width: 800px) {
+  .profile-home-link {
+    display: none;
+  }
+  .profile-page-main {
+    padding: 22px 24px 35px;
+  }
+  .profile-breadcrumb {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+  .profile-detail-heading h1 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  .other-profiles > summary {
+    font-size: 12px;
+    padding: 17px 0;
+  }
+  .other-profiles ol {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .other-profile-link {
+    font-size: 11px;
+    padding: 14px 0;
+    min-height: 44px;
+  }
+  .profile-page-order {
+    gap: 20px;
+    margin-top: 22px;
+    padding-top: 20px;
+  }
+  .profile-page-order > a {
+    gap: 10px;
+  }
+  .profile-page-order b {
+    font-size: 11px;
+  }
+  .profile-page-order small {
+    font-size: 8px;
+    line-height: 1.6;
+  }
+  .profile-page-order .vector-arrow {
+    font-size: 16px;
+  }
+  .profile-page-footer {
+    font-size: 10px;
+  }
+  .product-page .profile-detail-grid {
+    min-height: 0;
+  }
+}
+@media (max-width: 380px) {
+  .profile-detail-heading h1 {
+    font-size: 18px;
+  }
+  .profile-page-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .product-page-header {
+    gap: 12px;
+  }
+  .product-page-header .wordmark {
+    font-size: 16px;
+  }
+}

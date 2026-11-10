@@ -13,6 +13,8 @@
     <link rel="icon" href="images/logo.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="translations.js" defer=""></script>
+    <script src="profiles-data.js" defer=""></script>
+    <script src="profile-view.js" defer=""></script>
     <script src="catalog.js" defer=""></script>
     <script src="script.js" defer=""></script>
   </head>
@@ -170,35 +172,14 @@
             <span class="micro" data-i18n="catalog_kicker">KATALOGU PVC</span>
           </div>
           <h2 data-i18n="catalog_title" data-i18n-html="true">
-            Çdo profil veçmas.<br />Çdo dallim i qartë.
+            Schüco 82.<br />Kömmerling 88.
           </h2>
           <p data-i18n="catalog_intro">
-            Zgjidhni modelin për të parë prerjen, karakteristikat dhe parametrat
-            e tij. Çdo variant paraqitet veçmas.
+            Dy sistemet kryesore në një vend. Modelet e tjera hapen veçmas,
+            secili me foton dhe karakteristikat e veta.
           </p>
         </div>
-        <div class="catalog-toolbar">
-          <div
-            class="catalog-filters"
-            role="group"
-            aria-label="Filtro sipas prodhuesit"
-          >
-            <button
-              data-brand="all"
-              aria-pressed="true"
-              data-i18n="all_profiles"
-            >
-              Të gjitha</button
-            ><button data-brand="Schüco" aria-pressed="false">Schüco</button
-            ><button data-brand="Kömmerling" aria-pressed="false">
-              Kömmerling
-            </button>
-          </div>
-          <span id="profileCount" aria-live="polite">7 profile</span
-          ><a class="text-link" href="#krahasimi"
-            ><span data-i18n="compare_profiles">Krahaso profilet</span> ↓</a
-          >
-        </div>
+
         <div
           id="profileModelNav"
           class="profile-model-nav"
@@ -210,60 +191,78 @@
           ><select id="mobileProfileSelect"></select
         ></label>
         <div class="profile-cards" id="profileCards"></div>
+        <details id="otherProfiles" class="other-profiles">
+          <summary>
+            <span data-i18n="other_profiles">Profilet e tjera</span
+            ><span>+</span>
+          </summary>
+          <ol>
+            <li>
+              <a
+                class="other-profile-link"
+                href="profilet/schuco-living-as.html"
+                >Schüco LivIng 82 AS<svg
+                  class="vector-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12h18m-7-7 7 7-7 7"></path></svg
+              ></a>
+            </li>
+            <li>
+              <a class="other-profile-link" href="profilet/schuco-ct70.html"
+                >Schüco CT 70 AS<svg
+                  class="vector-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12h18m-7-7 7 7-7 7"></path></svg
+              ></a>
+            </li>
+            <li>
+              <a
+                class="other-profile-link"
+                href="profilet/kommerling-70-ad.html"
+                >Kömmerling 70 AD<svg
+                  class="vector-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12h18m-7-7 7 7-7 7"></path></svg
+              ></a>
+            </li>
+            <li>
+              <a
+                class="other-profile-link"
+                href="profilet/kommerling-76-ad.html"
+                >Kömmerling 76 AD<svg
+                  class="vector-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12h18m-7-7 7 7-7 7"></path></svg
+              ></a>
+            </li>
+            <li>
+              <a
+                class="other-profile-link"
+                href="profilet/kommerling-76-md.html"
+                >Kömmerling 76 MD<svg
+                  class="vector-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12h18m-7-7 7 7-7 7"></path></svg
+              ></a>
+            </li>
+          </ol>
+        </details>
         <noscript
           ><p>
             Ju lutem aktivizoni JavaScript për katalogun interaktiv. Për
             profilet Schüco dhe Kömmerling na kontaktoni në +389 71 442 821.
           </p></noscript
         >
-
-        <details class="comparison" id="krahasimi">
-          <summary>
-            <span data-i18n="comparison_title"
-              >Krahasimi i shpejtë i 7 profileve</span
-            ><span>+</span>
-          </summary>
-          <div
-            class="comparison-scroll"
-            tabindex="0"
-            role="region"
-            aria-label="Tabela e krahasimit"
-          >
-            <table>
-              <caption data-i18n="comparison_caption">
-                Familjet PVC — thellësia bazë dhe koncepti i hermetizimit
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col" data-i18n="profile_model">Profili</th>
-                  <th scope="col" data-i18n="profile_depth">Thellësia bazë</th>
-                  <th scope="col" data-i18n="profile_seal">Hermetizimi</th>
-                  <th scope="col" data-i18n="manufacturer">Prodhuesi</th>
-                </tr>
-              </thead>
-              <tbody id="comparisonBody"></tbody>
-            </table>
-          </div>
-        </details>
-        <p class="catalog-note" data-i18n="catalog_note">
-          Kufijtë e sistemit nuk garantohen njëkohësisht për çdo përmasë e
-          konfigurim. Oferta teknike konfirmon profilin, xhamin, mekanizmat dhe
-          disponueshmërinë.
-        </p>
-        <div class="manufacturer-references">
-          <span data-i18n="manufacturer_refs">Referenca të prodhuesve:</span
-          ><a
-            href="https://www.schueco.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Schüco ↗</a
-          ><a
-            href="https://www.koemmerling.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Kömmerling ↗</a
-          >
-        </div>
       </section>
       <section class="systems section-pad" id="sistemet">
         <div class="section-heading reveal">

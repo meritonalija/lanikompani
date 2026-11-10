@@ -64,3 +64,7 @@ The user's uploaded screenshots are visible in the conversation but have no down
 Manufacturer links identify the official sites: https://www.schueco.com/ and https://www.koemmerling.com/. They are not links to newly retrieved technical sheets. The environment draft read also failed with INVALID_ARGUMENT; no unknown network allowlist was replaced.
 
 To finish primary-source checks, preserve existing network policy and add `schueco.com`, `www.schueco.com`, `koemmerling.com`, and `www.koemmerling.com` to allowed domains. Follow documented redirects and add required document hosts separately. Record the actual technical document URL, issue date and page when retrieved. Exact model, regional variant, availability, glazing and declared performance remain subject to the business's technical quotation.
+
+## Presentation update
+
+The homepage now features only Schüco LivIng 82 MD and Kömmerling 88 MD. The five other models are linked in order to individual static pages in `profilet/`; seven pages are generated to support complete previous/next navigation and direct links, including the featured systems. Public source sections, manufacturer source links and technical-source buttons were removed as requested. Internal provenance records remain here and in `profile-assets.json`. Generic configuration limits, the distinction between Uf and Uw, and explicit family-photo labels are retained.

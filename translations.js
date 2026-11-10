@@ -85,26 +85,22 @@ const english = {
   demo_shutter: "Shutter",
   demo_note: "An illustration of the opening concept.",
   catalog_kicker: "PVC CATALOGUE",
-  catalog_title: "Every profile separate.<br>Every difference clear.",
+  catalog_title: "Schüco 82.<br>Kömmerling 88.",
   catalog_intro:
-    "Choose a model to see its cutaway, characteristics and technical parameters. Every variant is presented separately.",
+    "Two featured systems in one place. The other models open separately, each with its own photo and characteristics.",
   all_profiles: "All profiles",
-  compare_profiles: "Compare profiles",
   seal_rebate: "Rebate sealing",
   seal_rebate_desc:
     "AS (Anschlagdichtung, Schüco) and AD (Anschlagdichtung, Kömmerling) identify systems with seals at the frame and sash rebates.",
   seal_centre: "Centre sealing",
   seal_centre_desc:
     "MD (Mitteldichtung) identifies a centre-seal system. Its sealing concept distinguishes it from AS/AD, independently of profile depth.",
-  comparison_title: "Quick comparison of 7 profiles",
-  comparison_caption: "PVC families — nominal depth and sealing concept",
   profile_model: "Profile",
   profile_depth: "Nominal depth",
   profile_seal: "Sealing",
   manufacturer: "Manufacturer",
   catalog_note:
     "System limits are not guaranteed simultaneously for every size and configuration. The technical quotation confirms the profile, glazing, hardware and availability.",
-  manufacturer_refs: "Manufacturer references:",
   alu_doors: "Aluminium doors & windows",
   guide_nav: "Guide",
   guide_kicker: "CHOOSE WITH INFORMATION",
@@ -165,6 +161,11 @@ const english = {
   faq8_desc:
     "Condensation depends on humidity, surface temperature and ventilation. Its position on the glazing matters; the cause is assessed case by case and cannot be determined from the profile alone.",
   whatsapp_help: "Message us",
+  other_profiles: "Other profiles",
+  previous_profile: "Previous profile",
+  next_profile: "Next profile",
+  all_profile_pages: "All profiles",
+  back_profiles: "Back to profiles",
 };
 const albanian = {};
 function applyLanguage(lang) {

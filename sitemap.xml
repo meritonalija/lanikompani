@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.lanikompani.com/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://www.lanikompani.com/</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/schuco-living-md.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/schuco-living-as.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/schuco-ct70.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/kommerling-70-ad.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/kommerling-76-ad.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/kommerling-76-md.html</loc></url>
+  <url><loc>https://www.lanikompani.com/profilet/kommerling-88-md.html</loc></url>
 </urlset>
