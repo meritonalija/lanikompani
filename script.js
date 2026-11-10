@@ -1,680 +1,330 @@
-/**
- * LANI KOMPANI - High Performance Windows & Doors
- * Clean scripts matching met.mk layout + Visual Live In-Browser Editor (Text & Images)
- */
-
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Drawer & Overlay Trigger
-  const mobileTrigger = document.getElementById('metMobileTrigger');
-  const metNav = document.getElementById('metNav');
-  const metNavOverlay = document.getElementById('metNavOverlay');
-  const btnCloseNav = document.getElementById('btnCloseNav');
-  const menuLinks = document.querySelectorAll('.met-menu a, .nav-mobile-btn');
-  const dropdownToggles = document.querySelectorAll('.has-dropdown > a');
-
-  function openNav() {
-    if (metNav) metNav.classList.add('open');
-    if (metNavOverlay) metNavOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    if (mobileTrigger) {
-      const icon = mobileTrigger.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-xmark');
-      }
-    }
-  }
-
-  function closeNav() {
-    if (metNav) metNav.classList.remove('open');
-    if (metNavOverlay) metNavOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-    if (mobileTrigger) {
-      const icon = mobileTrigger.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-      }
-    }
-  }
-
-  if (mobileTrigger) {
-    mobileTrigger.addEventListener('click', () => {
-      if (metNav && metNav.classList.contains('open')) {
-        closeNav();
-      } else {
-        openNav();
-      }
-    });
-  }
-
-  if (btnCloseNav) {
-    btnCloseNav.addEventListener('click', closeNav);
-  }
-
-  if (metNavOverlay) {
-    metNavOverlay.addEventListener('click', closeNav);
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && metNav && metNav.classList.contains('open')) {
-      closeNav();
-    }
+const $ = (selector) => document.querySelector(selector);
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const products = {
+  schuco: {
+    title: "Schüco\nLivIng 82 MD",
+    image: "foto_1788827279996.jpg",
+    caption: "SCHÜCO / LIVING 82 MD",
+    quote: "Schüco LivIng 82 MD",
+    tag: ["PVC · GJERMANI", "PVC · GERMANY"],
+    description: [
+      "Një profil i menduar për komfort. Shtatë dhoma izolimi dhe tri nivele hermetizimi, në një sistem që bashkon estetikën me performancën.",
+      "A profile designed for comfort. Seven insulating chambers and three sealing levels, in a system that brings aesthetics and performance together.",
+    ],
+    specs: [
+      ["82 mm", "Thellësia", "Depth"],
+      ["7", "Dhoma izolimi", "Insulating chambers"],
+      ["3", "Nivele hermetizimi", "Sealing levels"],
+    ],
+  },
+  kommerling: {
+    title: "Kömmerling\n76 MD",
+    image: "profile_kommerling_76.png",
+    caption: "KÖMMERLING / 76 MD",
+    quote: "Kömmerling 76 MD",
+    tag: ["PVC · GJERMANI", "PVC · GERMANY"],
+    description: [
+      "Ekuilibër i menduar mes dizajnit dhe izolimit. Sistem PVC me thellësi 76 mm, për dritare dhe dyer që përshtaten natyrshëm me shtëpinë tuaj.",
+      "A considered balance of design and insulation. A 76 mm PVC system for windows and doors that fit naturally into your home.",
+    ],
+    specs: [
+      ["76 mm", "Thellësia", "Depth"],
+      ["PVC", "Materiali", "Material"],
+      ["MD", "Vulosje qendrore", "Centre seal"],
+    ],
+  },
+  sliding: {
+    title: "Panorama\nSliding Systems",
+    image: "foto_1788827375791.jpg",
+    photo: true,
+    caption: "PANORAMA / SLIDING SYSTEMS",
+    quote: "Panorama",
+    tag: ["ALUMINI · HAPËSIRË PA KUFI", "ALUMINIUM · SPACE WITHOUT LIMITS"],
+    description: [
+      "Panele xhami që rrëshqasin lehtë dhe lidhin ambientin e brendshëm me atë të jashtëm. Më shumë pamje, më shumë dritë, më shumë liri në projektim.",
+      "Glazed panels that slide with ease and connect indoors with outdoors. More views, more daylight and greater design freedom.",
+    ],
+    specs: [
+      ["ALU", "Materiali", "Material"],
+      ["↔", "Hapje rrëshqitëse", "Sliding opening"],
+      ["360°", "Perspektivë", "Perspective"],
+    ],
+  },
+  facade: {
+    title: "Fasada\nStrukturale",
+    titleEn: "Structural\nFacades",
+    image: "foto_1788828133911.webp",
+    photo: true,
+    caption: "ARCHITECTURE / GLASS & ALUMINIUM",
+    quote: "Fasada",
+    tag: ["XHAM · ALUMINI", "GLASS · ALUMINIUM"],
+    description: [
+      "Identitet arkitektonik përmes transparencës. Sisteme fasadash xhami dhe alumini, të përshtatura për ndërtesa afariste dhe projekte bashkëkohore.",
+      "Architectural identity through transparency. Glass and aluminium facade systems tailored to commercial buildings and contemporary projects.",
+    ],
+    specs: [
+      ["ALU", "Struktura", "Structure"],
+      ["GLASS", "Sipërfaqja", "Surface"],
+      ["↗", "Sipas projektit", "Project specific"],
+    ],
+  },
+  shutter: {
+    title: "Roleta\n& Alubond",
+    titleEn: "Shutters\n& Alubond",
+    image: "foto_1788828668962.webp",
+    caption: "COMFORT / ALUMINIUM SYSTEMS",
+    quote: "Roleta / Alubond",
+    tag: ["ALUMINI · KONTROLL & MBROJTJE", "ALUMINIUM · CONTROL & PROTECTION"],
+    description: [
+      "Kontrolloni dritën dhe privatësinë me roleta alumini. Plotësoni pamjen e objektit me veshje Alubond, sipas karakterit të arkitekturës suaj.",
+      "Control daylight and privacy with aluminium shutters. Complete the building with Alubond cladding that complements your architecture.",
+    ],
+    specs: [
+      ["ALU", "Materiali", "Material"],
+      ["☼", "Kontroll i dritës", "Daylight control"],
+      ["↗", "Sipas projektit", "Project specific"],
+    ],
+  },
+};
+let activeProduct = "schuco";
+let finish = "white";
+function renderProduct() {
+  const p = products[activeProduct];
+  const en = document.documentElement.lang === "en";
+  $("#productTitle").textContent = en && p.titleEn ? p.titleEn : p.title;
+  $("#productTag").textContent = p.tag[en ? 1 : 0];
+  $("#productDescription").textContent = p.description[en ? 1 : 0];
+  $("#productImage").src = "images/" + p.image;
+  $("#productImage").alt = (en && p.titleEn ? p.titleEn : p.title).replace(
+    "\n",
+    " ",
+  );
+  $(".product-image-wrap").classList.toggle("photo", !!p.photo);
+  $("#productCaption").textContent = p.caption;
+  $("#productSpecs").replaceChildren(
+    ...p.specs.map((spec) => {
+      const d = document.createElement("div");
+      const strong = document.createElement("strong");
+      const s = document.createElement("span");
+      strong.textContent = spec[0];
+      s.textContent = spec[en ? 2 : 1];
+      d.append(strong, s);
+      return d;
+    }),
+  );
+  renderFinish();
+}
+function selectProduct(key, focus = false) {
+  if (!products[key]) return;
+  activeProduct = key;
+  document.querySelectorAll("[data-product]").forEach((btn) => {
+    const active = btn.dataset.product === key;
+    btn.setAttribute("aria-selected", String(active));
+    btn.tabIndex = active ? 0 : -1;
+    if (active && focus) btn.focus();
   });
-
-  // Mobile Accordion per Dropdown "Produktet"
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      if (window.innerWidth <= 991) {
-        const subMenu = toggle.parentElement.querySelector('.sub-menu');
-        if (subMenu) {
-          e.preventDefault();
-          subMenu.classList.toggle('show-mobile');
-          const icon = toggle.querySelector('i');
-          if (icon) {
-            icon.style.transform = subMenu.classList.contains('show-mobile') ? 'rotate(180deg)' : 'none';
-          }
-        }
-      }
-    });
-  });
-
-  menuLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Nese eshte dropdown toggle ne celular, mos e mbyll menune menjehere
-      if (window.innerWidth <= 991 && link.classList.contains('dropdown-toggle')) {
-        return;
-      }
-      closeNav();
-    });
-  });
-
-  // 2. WhatsApp & Email Rapid Quotation
-  const submitWhatsapp = document.getElementById('submitWhatsapp');
-  const submitEmail = document.getElementById('submitEmail');
-  const userName = document.getElementById('userName');
-  const userPhone = document.getElementById('userPhone');
-  const userCity = document.getElementById('userCity');
-  const userService = document.getElementById('userService');
-  const userHeight = document.getElementById('userHeight');
-  const userWidth = document.getElementById('userWidth');
-  const userNotes = document.getElementById('userNotes');
-
-  const WHATSAPP_NUMBER = '38971442821';
-  const EMAIL_ADDRESS = 'lanikompani5@gmail.com';
-
-  function validateInput() {
-    if (!userName.value.trim()) {
-      alert('Ju lutem shënoni Emrin dhe Mbiemrin.');
-      userName.focus();
-      return false;
-    }
-    if (!userPhone.value.trim()) {
-      alert('Ju lutem shënoni Numrin e Telefonit.');
-      userPhone.focus();
-      return false;
-    }
-    if (!userService.value) {
-      alert('Ju lutem zgjidhni produktin që kërkoni.');
-      userService.focus();
-      return false;
-    }
-    return true;
-  }
-
-  if (submitWhatsapp) {
-    submitWhatsapp.addEventListener('click', () => {
-      if (!validateInput()) return;
-
-      const name = userName.value.trim();
-      const phone = userPhone.value.trim();
-      const city = userCity.value.trim() || 'I paspecifikuar';
-      const service = userService.value;
-      const height = userHeight.value.trim() || 'N/A';
-      const width = userWidth.value.trim() || 'N/A';
-      const notes = userNotes.value.trim() || 'Nuk ka shënime shtesë.';
-
-      const message = `*KËRKESË PËR OFERTË - LANI KOMPANI*%0A%0A` +
-                      `👤 *Klienti:* ${encodeURIComponent(name)}%0A` +
-                      `📞 *Telefoni:* ${encodeURIComponent(phone)}%0A` +
-                      `📍 *Qyteti:* ${encodeURIComponent(city)}%0A` +
-                      `🪟 *Produkti:* ${encodeURIComponent(service)}%0A` +
-                      `📏 *Lartësia:* ${encodeURIComponent(height)} cm%0A` +
-                      `📐 *Gjerësia:* ${encodeURIComponent(width)} cm%0A` +
-                      `📝 *Shënime / Numri i njësive:* ${encodeURIComponent(notes)}%0A%0A` +
-                      `_Dërguar nga uebsajti zyrtar i LANI KOMPANI._`;
-
-      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-      window.open(waUrl, '_blank');
-    });
-  }
-
-  if (submitEmail) {
-    submitEmail.addEventListener('click', () => {
-      if (!validateInput()) return;
-
-      const name = userName.value.trim();
-      const phone = userPhone.value.trim();
-      const city = userCity.value.trim() || 'I paspecifikuar';
-      const service = userService.value;
-      const height = userHeight.value.trim() || 'N/A';
-      const width = userWidth.value.trim() || 'N/A';
-      const notes = userNotes.value.trim() || 'Nuk ka shënime shtesë.';
-
-      const subject = encodeURIComponent(`Kërkesë për Ofertë: ${name} - ${service}`);
-      const body = encodeURIComponent(
-        `Përshëndetje LANI KOMPANI,\n\n` +
-        `Kërkoj ofertë me këto të dhëna:\n` +
-        `Emri: ${name}\n` +
-        `Telefoni: ${phone}\n` +
-        `Vendbanimi: ${city}\n` +
-        `Produkti: ${service}\n` +
-        `Lartësia: ${height} cm\n` +
-        `Gjerësia: ${width} cm\n` +
-        `Shënime / Numri i njësive: ${notes}\n\n` +
-        `Ju faleminderit!`
-      );
-
-      window.location.href = `mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
-    });
-  }
-
-  // 3. Profile summary toggle for compact product cards
-  const profileSummaryToggles = document.querySelectorAll('.profile-summary-toggle');
-
-  profileSummaryToggles.forEach(button => {
-    const panel = button.nextElementSibling;
-    if (!panel || !panel.classList.contains('profile-details-panel')) {
-      return;
-    }
-
-    button.addEventListener('click', () => {
-      const isOpen = panel.classList.toggle('open');
-      button.setAttribute('aria-expanded', String(isOpen));
-      panel.setAttribute('aria-hidden', String(!isOpen));
-    });
-  });
-
-  // 4. Subnav Active State Tracking
-  const subnavTabs = document.querySelectorAll('.subnav-tab');
-  const sections = document.querySelectorAll('section[id], div[id]');
-
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + 160;
-    sections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      const id = sec.getAttribute('id');
-      if (scrollPos >= top && scrollPos < top + height) {
-        subnavTabs.forEach(tab => {
-          if (tab.getAttribute('href') === `#${id}`) {
-            tab.classList.add('active');
-          } else {
-            tab.classList.remove('active');
-          }
-        });
-      }
-    });
-  });
-
-  // ==========================================================================
-  // 4. LIVE IN-BROWSER VISUAL EDITOR (Teksti & Fotot)
-  // ==========================================================================
-  const btnOpenEditor = document.getElementById('btnOpenEditor');
-  const liveEditorBar = document.getElementById('liveEditorBar');
-  const btnSaveEditor = document.getElementById('btnSaveEditor');
-  const btnCloseEditor = document.getElementById('btnCloseEditor');
-  const editorToast = document.getElementById('editorToast');
-
-  // Elementet e modalit te fotos
-  const imageModalBackdrop = document.getElementById('imageModalBackdrop');
-  const btnCloseImgModal = document.getElementById('btnCloseImgModal');
-  const btnCancelImgModal = document.getElementById('btnCancelImgModal');
-  const btnApplyImage = document.getElementById('btnApplyImage');
-  const uploadDropzone = document.getElementById('uploadDropzone');
-  const localFileInput = document.getElementById('localFileInput');
-  const imageUrlInput = document.getElementById('imageUrlInput');
-  const imagePreviewHolder = document.getElementById('imagePreviewHolder');
-  const imagePreviewImg = document.getElementById('imagePreviewImg');
-  const btnChangeHeroBg = document.getElementById('btnChangeHeroBg');
-
-  const workGalleryModal = document.getElementById('workGalleryModal');
-  const workGalleryImage = document.getElementById('workGalleryImage');
-  const workGalleryThumbs = document.getElementById('workGalleryThumbs');
-  const workGalleryPrev = document.getElementById('workGalleryPrev');
-  const workGalleryNext = document.getElementById('workGalleryNext');
-  const workGalleryClose = document.getElementById('workGalleryClose');
-
-  const workGalleryImages = [
-    'images/foto_1788827279996.jpg',
-    'images/foto_1788827375791.jpg',
-    'images/foto_1788828133911.webp',
-    'images/foto_1788828508241.webp',
-    'images/foto_1788828668962.webp',
-    'images/foto_1788829214409.jpg',
-    'images/foto_1788829371409.jpg'
-  ];
-
-  let isEditing = false;
-  let currentTarget = null; // img ose element sfondi
-  let currentPendingImageData = null;
-  let activeWorkGalleryIndex = 0;
-
-  const editableTextSelectors = 'h1, h2, h3, h4, h5, p, span.feat-title, span.feat-text, span.feat-category, a.btn-met-primary, a.btn-met-bordered, a.btn-met-dark, a.btn-met-card, a.subnav-tab, .loc-desc, .quote-title, .quote-text, .logo-primary, .logo-accent, .logo-sub, .f-bold, .f-red';
-
-  function showToast(message) {
-    if (!editorToast) return;
-    editorToast.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>${message}</span>`;
-    editorToast.classList.add('show');
-    setTimeout(() => {
-      editorToast.classList.remove('show');
-    }, 4500);
-  }
-
-  function enableEditing() {
-    isEditing = true;
-    document.body.classList.add('is-editing');
-    if (liveEditorBar) liveEditorBar.classList.add('active');
-
-    // Aktivizo tekstet
-    const textEls = document.querySelectorAll(editableTextSelectors);
-    textEls.forEach(el => {
-      if (!el.closest('.live-editor-bar') && !el.closest('.live-editor-launcher') && !el.closest('.image-modal-backdrop')) {
-        el.setAttribute('contenteditable', 'true');
-        el.setAttribute('spellcheck', 'false');
-      }
-    });
-
-    showToast('Modi i Editimit u aktivizua! Klikoni mbi tekst, mbi foto ose te butoni "Ndrysho Logon".');
-  }
-
-  function disableEditing() {
-    isEditing = false;
-    document.body.classList.remove('is-editing');
-    if (liveEditorBar) liveEditorBar.classList.remove('active');
-
-    const textEls = document.querySelectorAll('[contenteditable="true"]');
-    textEls.forEach(el => {
-      el.removeAttribute('contenteditable');
-      el.removeAttribute('spellcheck');
-    });
-  }
-
-  if (btnOpenEditor) {
-    btnOpenEditor.addEventListener('click', () => {
-      if (!isEditing) {
-        enableEditing();
-      } else {
-        disableEditing();
-      }
-    });
-  }
-
-  if (btnCloseEditor) {
-    btnCloseEditor.addEventListener('click', disableEditing);
-  }
-
-  // ==========================================================================
-  // Logjika e Zevendesimit te Fotove Live & Logos
-  // ==========================================================================
-  function openImageModal(target) {
-    currentTarget = target;
-    currentPendingImageData = null;
-    imageUrlInput.value = '';
-    localFileInput.value = '';
-
-    // Nese eshte img, merr src aktual per preview
-    if (target && target.tagName === 'IMG') {
-      imagePreviewImg.src = target.src;
-      imagePreviewHolder.style.display = 'block';
-    } else if (target === 'LOGO') {
-      const existingLogoImg = document.querySelector('.site-logo-img');
-      if (existingLogoImg) {
-        imagePreviewImg.src = existingLogoImg.src;
-        imagePreviewHolder.style.display = 'block';
-      } else {
-        imagePreviewHolder.style.display = 'none';
-      }
-    } else {
-      imagePreviewHolder.style.display = 'none';
-    }
-
-    imageModalBackdrop.classList.add('active');
-  }
-
-  function closeImageModal() {
-    imageModalBackdrop.classList.remove('active');
-    currentTarget = null;
-    currentPendingImageData = null;
-  }
-
-  function renderWorkGalleryThumbs() {
-    if (!workGalleryThumbs) return;
-    workGalleryThumbs.innerHTML = '';
-
-    workGalleryImages.forEach((src, index) => {
-      const thumb = document.createElement('button');
-      thumb.type = 'button';
-      thumb.className = 'work-gallery-thumb' + (index === activeWorkGalleryIndex ? ' active' : '');
-      thumb.setAttribute('aria-label', `Shfaq foto ${index + 1}`);
-      thumb.innerHTML = `<img src="${src}" alt="Punime tona ${index + 1}">`;
-      thumb.addEventListener('click', () => {
-        openWorkGallery(index);
-      });
-      workGalleryThumbs.appendChild(thumb);
-    });
-  }
-
-  function openWorkGallery(index = 0) {
-    if (!workGalleryModal || !workGalleryImage) return;
-
-    activeWorkGalleryIndex = ((index % workGalleryImages.length) + workGalleryImages.length) % workGalleryImages.length;
-    workGalleryImage.src = workGalleryImages[activeWorkGalleryIndex];
-    workGalleryImage.alt = `Punime tona ${activeWorkGalleryIndex + 1}`;
-    renderWorkGalleryThumbs();
-    workGalleryModal.classList.add('active');
-    workGalleryModal.setAttribute('aria-hidden', 'false');
-  }
-
-  function closeWorkGallery() {
-    if (!workGalleryModal) return;
-    workGalleryModal.classList.remove('active');
-    workGalleryModal.setAttribute('aria-hidden', 'true');
-  }
-
-  if (workGalleryPrev) {
-    workGalleryPrev.addEventListener('click', () => openWorkGallery(activeWorkGalleryIndex - 1));
-  }
-
-  if (workGalleryNext) {
-    workGalleryNext.addEventListener('click', () => openWorkGallery(activeWorkGalleryIndex + 1));
-  }
-
-  if (workGalleryClose) {
-    workGalleryClose.addEventListener('click', closeWorkGallery);
-  }
-
-  if (workGalleryModal) {
-    workGalleryModal.addEventListener('click', (event) => {
-      if (event.target === workGalleryModal) closeWorkGallery();
-    });
-  }
-
-  if (btnCloseImgModal) btnCloseImgModal.addEventListener('click', closeImageModal);
-  if (btnCancelImgModal) btnCancelImgModal.addEventListener('click', closeImageModal);
-
-  document.addEventListener('click', (e) => {
-    const galleryTrigger = e.target.closest('[data-gallery-trigger="work"]');
-    if (galleryTrigger) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (!isEditing) {
-        const triggerIndex = Number(galleryTrigger.dataset.galleryIndex || 0);
-        openWorkGallery(triggerIndex);
-      }
-      return;
-    }
-
-    const galleryCard = e.target.closest('[data-gallery="work"]');
-    if (galleryCard && !isEditing) {
-      e.preventDefault();
-      e.stopPropagation();
-      const cardIndex = Number(galleryCard.dataset.galleryIndex || 0);
-      openWorkGallery(cardIndex);
-      return;
-    }
-    if (!isEditing) return;
-
-    // Injoro klikimet brenda shiritit te editorit ose brenda modalit
-    if (e.target.closest('.live-editor-bar') || e.target.closest('.live-editor-launcher') || e.target.closest('.image-modal-box')) {
-      return;
-    }
-
-    // 1. Nese klikohet butoni specifik i ndryshimit te fotos se kartes promo
-    const promoChangeBtn = e.target.closest('.btn-change-promo-photo');
-    if (promoChangeBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const parentCard = promoChangeBtn.closest('.met-promo-card');
-      const cardImg = parentCard ? parentCard.querySelector('img') : null;
-      if (cardImg) {
-        openImageModal(cardImg);
-        return;
-      }
-    }
-
-    // 2. Nese klikohet butoni i sfondit te Hero-s
-    const heroBtn = e.target.closest('#btnChangeHeroBg');
-    if (heroBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const heroSection = document.getElementById('ballina');
-      openImageModal(heroSection);
-      return;
-    }
-
-    // 3. Nese klikohet direkt mbi nje <img>
-    const img = e.target.closest('img');
-    if (img && !img.closest('.image-modal-box')) {
-      e.preventDefault();
-      e.stopPropagation();
-      openImageModal(img);
-      return;
-    }
-
-    // 4. Nese klikohet mbi nje karte promo (madje edhe mbi overlay), pervec nese po shkruan tekst
-    const promoCard = e.target.closest('.met-promo-card');
-    if (promoCard) {
-      // Nese perdoruesi po klikon mbi titullin per te ndryshuar shkronjat, lejoje
-      if (e.target.isContentEditable || e.target.tagName === 'H4' || e.target.tagName === 'A') {
-        return;
-      }
-      const targetImg = promoCard.querySelector('img');
-      if (targetImg) {
-        e.preventDefault();
-        e.stopPropagation();
-        openImageModal(targetImg);
-        return;
-      }
-    }
-
-    // 5. Nese klikohet mbi ndonje mbajtes tjeter fotoje (psh. split-col-image ose diagram-img-wrap)
-    const imgContainer = e.target.closest('.split-col-image, .diagram-img-wrap, .gallery-cell');
-    if (imgContainer) {
-      const containedImg = imgContainer.querySelector('img');
-      if (containedImg) {
-        e.preventDefault();
-        e.stopPropagation();
-        openImageModal(containedImg);
-        return;
-      }
-    }
-  });
-
-  // Zgjedhja e skedarit nga kompjuteri
-  if (uploadDropzone && localFileInput) {
-    uploadDropzone.addEventListener('click', () => {
-      localFileInput.click();
-    });
-
-    localFileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          currentPendingImageData = event.target.result;
-          imagePreviewImg.src = currentPendingImageData;
-          imagePreviewHolder.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
-
-  // Vendosja e URL-se
-  if (imageUrlInput) {
-    imageUrlInput.addEventListener('input', () => {
-      const url = imageUrlInput.value.trim();
-      if (url) {
-        currentPendingImageData = url;
-        imagePreviewImg.src = url;
-        imagePreviewHolder.style.display = 'block';
-      }
-    });
-  }
-
-  // Aplikimi i fotos se re
-  if (btnApplyImage) {
-    btnApplyImage.addEventListener('click', async () => {
-      if (!currentTarget || !currentPendingImageData) {
-        alert('Ju lutem zgjidhni një foto nga kompjuteri ose shënoni linkun e fotos.');
-        return;
-      }
-
-      btnApplyImage.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Duke u aplikuar...';
-      btnApplyImage.disabled = true;
-
-      try {
-        let finalUrl = currentPendingImageData;
-
-        // Nese eshte ngarkuar skedar nga kompjuteri (Base64), e ruajme ne server
-        if (currentPendingImageData.startsWith('data:image/')) {
-          const uploadRes = await fetch('/api/upload', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: currentPendingImageData })
-          });
-          const uploadData = await uploadRes.json();
-          if (uploadData.success && uploadData.url) {
-            finalUrl = uploadData.url;
-          }
-        }
-
-        // Zevendesojme ne DOM
-        if (currentTarget === 'LOGO') {
-          const siteLogoImgs = document.querySelectorAll('.site-logo-img');
-          const footerLogoImgs = document.querySelectorAll('.footer-logo-img');
-
-          if (siteLogoImgs.length > 0) {
-            siteLogoImgs.forEach(img => { img.src = finalUrl; });
-          }
-          if (footerLogoImgs.length > 0) {
-            footerLogoImgs.forEach(img => { img.src = finalUrl; });
-          }
-
-          closeImageModal();
-          showToast('Logoja u ndryshua me sukses! Klikoni "Ruaj Ndryshimet në Skedar" për ta ruajtur përgjithmonë.');
-          return;
-        } else if (currentTarget.tagName === 'IMG') {
-          currentTarget.src = finalUrl;
-          if (currentTarget.hasAttribute('srcset')) {
-            currentTarget.removeAttribute('srcset'); // Shmang konfliktin me foton e vjeter
-          }
-        } else if (currentTarget.id === 'ballina' || currentTarget.classList.contains('met-hero-slider')) {
-          currentTarget.style.backgroundImage = `linear-gradient(rgba(17, 17, 17, 0.72), rgba(17, 17, 17, 0.72)), url('${finalUrl}')`;
-        }
-
-        closeImageModal();
-        showToast('Fotoja u ndryshua me sukses! Klikoni "Ruaj Ndryshimet në Skedar" për ta ruajtur përgjithmonë.');
-      } catch (err) {
-        console.error('Gabim gjatë zëvendësimit të fotos:', err);
-        // Fallback: aplikojme direkt
-        if (currentTarget.tagName === 'IMG') {
-          currentTarget.src = currentPendingImageData;
-        }
-        closeImageModal();
-      } finally {
-        btnApplyImage.innerHTML = 'Apliko Foton';
-        btnApplyImage.disabled = false;
-      }
-    });
-  }
-
-  // ==========================================================================
-  // Ruajtja e HTML-it ne Skedar
-  // ==========================================================================
-  if (btnSaveEditor) {
-    btnSaveEditor.addEventListener('click', async () => {
-      // 1. Pastrojme atributet e editimit para ruajtjes
-      const textEls = document.querySelectorAll('[contenteditable="true"]');
-      textEls.forEach(el => {
-        el.removeAttribute('contenteditable');
-        el.removeAttribute('spellcheck');
-      });
-      document.body.classList.remove('is-editing');
-      if (liveEditorBar) liveEditorBar.classList.remove('active');
-
-      // 2. Marrim HTML-in e plote te faqes me fotot dhe tekstet e reja
-      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-
-      // 3. Riatribuojme editimin
-      textEls.forEach(el => {
-        el.setAttribute('contenteditable', 'true');
-        el.setAttribute('spellcheck', 'false');
-      });
-      document.body.classList.add('is-editing');
-      if (liveEditorBar) liveEditorBar.classList.add('active');
-
-      // 4. Dergojme ne server.js
-      try {
-        btnSaveEditor.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Duke u ruajtur...';
-        btnSaveEditor.disabled = true;
-
-        const response = await fetch('/api/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html: fullHtml })
-        });
-
-        const resData = await response.json();
-        if (resData.success) {
-          showToast('Të gjitha tekstet dhe fotot u ruajtën me sukses në skedar!');
-        } else {
-          alert('Gabim gjatë ruajtjes: ' + (resData.error || 'Kontrolloni serverin'));
-        }
-      } catch (err) {
-        console.error('Save error:', err);
-        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'index.html';
-        a.click();
-        showToast('Skedari index.html me të gjitha fotot e reja u shkarkua në kompjuter!');
-      } finally {
-        btnSaveEditor.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Ruaj Ndryshimet në Skedar';
-        btnSaveEditor.disabled = false;
-      }
-    });
-  }
-
-  // ==========================================================================
-  // PVC WINDOWS PROFILE BRAND SWITCHER (SCHÜCO 82mm vs KÖMMERLING 76mm)
-  // ==========================================================================
-  window.switchPvcBrand = function(targetBrand) {
-    const btns = document.querySelectorAll('.pvc-brand-btn');
-    const panelSchuco = document.getElementById('panelSchuco');
-    const panelKommerling = document.getElementById('panelKommerling');
-
-    btns.forEach(btn => {
-      const isTarget = btn.getAttribute('data-target') === targetBrand;
-      btn.classList.toggle('active', isTarget);
-      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-    });
-
-    if (targetBrand === 'schuco') {
-      if (panelSchuco) panelSchuco.classList.add('active');
-      if (panelKommerling) panelKommerling.classList.remove('active');
-    } else if (targetBrand === 'kommerling') {
-      if (panelKommerling) panelKommerling.classList.add('active');
-      if (panelSchuco) panelSchuco.classList.remove('active');
-    }
+  renderProduct();
+}
+function renderFinish() {
+  const en = document.documentElement.lang === "en";
+  const names = {
+    white: ["E bardhë", "White"],
+    anthracite: ["Antracit", "Anthracite"],
+    wood: ["Efekt druri", "Wood effect"],
   };
-
-  // Event listener për butonat e markës
-  document.querySelectorAll('.pvc-brand-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const brand = this.getAttribute('data-target');
-      if (brand) window.switchPvcBrand(brand);
-    });
+  $("#finishName").textContent = names[finish][en ? 1 : 0];
+  document.querySelectorAll(".swatch").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.finish === finish);
+    btn.setAttribute("aria-pressed", String(btn.dataset.finish === finish));
+    btn.setAttribute("aria-label", names[btn.dataset.finish][en ? 1 : 0]);
+  });
+}
+document.querySelectorAll("[data-product]").forEach((btn) => {
+  btn.addEventListener("click", () => selectProduct(btn.dataset.product));
+  btn.addEventListener("keydown", (e) => {
+    const keys = Object.keys(products);
+    let next = keys.indexOf(activeProduct);
+    if (e.key === "ArrowRight") next = (next + 1) % keys.length;
+    else if (e.key === "ArrowLeft")
+      next = (next - 1 + keys.length) % keys.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = keys.length - 1;
+    else return;
+    e.preventDefault();
+    selectProduct(keys[next], true);
   });
 });
+document
+  .querySelectorAll("[data-select]")
+  .forEach((a) =>
+    a.addEventListener("click", () => selectProduct(a.dataset.select)),
+  );
+document.querySelectorAll("[data-finish]").forEach((btn) =>
+  btn.addEventListener("click", () => {
+    finish = btn.dataset.finish;
+    renderFinish();
+  }),
+);
+$("#productQuote").addEventListener("click", () => {
+  $("#userService").value = products[activeProduct].quote;
+  const en = document.documentElement.lang === "en";
+  const note =
+    (en ? "Preferred finish: " : "Finitura e preferuar: ") +
+    $("#finishName").textContent;
+  if (!$("#userNotes").value.trim()) $("#userNotes").value = note;
+});
+document.addEventListener("languagechange", renderProduct);
+renderProduct();
+const menu = $(".menu-toggle");
+const nav = $("#navigation");
+function closeMenu() {
+  menu.setAttribute("aria-expanded", "false");
+  nav.classList.remove("open");
+  document.body.classList.remove("menu-open");
+}
+menu.addEventListener("click", () => {
+  const open = menu.getAttribute("aria-expanded") !== "true";
+  menu.setAttribute("aria-expanded", String(open));
+  nav.classList.toggle("open", open);
+  document.body.classList.toggle("menu-open", open);
+});
+nav
+  .querySelectorAll("a")
+  .forEach((a) => a.addEventListener("click", closeMenu));
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && nav.classList.contains("open")) {
+    closeMenu();
+    menu.focus();
+  }
+});
+matchMedia("(min-width: 801px)").addEventListener("change", (e) => {
+  if (e.matches) closeMenu();
+});
+const observer = new IntersectionObserver(
+  (entries) =>
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    }),
+  { threshold: 0.12 },
+);
+document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+document.body.classList.add("js-ready");
+let scrollQueued = false;
+function updateScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  $(".scroll-progress").style.width =
+    (max > 0 ? (scrollY / max) * 100 : 0) + "%";
+  const section = $(".panorama");
+  const rect = section.getBoundingClientRect();
+  if (!reducedMotion.matches && rect.bottom > 0 && rect.top < innerHeight)
+    section.querySelector("img").style.transform =
+      `translateY(${(innerHeight / 2 - rect.top - rect.height / 2) * 0.075}px)`;
+  scrollQueued = false;
+}
+addEventListener(
+  "scroll",
+  () => {
+    if (!scrollQueued) {
+      scrollQueued = true;
+      requestAnimationFrame(updateScroll);
+    }
+  },
+  { passive: true },
+);
+updateScroll();
+const scenes = [
+  ["foto_1788828508241.webp", "Hapësirë me dritare panoramike"],
+  ["foto_1788827375791.jpg", "Sistem rrëshqitës panoramik"],
+  ["foto_1788828133911.webp", "Fasadë strukturore xhami"],
+];
+let scene = 0;
+$("#nextScene").addEventListener("click", () => {
+  scene = (scene + 1) % scenes.length;
+  $(".hero-image").src = "images/" + scenes[scene][0];
+  $(".hero-image").alt = scenes[scene][1];
+  $(".visual-index>span").textContent = String(scene + 1).padStart(2, "0");
+});
+const gallery = $("#galleryDialog");
+let galleryTrigger;
+document.querySelectorAll("[data-gallery]").forEach((btn) =>
+  btn.addEventListener("click", () => {
+    galleryTrigger = btn;
+    gallery.querySelector("img").src = btn.dataset.gallery;
+    gallery.querySelector("img").alt = btn.querySelector("img").alt;
+    gallery.showModal();
+  }),
+);
+$(".dialog-close").addEventListener("click", () => gallery.close());
+gallery.addEventListener("click", (e) => {
+  if (e.target === gallery) gallery.close();
+});
+gallery.addEventListener("close", () => galleryTrigger?.focus());
+$("#inquiryForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const en = document.documentElement.lang === "en";
+  const value = (id) => $("#" + id).value.trim();
+  const fields = en
+    ? ["Name", "Phone", "City", "System", "Width (cm)", "Height (cm)", "Notes"]
+    : [
+        "Emri",
+        "Telefoni",
+        "Qyteti",
+        "Sistemi",
+        "Gjerësia (cm)",
+        "Lartësia (cm)",
+        "Shënime",
+      ];
+  const ids = [
+    "userName",
+    "userPhone",
+    "userCity",
+    "userService",
+    "userWidth",
+    "userHeight",
+    "userNotes",
+  ];
+  const message =
+    (en ? "QUOTE REQUEST" : "KËRKESË PËR OFERTË") +
+    " — LANI KOMPANI\n\n" +
+    ids.map((id, i) => fields[i] + ": " + (value(id) || "—")).join("\n");
+  if (e.submitter?.dataset.channel === "email") {
+    location.href =
+      "mailto:lanikompani5@gmail.com?subject=" +
+      encodeURIComponent(
+        (en ? "Quote request: " : "Kërkesë për ofertë: ") + value("userName"),
+      ) +
+      "&body=" +
+      encodeURIComponent(message);
+  } else {
+    window.open(
+      "https://wa.me/38971442821?text=" + encodeURIComponent(message),
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+});
+$("#year").textContent = new Date().getFullYear();
+
+// Keep existing product links working after the redesign.
+function handleLegacyLink() {
+  const links = {
+    "#pvc-schuco": "schuco",
+    "#pvc-kommerling": "kommerling",
+    "#sliding-systems": "sliding",
+    "#fasada-strukturale": "facade",
+    "#roleta-alumini": "shutter",
+  };
+  if (links[location.hash]) {
+    selectProduct(links[location.hash]);
+    $("#sistemet").scrollIntoView({ behavior: "instant" });
+  } else {
+    const sections = { "#per-ne": "#filozofia", "#portfolio": "#koleksioni" };
+    if (sections[location.hash])
+      $(sections[location.hash]).scrollIntoView({ behavior: "instant" });
+  }
+}
+addEventListener("hashchange", handleLegacyLink);
+handleLegacyLink();
