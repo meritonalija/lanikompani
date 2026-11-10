@@ -3582,3 +3582,90 @@ dialog img {
     font-size: 12px;
   }
 }
+.facade-section {
+  background: var(--pale);
+}
+.facade-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 75px;
+  align-items: center;
+}
+.facade-photo {
+  margin: 0;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.facade-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.facade-copy {
+  max-width: 440px;
+}
+.facade-copy .eyebrow {
+  font-size: 10px;
+}
+.facade-copy h2 {
+  margin: 20px 0 24px;
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -1.1px;
+}
+.facade-copy p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--text);
+}
+.facade-copy .text-link {
+  margin-top: 24px;
+  max-width: 290px;
+  display: flex;
+}
+@media (max-width: 1000px) {
+  .facade-layout {
+    gap: 40px;
+  }
+  .facade-copy h2 {
+    font-size: 35px;
+  }
+  .facade-copy p {
+    font-size: 13px;
+  }
+  .facade-photo {
+    height: 360px;
+  }
+}
+@media (max-width: 640px) {
+  .facade-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .facade-photo {
+    height: 260px;
+  }
+  .facade-copy h2 {
+    font-size: 30px;
+    margin: 15px 0 18px;
+  }
+  .facade-copy p {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+  .facade-copy .text-link {
+    margin-top: 19px;
+    max-width: 100%;
+    font-size: 12px;
+  }
+  .facade-copy .eyebrow {
+    font-size: 9px;
+  }
+}
+.profile-technical > summary > span:first-child {
+  font: inherit;
+  color: inherit;
+  transform: none;
+}

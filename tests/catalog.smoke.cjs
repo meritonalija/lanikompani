@@ -38,6 +38,18 @@ const models = [
         0,
       );
     await page.goto(base, { waitUntil: "networkidle" });
+    assert.equal(await page.locator(".system-tabs,[data-product]").count(), 0);
+    assert.equal(
+      (await page.locator("#facadeHeading").textContent()).trim(),
+      "Fasada strukturale",
+    );
+    assert.equal(
+      await page.locator("#facadeImage").getAttribute("src"),
+      "images/foto_1788828133911.webp",
+    );
+    await page.locator("#facadeQuote").click();
+    assert.equal(await page.locator("#userService").inputValue(), "Fasada");
+
     assert.equal(await page.locator(".profile-card:visible").count(), 2);
     assert.equal(
       await page.locator("#mobileProfileSelect,[data-profile-select]").count(),

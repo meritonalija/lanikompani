@@ -1,4 +1,9 @@
 const english = {
+  facade_kicker: "GLASS · ALUMINIUM",
+  facade_heading: "Structural facades",
+  facade_description:
+    "Structural facades combine glass panels with an aluminium substructure to create a continuous building surface. Glazing, fixing systems and installation details are specified for the project.",
+  facade_quote: "Request a facade quote",
   other_profiles_page_title: "Other PVC profiles",
   catalog_mobile_title: "PVC profiles",
   continue_below: "Continue below",
@@ -21,10 +26,6 @@ const english = {
   value1: "German and European profiles",
   value2: "Thermal and acoustic insulation",
   value3: "Measurement, production and installation",
-  systems_kicker: "ALUMINIUM · GLASS · PROTECTION",
-  systems_title: "Beyond the window.<br>Systems for the whole building.",
-  systems_desc:
-    "Aluminium doors and windows, panoramic openings, facades and shutters. Each category has its own function and configuration.",
   facades: "Facades",
   shutters: "Shutters / Alubond",
   product_quote: "Request a quote for this system",
