@@ -68,16 +68,71 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
     assert.equal(await page.locator(".profile-card").count(), 4);
     await page.locator('[data-brand="all"]').click();
     assert.equal(await page.locator(".profile-quote .vector-arrow").count(), 7);
-    for (const card of await page.locator(".profile-card").all()) {
-      const id = await card.getAttribute("id");
-      await card.locator("summary").click();
-      assert(await card.locator("details").evaluate((el) => el.open));
+    const ids = await page
+      .locator("[data-profile-select]")
+      .evaluateAll((buttons) =>
+        buttons.map((button) => button.dataset.profileSelect),
+      );
+    for (const id of ids) {
+      await page.locator(`[data-profile-select="${id}"]`).click();
+      const card = page.locator(`#profile-${id}`);
+      assert(await card.isVisible());
+      assert.equal(await page.locator(".profile-detail:visible").count(), 1);
+      assert((await card.locator(".profile-feature-list li").count()) >= 3);
+      assert(
+        (await card
+          .locator(".profile-technical-table")
+          .first()
+          .locator("tbody tr")
+          .count()) >= 3,
+      );
       await card.locator("[data-profile-quote]").click();
       assert(
         (await page.locator("#userService").inputValue()).length > 0,
         id + " missing quote option",
       );
+      if (id === "schuco-living-md") {
+        const table = await card
+          .locator(".profile-technical-table")
+          .first()
+          .innerText();
+        assert(table.includes("0.96 W/(m²·K)"));
+        assert(table.includes("24–52 mm"));
+        assert(table.includes("47 dB(A)"));
+        assert(
+          await card.locator("th").filter({ hasText: "Frame Uf (≥)" }).count(),
+        );
+        await card.locator(".profile-extra>summary").click();
+        assert(
+          (await card.locator(".profile-extra").innerText()).includes(
+            "2 600 mm",
+          ),
+        );
+      } else if (id === "schuco-living-as") {
+        const table = await card
+          .locator(".profile-technical-table")
+          .innerText();
+        assert(table.includes("1.0 W/(m²·K)"));
+        assert(!table.includes("0.96"));
+        assert.equal(await card.locator(".profile-cutaway").count(), 0);
+      } else {
+        assert(!(await card.innerText()).includes("0.96"));
+      }
     }
+    // Re-rendering a profile via filters must preserve image enlargement.
+    await page.locator('[data-brand="Kömmerling"]').click();
+    await page.locator('[data-profile-select="kommerling-76-md"]').click();
+    await page
+      .locator("#profile-kommerling-76-md .profile-cutaway-button")
+      .click();
+    assert(await page.locator("#galleryDialog").evaluate((el) => el.open));
+    assert(
+      (await page.locator("#galleryDialog img").getAttribute("src")).includes(
+        "profile_kommerling_76.png",
+      ),
+    );
+    await page.keyboard.press("Escape");
+    await page.locator('[data-brand="all"]').click();
     await page.locator("#krahasimi>summary").click();
     assert(await page.locator("#krahasimi").evaluate((el) => el.open));
     await page.locator('[data-brand="Schüco"]').click();
@@ -85,7 +140,7 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
     assert.equal(await page.locator(".profile-card").count(), 7);
     assert(await page.locator("#profile-kommerling-88-md").isVisible());
     console.log(
-      "PASS: three hero opening modes; brand filters; every profile opens and selects a quote option; comparison jumps restore filtered cards.",
+      "PASS: three hero modes; compact model selection; separate AS/MD data; exact-model photo enlargement; quotes and comparison navigation.",
     );
     for (const key of ["alu", "sliding", "facade", "shutter"]) {
       await page.locator(`[data-product="${key}"]`).click();
@@ -99,6 +154,7 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
         key + " missing quote option",
       );
     }
+    await page.locator('[data-profile-select="kommerling-88-md"]').click();
     await page.locator('[data-profile-quote="kommerling-88-md"]').click();
     await page.locator(".quote-options>summary").click();
     await page.locator("#userQuantity").fill("4");
@@ -138,7 +194,7 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
       await page.locator(".menu-toggle").getAttribute("aria-expanded"),
       "false",
     );
-    await page.locator("[data-gallery]").first().click();
+    await page.locator(".collection [data-gallery]").first().click();
     assert(await page.locator("#galleryDialog").evaluate((el) => el.open));
     await page.keyboard.press("Escape");
     assert.equal(
@@ -168,11 +224,12 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
     await page.evaluate(() => scrollTo(0, 0));
     await page.waitForTimeout(250);
     await page.screenshot({ path: "/tmp/lani-expanded-hero.png" });
+    await page.locator('[data-profile-select="schuco-living-md"]').click();
     await page
-      .locator("#profilet")
+      .locator("#profile-schuco-living-md")
       .evaluate((el) => el.scrollIntoView({ block: "start" }));
     await page.waitForTimeout(850);
-    await page.screenshot({ path: "/tmp/lani-expanded-catalog.png" });
+    await page.screenshot({ path: "/tmp/lani-profile-technical.png" });
     assert.deepEqual(errors, []);
     assert.deepEqual(bad, []);
     console.log(

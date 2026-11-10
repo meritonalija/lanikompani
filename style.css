@@ -2646,3 +2646,419 @@ dialog img {
   vertical-align: -0.1em;
   flex-shrink: 0;
 }
+/* Compact technical profile view: one model at a time. */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.profile-cards {
+  display: block;
+}
+.profile-detail[hidden] {
+  display: none !important;
+}
+.profile-detail {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  overflow: hidden;
+  scroll-margin-top: 30px;
+}
+.profile-detail:hover {
+  box-shadow: none;
+  border-color: var(--line);
+}
+.profile-model-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.profile-model-nav button {
+  padding: 13px 15px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.6;
+  background: #f4f7f9;
+  color: #647b8c;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.profile-model-nav button[aria-pressed="true"] {
+  background: #e6f1f7;
+  border-color: #a6cadd;
+  color: var(--blue);
+}
+.profile-detail-heading {
+  padding: 30px 38px;
+  border-bottom: 1px solid var(--line);
+}
+.profile-detail-heading .profile-type {
+  font-size: 9px;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.profile-detail-heading h3 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.profile-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 50px;
+  padding: 35px 38px;
+}
+.profile-cutaway-figure {
+  margin: 0;
+  min-width: 0;
+  align-self: start;
+}
+.profile-cutaway-button {
+  padding: 0;
+  background: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border: 1px solid #edf1f4;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.profile-cutaway {
+  width: 100%;
+  height: 460px;
+  object-fit: contain;
+  padding: 20px;
+}
+.cutaway-zoom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--blue);
+  padding: 13px;
+  width: 100%;
+  border-top: 1px solid var(--line);
+  background: #f7fafb;
+}
+.profile-cutaway-figure figcaption {
+  font-size: 10px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-top: 13px;
+  text-align: center;
+}
+.profile-model-label {
+  height: 400px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  background: #f3f7fa;
+  border-radius: 5px;
+}
+.profile-model-label img {
+  max-width: 185px;
+  max-height: 45px;
+  object-fit: contain;
+}
+.profile-model-label strong {
+  font-size: 43px;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+}
+.profile-model-label > span {
+  font-size: 12px;
+  color: var(--text);
+}
+.profile-detail-copy {
+  min-width: 0;
+}
+.profile-detail-copy h4 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin: 0 0 17px;
+}
+.profile-feature-list {
+  padding: 0 0 0 17px;
+  margin: 0 0 30px;
+}
+.profile-feature-list li {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.85;
+  padding-left: 5px;
+  margin-bottom: 8px;
+}
+.profile-feature-list li::marker {
+  color: var(--blue);
+}
+.profile-technical h4 {
+  border-left: 3px solid #81b7d5;
+  padding-left: 12px;
+  margin-bottom: 15px;
+}
+.profile-technical-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11px;
+}
+.profile-technical-table tr {
+  border-bottom: 1px solid #e6ecf0;
+}
+.profile-technical-table th,
+.profile-technical-table td {
+  padding: 12px 0;
+  line-height: 1.65;
+  vertical-align: top;
+}
+.profile-technical-table th {
+  font-weight: 500;
+  text-align: left;
+  width: 64%;
+  padding-right: 18px;
+  color: #2b4558;
+}
+.profile-technical-table td {
+  color: #657e90;
+  text-align: right;
+  width: 36%;
+  overflow-wrap: anywhere;
+}
+.profile-extra {
+  margin-top: 12px;
+}
+.profile-extra > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--blue);
+  font-size: 10px;
+  padding: 12px 0;
+}
+.profile-extra > summary::-webkit-details-marker {
+  display: none;
+}
+.profile-extra > summary > span {
+  font-size: 20px;
+}
+.profile-extra[open] > summary > span {
+  transform: rotate(45deg);
+}
+.profile-reference-note {
+  font-size: 9px;
+  line-height: 1.8;
+  color: #879ba8;
+  margin-top: 18px;
+}
+.profile-detail-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 17px;
+}
+.profile-detail-actions .profile-quote {
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  gap: 30px;
+}
+.profile-maker {
+  font-size: 10px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.profile-maker .vector-arrow {
+  font-size: 9px;
+}
+.catalog-note {
+  max-width: 900px;
+}
+.profile-catalog .comparison {
+  margin-top: 32px;
+}
+@media (max-width: 1100px) {
+  .profile-detail-grid {
+    gap: 32px;
+    padding: 30px;
+  }
+  .profile-detail-heading {
+    padding: 28px 30px;
+  }
+  .profile-cutaway {
+    height: 420px;
+  }
+  .profile-model-nav button {
+    font-size: 10px;
+    padding: 12px;
+  }
+}
+@media (max-width: 800px) {
+  .profile-model-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .profile-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 30px;
+  }
+  .profile-cutaway {
+    height: 380px;
+    max-width: 460px;
+  }
+  .profile-cutaway-button {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .profile-model-label {
+    height: 270px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .profile-detail-heading h3 {
+    font-size: 27px;
+  }
+  .profile-technical-table {
+    font-size: 12px;
+  }
+  .profile-detail-copy h4 {
+    font-size: 18px;
+  }
+  .profile-feature-list li {
+    font-size: 13px;
+  }
+  .profile-reference-note {
+    font-size: 10px;
+  }
+}
+@media (max-width: 560px) {
+  .profile-detail-heading {
+    padding: 23px;
+  }
+  .profile-detail-heading h3 {
+    font-size: 25px;
+  }
+  .profile-detail-heading .profile-type {
+    font-size: 8px;
+  }
+  .profile-detail-grid {
+    padding: 23px;
+    gap: 30px;
+  }
+  .profile-cutaway {
+    height: 315px;
+    padding: 12px;
+  }
+  .profile-model-label {
+    height: 235px;
+    padding: 30px;
+  }
+  .profile-model-label img {
+    max-width: 145px;
+  }
+  .profile-model-label strong {
+    font-size: 34px;
+  }
+  .profile-model-label > span {
+    font-size: 10px;
+  }
+  .profile-cutaway-figure figcaption {
+    font-size: 9px;
+  }
+  .profile-detail-copy h4 {
+    font-size: 16px;
+  }
+  .profile-feature-list {
+    margin-bottom: 25px;
+  }
+  .profile-feature-list li {
+    font-size: 11px;
+    line-height: 1.85;
+  }
+  .profile-technical-table {
+    font-size: 10px;
+  }
+  .profile-technical-table th {
+    width: 55%;
+    padding-right: 13px;
+  }
+  .profile-technical-table td {
+    width: 45%;
+  }
+  .profile-technical-table th,
+  .profile-technical-table td {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  .profile-model-nav {
+    gap: 7px;
+    margin-bottom: 20px;
+  }
+  .profile-model-nav button {
+    font-size: 9px;
+    padding: 11px 10px;
+  }
+  .profile-detail-actions {
+    gap: 15px;
+  }
+  .profile-detail-actions .profile-quote {
+    font-size: 11px;
+    gap: 20px;
+  }
+  .profile-maker {
+    font-size: 9px;
+  }
+  .profile-reference-note {
+    font-size: 9px;
+  }
+  .profile-extra > summary {
+    font-size: 10px;
+  }
+  .profile-extra > summary > span {
+    font-size: 17px;
+  }
+}
+.profile-detail-copy h4 {
+  font-size: 18px;
+}
+.profile-feature-list li {
+  font-size: 13px;
+}
+.profile-technical-table {
+  font-size: 12px;
+}
+.profile-technical-table th {
+  overflow-wrap: break-word;
+}
+@media (max-width: 560px) {
+  .profile-detail-copy h4 {
+    font-size: 17px;
+  }
+  .profile-feature-list li {
+    font-size: 12px;
+  }
+  .profile-technical-table {
+    font-size: 11px;
+  }
+}

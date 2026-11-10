@@ -1,5 +1,4 @@
-// Product-family identifiers and nominal depths only. See docs/product-sources.md.
-// Performance figures must come from the exact manufacturer's technical sheet.
+// Product data and its provenance are recorded in docs/product-sources.md.
 const profileCatalog = [
   {
     id: "schuco-living-as",
@@ -114,9 +113,112 @@ const profileCatalog = [
     ],
   },
 ];
+// Expanded LivIng 82 MD values are transcribed from the two user-supplied references.
+// They are system limits, not a performance declaration for every finished window.
+const profileReferences = {
+  "schuco-living-md": {
+    image: "foto_1788827279996.jpg",
+    imageOrigin:
+      "Existing repository image previously labelled Schüco LivIng 82 MD",
+    provenance: "user-supplied-technical-table-and-brochure",
+  },
+  "kommerling-76-md": {
+    image: "profile_kommerling_76.png",
+    imageOrigin:
+      "Existing repository image previously labelled Kömmerling 76 MD",
+    provenance: "existing-catalogue-no-new-performance-values",
+  },
+};
+// Values supplied in the user's LivIng AS/MD brochure, separate from the MD-only table.
+profileReferences["schuco-living-as"] = {
+  provenance: "user-supplied-living-brochure",
+  highlights: [
+    ["7 dhoma · thellësi 82 mm", "7 chambers · 82 mm depth"],
+    ["Vulosje në ndalesë AS", "AS rebate sealing"],
+    ["Guarnicione EPDM të saldueshme", "Weldable EPDM gaskets"],
+    ["Xhamëzim me dy ose tri fletë xhami", "Double or triple glazing"],
+  ],
+  compactTechnical: [
+    ["Thellësia e sistemit", "System depth", "82 mm"],
+    [
+      "Uf e kornizës · referencë",
+      "Frame Uf · reference value",
+      "1,0 W/(m²·K)",
+      "1.0 W/(m²·K)",
+    ],
+    ["Trashësia e xhamëzimit", "Glazing thickness", "24–52 mm"],
+    ["Izolimi akustik · maksimumi", "Sound reduction · maximum", "47 dB"],
+    ["Përshkueshmëria e ajrit", "Air permeability", "Klasa 4", "Class 4"],
+    ["Papërshkueshmëria e ujit", "Watertightness", "Klasa 9A", "Class 9A"],
+    [
+      "Rezistenca ndaj vjedhjes",
+      "Burglary resistance",
+      "Deri në RC2",
+      "Up to RC2",
+    ],
+  ],
+};
+Object.assign(profileReferences["schuco-living-md"], {
+  highlights: [
+    ["7 dhoma · thellësi 82 mm", "7 chambers · 82 mm depth"],
+    [
+      "Vulosje qendrore MD · 3 nivele hermetizimi",
+      "MD centre sealing · 3 sealing levels",
+    ],
+    ["Guarnicione EPDM të saldueshme", "Weldable EPDM gaskets"],
+    ["Xhamëzim me dy ose tri fletë xhami", "Double or triple glazing"],
+  ],
+  compactTechnical: [
+    ["Thellësia e sistemit", "System depth", "82 mm"],
+    ["Uf e kornizës (≥)", "Frame Uf (≥)", "0,96 W/(m²·K)", "0.96 W/(m²·K)"],
+    ["Trashësia e xhamëzimit", "Glazing thickness", "24–52 mm"],
+    [
+      "Reduktimi maksimal i zërit Rwp",
+      "Maximum sound reduction Rwp",
+      "47 dB(A)",
+    ],
+    ["Përshkueshmëria e ajrit", "Air permeability", "Klasa 4", "Class 4"],
+    ["Papërshkueshmëria e ujit", "Watertightness", "Klasa 9A", "Class 9A"],
+    [
+      "Rezistenca ndaj vjedhjes",
+      "Burglary resistance",
+      "Deri në RC2",
+      "Up to RC2",
+    ],
+  ],
+  extraTechnical: [
+    ["Gjerësia minimale e dukshme", "Minimum face width", "120 mm"],
+    ["Gjerësia maksimale e krahut", "Maximum vent width", "1 500 mm"],
+    ["Lartësia maksimale e krahut", "Maximum vent height", "2 600 mm"],
+    [
+      "Rezistenca ndaj ngarkesës së erës",
+      "Wind load resistance",
+      "Klasa C5/B5",
+      "Class C5/B5",
+    ],
+    [
+      "Shënjimi CE · sipas referencës",
+      "CE marking · as listed in the reference",
+      "Po",
+      "Yes",
+    ],
+  ],
+});
+profileCatalog.forEach((profile) =>
+  Object.assign(profile, profileReferences[profile.id] || {}),
+);
+// Present the supplied reference model first.
+profileCatalog.unshift(
+  profileCatalog.splice(
+    profileCatalog.findIndex((p) => p.id === "schuco-living-md"),
+    1,
+  )[0],
+);
+
 (() => {
   const $ = (s) => document.querySelector(s);
   let brand = "all";
+  let activeProfile = "schuco-living-md";
   const en = () => document.documentElement.lang === "en";
   const text = (sq, english) => (en() ? english : sq);
   function source(p) {
@@ -129,16 +231,50 @@ const profileCatalog = [
       ? text("Vulosje qendrore", "Centre seal")
       : text("Vulosje në ndalesë", "Rebate seal");
   }
+  function renderProfile(p) {
+    const fullName = profileName(p);
+    const brandImage =
+      p.brand === "Schüco"
+        ? "logo_schuco_dark.png"
+        : "logo_kommerling_color.png";
+    const features = p.highlights || [
+      [
+        p.seal === "MD"
+          ? "Vulosje qendrore MD"
+          : `Vulosje në ndalesë ${p.seal}`,
+        p.seal === "MD" ? "MD centre sealing" : `${p.seal} rebate sealing`,
+      ],
+      [`Thellësi bazë ${p.depth} mm`, `${p.depth} mm nominal depth`],
+      [
+        "Xhami dhe mekanizmi sipas konfigurimit",
+        "Glazing and hardware specified for the configuration",
+      ],
+    ];
+    const rows = p.compactTechnical || [
+      ["Thellësia e sistemit", "System depth", `${p.depth} mm`],
+      ["Materiali", "Material", "PVC-U"],
+      ["Hermetizimi", "Sealing", `${p.seal} · ${seal(p)}`],
+    ];
+    function table(data) {
+      return `<table class="profile-technical-table"><caption class="sr-only">${fullName} — ${text("të dhëna teknike", "technical data")}</caption><tbody>${data.map((r) => `<tr><th scope="row">${r[en() ? 1 : 0]}</th><td>${r[en() && r[3] ? 3 : 2]}</td></tr>`).join("")}</tbody></table>`;
+    }
+    const image = p.image
+      ? `<button class="profile-cutaway-button" data-gallery="images/${p.image}" aria-label="${text("Zmadho prerjen", "Enlarge cutaway")}: ${fullName}"><img class="profile-cutaway" src="images/${p.image}" alt="${text("Prerja e profilit", "Profile cutaway")}: ${fullName}" loading="lazy"><span class="cutaway-zoom">${text("Zmadho foton", "Enlarge photo")} ↗</span></button>`
+      : `<div class="profile-model-label"><img src="images/${brandImage}" alt="${p.brand}" loading="lazy"><strong>${p.family === "LivIng" ? "LivIng " : ""}${p.model}</strong><span>${p.depth} mm · ${p.seal}</span></div>`;
+    return `<article class="profile-card profile-detail" id="profile-${p.id}" ${p.id === activeProfile ? "" : "hidden"} aria-labelledby="title-${p.id}"><div class="profile-detail-heading"><span class="profile-type">${p.brand} / PVC-U</span><h3 id="title-${p.id}">${fullName}</h3></div><div class="profile-detail-grid"><figure class="profile-cutaway-figure">${image}<figcaption>${fullName}${p.image ? " · " + text("Prerja e profilit", "Profile cutaway") : ""}</figcaption></figure><div class="profile-detail-copy"><h4>${text("Karakteristikat kryesore", "Key characteristics")}</h4><ul class="profile-feature-list">${features.map((f) => `<li>${f[en() ? 1 : 0]}</li>`).join("")}</ul><section class="profile-technical" aria-label="${text("Informacion teknik", "Technical information")}: ${fullName}"><h4>${text("Informacion teknik", "Technical information")}</h4>${table(rows)}${p.extraTechnical ? `<details class="profile-extra"><summary>${text("Parametrat e tjerë", "Additional parameters")}<span>+</span></summary>${table(p.extraTechnical)}</details>` : ""}</section><p class="profile-reference-note">${p.compactTechnical ? text("Vlera të sistemit sipas materialit të referencës. Varen nga profili, xhami, mekanizmi dhe përmasat; Uf nuk është Uw.", "System values from the supplied reference material. They depend on profile, glazing, hardware and dimensions; Uf is not Uw.") : text("Vlerat e izolimit dhe klasat konfirmohen për variantin konkret.", "Insulation values and classes are confirmed for the exact variant.")}</p><div class="profile-detail-actions"><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko ofertë", "Request a quote")}<span>↗</span></a><a class="profile-maker" href="${source(p)}" target="_blank" rel="noopener noreferrer">${p.brand} ↗</a></div></div></div></article>`;
+  }
   function renderCatalog() {
     const shown = profileCatalog.filter(
       (p) => brand === "all" || p.brand === brand,
     );
-    $("#profileCards").innerHTML = shown
+    if (!shown.some((p) => p.id === activeProfile)) activeProfile = shown[0].id;
+    $("#profileModelNav").innerHTML = shown
       .map(
         (p) =>
-          `<article class="profile-card" id="profile-${p.id}"><div class="profile-card-top"><span>${p.brand}</span><span class="profile-type">PVC · ${p.seal}</span></div><div class="profile-visual" aria-hidden="true"><div class="profile-frame"><i></i><i></i><span class="seal-line ${p.seal === "MD" ? "central" : ""}"></span></div><span>${p.depth}<small>mm</small></span></div><div class="profile-card-body"><p class="profile-family">${p.brand === "Schüco" ? p.family : "Kömmerling"}</p><h3>${p.brand === "Schüco" && p.family === "CT 70" ? "CT 70 AS" : p.model}</h3><dl><div><dt>${text("Thellësia bazë", "Nominal depth")}</dt><dd>${p.depth} mm</dd></div><div><dt>${text("Hermetizimi", "Sealing")}</dt><dd>${p.seal} · ${seal(p)}</dd></div></dl><details><summary>${text("Çfarë e dallon?", "What makes it different?")} <span>+</span></summary><p>${p.description[en() ? 1 : 0]}</p><p class="profile-use">${p.use[en() ? 1 : 0]}</p><a href="${source(p)}" target="_blank" rel="noopener noreferrer">${text("Faqja e prodhuesit", "Manufacturer website")} ↗</a></details><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko për këtë profil", "Enquire about this profile")} <span>↗</span></a></div></article>`,
+          `<button data-profile-select="${p.id}" aria-pressed="${p.id === activeProfile}" aria-controls="profile-${p.id}">${profileName(p)}</button>`,
       )
       .join("");
+    $("#profileCards").innerHTML = shown.map(renderProfile).join("");
     $("#profileCount").textContent = text(
       `${shown.length} profile`,
       `${shown.length} profiles`,
@@ -163,14 +299,23 @@ const profileCatalog = [
     }),
   );
   document.addEventListener("click", (e) => {
+    const select = e.target.closest("[data-profile-select]");
+    if (select) {
+      activeProfile = select.dataset.profileSelect;
+      renderCatalog();
+      document
+        .querySelector(`[data-profile-select="${activeProfile}"]`)
+        ?.focus({ preventScroll: true });
+    }
     const quote = e.target.closest("[data-profile-quote]");
     if (quote) {
       const p = profileCatalog.find((p) => p.id === quote.dataset.profileQuote);
       $("#userService").value = profileName(p);
     }
     const jump = e.target.closest("[data-profile-jump]");
-    if (jump && brand !== "all") {
+    if (jump) {
       brand = "all";
+      activeProfile = jump.dataset.profileJump;
       renderCatalog();
     }
   });
@@ -223,7 +368,9 @@ const profileCatalog = [
   document.addEventListener("languagechange", renderDemo);
   renderDemo();
   window.revealProfile = (id) => {
+    if (!profileCatalog.some((p) => p.id === id)) return;
     brand = "all";
+    activeProfile = id;
     renderCatalog();
     document
       .getElementById("profile-" + id)

@@ -84,7 +84,7 @@ const english = {
   catalog_kicker: "PVC CATALOGUE",
   catalog_title: "Every profile separate.<br>Every difference clear.",
   catalog_intro:
-    "Schüco and Kömmerling, organised by family, nominal depth and sealing concept. Choose the profile for your enquiry.",
+    "Choose a model to see its cutaway, characteristics and technical parameters. Every variant is presented separately.",
   all_profiles: "All profiles",
   compare_profiles: "Compare profiles",
   seal_rebate: "Rebate sealing",
@@ -100,7 +100,7 @@ const english = {
   profile_seal: "Sealing",
   manufacturer: "Manufacturer",
   catalog_note:
-    "Profile depth is not glazing thickness or an insulation value. The variant, reinforcement, glazing and availability are confirmed in the technical quotation. Diagrams are illustrative, not factory cross-sections.",
+    "System limits are not guaranteed simultaneously for every size and configuration. The technical quotation confirms the profile, glazing, hardware and availability.",
   manufacturer_refs: "Manufacturer references:",
   alu_doors: "Aluminium doors & windows",
   guide_nav: "Guide",

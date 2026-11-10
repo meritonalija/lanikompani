@@ -198,14 +198,14 @@ $("#nextScene").addEventListener("click", () => {
 });
 const gallery = $("#galleryDialog");
 let galleryTrigger;
-document.querySelectorAll("[data-gallery]").forEach((btn) =>
-  btn.addEventListener("click", () => {
-    galleryTrigger = btn;
-    gallery.querySelector("img").src = btn.dataset.gallery;
-    gallery.querySelector("img").alt = btn.querySelector("img").alt;
-    gallery.showModal();
-  }),
-);
+document.addEventListener("click", (event) => {
+  const btn = event.target.closest("[data-gallery]");
+  if (!btn) return;
+  galleryTrigger = btn;
+  gallery.querySelector("img").src = btn.dataset.gallery;
+  gallery.querySelector("img").alt = btn.querySelector("img").alt;
+  gallery.showModal();
+});
 $(".dialog-close").addEventListener("click", () => gallery.close());
 gallery.addEventListener("click", (e) => {
   if (e.target === gallery) gallery.close();
@@ -288,6 +288,10 @@ function handleLegacyLink() {
     "#pvc-schuco": "schuco-living-md",
     "#pvc-kommerling": "kommerling-76-md",
   };
+  if (location.hash.startsWith("#profile-")) {
+    window.revealProfile(location.hash.slice("#profile-".length));
+    return;
+  }
   if (pvcLinks[location.hash]) {
     window.revealProfile(pvcLinks[location.hash]);
     return;
