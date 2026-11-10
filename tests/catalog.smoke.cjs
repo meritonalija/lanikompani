@@ -41,6 +41,55 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
     console.log(
       "PASS: seven distinct profiles; comparison; SQ/EN at five widths.",
     );
+    await page.setViewportSize({ width: 390, height: 844 });
+    assert(await page.locator("#mobileProfileSelect").isVisible());
+    assert.equal(await page.locator("#mobileProfileSelect option").count(), 7);
+    const mobileModels = await page
+      .locator("#mobileProfileSelect option")
+      .evaluateAll((options) => options.map((o) => o.value));
+    for (const id of mobileModels) {
+      await page.locator("#mobileProfileSelect").selectOption(id);
+      assert(await page.locator("#profile-" + id).isVisible());
+      assert.equal(
+        await page
+          .locator("#profile-" + id + " .profile-technical")
+          .evaluate((el) => el.open),
+        false,
+      );
+    }
+    await page.locator("#mobileProfileSelect").selectOption("schuco-living-md");
+    const compactHeight = await page
+      .locator("#profilet")
+      .evaluate((el) => el.getBoundingClientRect().height);
+    assert(
+      compactHeight < 900,
+      "mobile catalogue should fit roughly one screen",
+    );
+    await page
+      .locator("#profile-schuco-living-md .profile-technical>summary")
+      .click();
+    assert(
+      await page
+        .locator("#profile-schuco-living-md .profile-technical-table")
+        .first()
+        .isVisible(),
+    );
+    const expandedHeight = await page
+      .locator("#profilet")
+      .evaluate((el) => el.getBoundingClientRect().height);
+    assert(expandedHeight > compactHeight + 200);
+    await page
+      .locator("#profile-schuco-living-md .profile-technical>summary")
+      .click();
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    assert(
+      await page
+        .locator("#profile-schuco-living-md .profile-technical")
+        .evaluate((el) => el.open),
+    );
+    console.log(
+      "PASS: mobile selector exposes all seven models; specs start collapsed, expand on request and remain open on desktop.",
+    );
     for (const mode of ["turn", "slide", "shutter"]) {
       await page.locator(`[data-opening="${mode}"]`).click();
       assert.equal(
@@ -77,6 +126,18 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
       await page.locator(`[data-profile-select="${id}"]`).click();
       const card = page.locator(`#profile-${id}`);
       assert(await card.isVisible());
+      assert.equal(await card.locator(".profile-cutaway").count(), 1);
+      const photo = await card.locator(".profile-cutaway").getAttribute("src");
+      assert.equal(
+        (await page.request.get(new URL(photo, baseUrl).href)).status(),
+        200,
+      );
+      if (id === "kommerling-76-ad")
+        assert((await card.innerText()).includes("5 chambers"));
+      if (id === "kommerling-76-md")
+        assert((await card.innerText()).includes("6 chambers"));
+      if (id === "kommerling-88-md")
+        assert((await card.innerText()).includes("7 chambers"));
       assert.equal(await page.locator(".profile-detail:visible").count(), 1);
       assert((await card.locator(".profile-feature-list li").count()) >= 3);
       assert(
@@ -114,7 +175,18 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
           .innerText();
         assert(table.includes("1.0 W/(m²·K)"));
         assert(!table.includes("0.96"));
-        assert.equal(await card.locator(".profile-cutaway").count(), 0);
+        assert.equal(await card.locator(".profile-cutaway").count(), 1);
+        assert.equal(
+          await card
+            .locator(".profile-cutaway")
+            .getAttribute("data-photo-scope"),
+          "family-reference",
+        );
+        assert(
+          (await card.locator(".cutaway-zoom").innerText()).includes(
+            "Family reference",
+          ),
+        );
       } else {
         assert(!(await card.innerText()).includes("0.96"));
       }
@@ -128,7 +200,7 @@ const baseUrl = process.env.LANI_BASE_URL || "http://127.0.0.1:3000";
     assert(await page.locator("#galleryDialog").evaluate((el) => el.open));
     assert(
       (await page.locator("#galleryDialog img").getAttribute("src")).includes(
-        "profile_kommerling_76.png",
+        "profiles/kommerling-76-md.webp",
       ),
     );
     await page.keyboard.press("Escape");

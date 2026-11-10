@@ -17,3 +17,5 @@ The cloud development image supplies Playwright and `/usr/bin/chromium`. For ano
 The suite checks seven separate profiles shown one at a time, filtering, comparison navigation, language persistence, ten language/viewport combinations, three hero opening modes, system tabs, quote validation and payload, optional quotation fields, mobile navigation, gallery, old product links, reduced motion and failed browser resources. WhatsApp opening is intercepted; no message is sent. It also saves preview screenshots under `/tmp`.
 
 The suite also checks that the supplied AS and MD values remain separate, MD-only parameters are not copied to other models, and real cutaway enlargement still works after filtering. It checks transcription consistency, not independent manufacturer verification. Source verification status is recorded in `docs/product-sources.md`.
+
+On mobile, all models are available in a grouped select menu and technical tables start closed. The suite checks that the compact catalogue remains below 900 px at 390 px width, that expanding it reveals the table, and that desktop tables are open.

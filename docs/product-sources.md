@@ -1,56 +1,66 @@
 # Profile catalogue: sources and limits
 
-Updated 2026-11-10. The page presents one profile at a time: cutaway where available, concise characteristics and a technical table. It does not claim that every variant is stocked.
+Updated 2026-11-10. Each profile has its own selectable panel. On phones, a grouped select replaces the model grid; the cutaway thumbnail and characteristics are compact, and the technical table starts closed. Desktop tables remain open. No variant is represented as guaranteed in stock.
 
-## Supplied LivIng references
+## Source hierarchy
 
-The detailed LivIng values come from the user's screenshots of the Schüco LivIng AS/MD brochure and the LivIng 82 MD technical table. No live document URL, issue date or downloadable image handle was supplied. These are transcriptions of supplied references, not newly retrieved manufacturer documents.
+1. **User-supplied Schüco references:** screenshots of the Schüco LivIng AS/MD brochure and LivIng 82 MD technical table. No live document URL, issue date or downloadable image handle was supplied. These are explicit transcriptions, not newly retrieved manufacturer documents.
+2. **Independent profile catalogue:** [OpenAEC, pinned revision](https://github.com/OpenAEC-Foundation/open-frame-studio/blob/fb67ef26beb342755e4639f914fb01c15b72ff0e/profiles/pvc/kommerling.json). The data distinguishes standard models from proEnergyTec and flags unverified fields. Only supported standard-model fields were used.
+3. **Independent supplier catalogue:** [Fenster-WeissenBurger product page, pinned revision](https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/produkte/kunststofffenster-koemmerling/index.html). Its dealer table supplies the 70 AD reference and corroborates chamber counts and reference Uf for 76 AD, 76 MD and 88.
+4. **Image archive with original URLs:** [Renisual archive index, pinned revision](https://github.com/cryptoprins-ship-it/renisual/blob/1e38e298411a1abc308f02d1d950135811394d80/public/samples/kozijnen/schuco/index.json). It records archived Schüco manufacturer-family pictures and their original `schueco.com` resource URLs.
 
-| Parameter                         | LivIng 82 AS | LivIng 82 MD  |
-| --------------------------------- | ------------ | ------------- |
-| Nominal frame/sash depth          | 82 mm        | 82 mm         |
-| Chambers                          | 7            | 7             |
-| Glazing range                     | 24–52 mm     | 24–52 mm      |
-| Frame Uf, brochure reference      | 1.0 W/(m²·K) | 0.96 W/(m²·K) |
-| Sound reduction, brochure maximum | 47 dB        | 47 dB         |
-| Burglary resistance               | RC2          | RC2           |
-| Air permeability                  | Class 4      | Class 4       |
-| Watertightness                    | Class 9A     | Class 9A      |
+Direct access to manufacturer sites remains blocked by the environment proxy. The independent catalogues and archived image files themselves were retrieved from the already allowed GitHub destination. The page does not claim newly verified manufacturer certification. Kömmerling panels link to the actual independent technical source.
 
-The MD-only table additionally lists minimum face width 120 mm; frame Uf with a **≥** operator and value 0.96 W/(m²·K); maximum vent width 1500 mm and height 2600 mm; maximum Rwp 47 dB(A); wind resistance Class C5/B5; and CE marking yes. The MD page preserves the ≥ operator and dB(A) notation from that table. Additional dimensions and classes are under “Additional parameters”. CE is described as a marking, not a blanket certificate for every completed window.
+## Values used
 
-The supplied brochure describes weldable EPDM gasket technology for LivIng. The compact characteristics use that description for AS and MD. They do not repeat the brochure's broad “world first”, passive-house, energy-saving or service-life comparison claims.
+| Model               | Depth | Chambers  | Sealing concept / levels      | Reference frame Uf                                    |
+| ------------------- | ----- | --------- | ----------------------------- | ----------------------------------------------------- |
+| Schüco LivIng 82 AS | 82 mm | 7         | AS / 2                        | 1.00 W/(m²·K)                                         |
+| Schüco LivIng 82 MD | 82 mm | 7         | MD / 3                        | ≥ 0.96 W/(m²·K), operator preserved from the MD table |
+| Schüco CT 70 AS     | 70 mm | not added | AS, no new performance claims | not added                                             |
+| Kömmerling 70 AD    | 70 mm | 5         | AD / 2                        | 1.20 W/(m²·K)                                         |
+| Kömmerling 76 AD    | 76 mm | 5         | AD / 2                        | 1.10 W/(m²·K)                                         |
+| Kömmerling 76 MD    | 76 mm | 6         | MD / 3                        | 1.00 W/(m²·K)                                         |
+| Kömmerling 88 MD    | 88 mm | 7         | MD / 3                        | 0.95 W/(m²·K)                                         |
 
-The brochure makes results dependent on profile and glazing. Maximum dimensions, classes and thermal/acoustic results are not represented as simultaneous guarantees. Uf describes frame thermal transmittance, Ug glazing transmittance and Uw the complete window. Uf must not be copied into Uw.
+AS and AD abbreviate Anschlagdichtung (rebate sealing); MD abbreviates Mitteldichtung (centre sealing). Uf describes frame thermal transmittance, Ug glazing transmittance and Uw the whole window. Uf is not copied into Uw. Reference family values are not a promise for every supplied window.
 
-## Other families
+### Supplied LivIng details
 
-| Family           | Nominal depth | Sealing concept    |
-| ---------------- | ------------- | ------------------ |
-| Schüco CT 70 AS  | 70 mm         | AS, rebate sealing |
-| Kömmerling 70 AD | 70 mm         | AD, rebate sealing |
-| Kömmerling 76 AD | 76 mm         | AD, rebate sealing |
-| Kömmerling 76 MD | 76 mm         | MD, centre sealing |
-| Kömmerling 88 MD | 88 mm         | MD, centre sealing |
+The supplied brochure lists a 24–52 mm glazing range, maximum sound reduction 47 dB, RC2 burglary resistance, Class 4 air permeability and Class 9A watertightness for LivIng AS/MD. It also describes weldable EPDM gasket technology.
 
-These baseline names and sealing concepts have not been independently checked against current manufacturer documentation in this session. Their panels do not contain the LivIng performance figures or invented glazing, acoustic, chamber-count or certification values. Obtain the technical sheet of the exact regional variant before extending them. Availability is confirmed through the business quotation.
+The MD-only table additionally gives: minimum face width 120 mm; maximum vent width 1500 mm and height 2600 mm; maximum Rwp 47 dB(A); wind resistance Class C5/B5; CE marking yes. The MD presentation preserves the table's ≥ operator and dB(A) notation. Additional dimensions and classes are under “Additional parameters”. CE is described as a marking, not a blanket certificate for every finished window.
 
-AS and AD abbreviate Anschlagdichtung (rebate sealing); MD abbreviates Mitteldichtung (centre sealing). Nominal profile depth is not glazing thickness and does not establish a whole-window insulation value.
+The brochure makes results dependent on profile and glazing. Maximum dimensions, classes and thermal/acoustic results are not represented as simultaneous guarantees. Broad “world first”, passive-house, energy-saving and service-life comparison claims were not copied.
 
-## Cutaway photographs
+### Differences and omitted values
 
-Reused without image manipulation:
+- The independent OpenAEC source discusses a different 16–54 mm LivIng glazing range; the site retains the user's supplied 24–52 mm brochure range rather than silently combining editions.
+- Sources differ on 76-series glazing limits for finished windows versus profile systems (48/50/56 mm). Those numeric limits were not added for 76 AD/MD.
+- The 88 MD maximum glazing reference of 58 mm is corroborated by the OpenAEC model record and [CORTEC's independently published catalogue](https://github.com/isimansur/cortec/blob/431df2c54dd5024b33c90c2325834a81c23a3fda/src/pages/kommerling.js). It is a profile-family limit, not a guarantee that every supplier configuration accepts it; some finished-window catalogues specify a narrower limit.
+- Unverified sightlines, reinforcement wall thicknesses, acoustic/security classifications and proEnergyTec values were not copied to the standard Kömmerling models.
+- CT 70 retains baseline depth/material/sealing data. More detailed performance values were not invented for it.
 
-- `images/foto_1788827279996.jpg`: previously identified in the existing repository catalogue as Schüco LivIng 82 MD.
-- `images/profile_kommerling_76.png`: previously identified as Kömmerling 76 MD. The same image is also retained as `profile_kommerling_cutaway.jpg` in the repository.
+## Images
 
-These model associations come from the repository, not a fresh manufacturer download. No exact-model cutaway was retrieved for LivIng AS, CT 70, Kömmerling 70 AD, 76 AD or 88 MD. Those panels show only a brand/model label, not a substituted MD photograph or generated cutaway. The uploaded screenshots are visible in the conversation but not available as downloadable files in the execution workspace; the site does not claim to embed the exact supplied crop.
+Pinned links, model scope, original manufacturer URLs where available and SHA-256 checksums are in `docs/profile-assets.json`. All images are served locally without runtime dependence on blocked hosts. They were inspected and copied without changing gasket geometry or generating substitute product cutaways.
 
-## Manufacturer access
+| Model            | Image scope                                                                       |
+| ---------------- | --------------------------------------------------------------------------------- |
+| LivIng 82 MD     | Existing repository cutaway previously identified as this model                   |
+| LivIng 82 AS     | Archived LivIng 82 **family reference**, not an authenticated AS-specific cutaway |
+| CT 70 AS         | Archived Corona **family reference**, not an authenticated CT 70 AS drawing       |
+| Kömmerling 70 AD | Separate supplier catalogue reference image                                       |
+| Kömmerling 76 AD | Separate supplier catalogue reference image                                       |
+| Kömmerling 76 MD | Separate 800 px supplier catalogue reference image                                |
+| Kömmerling 88 MD | Separate supplier catalogue reference image                                       |
 
-- Schüco: https://www.schueco.com/
-- Kömmerling: https://www.koemmerling.com/
+The two Schüco family pictures visibly say “Family reference” on the image button, including on mobile. Alt text and captions preserve that distinction. The supplier metadata calls the Kömmerling pictures **Abbildung beispielhaft** (illustrative reference); they are not represented as authenticated factory drawings. The LivIng MD picture remains `images/foto_1788827279996.jpg`; the earlier 447 px Kömmerling 76 MD photo is replaced with the sourced 800 px catalogue reference.
 
-Manufacturer links identify the official websites; they are not links to retrieved technical sheets. HTTPS access to those sites and `en.profilnet.eu` failed with proxy CONNECT HTTP 403. The environment draft read also failed with INVALID_ARGUMENT. No unknown network allowlist was replaced.
+The user's uploaded screenshots are visible in the conversation but have no downloadable file handle in the execution workspace. The site does not claim to embed the exact uploaded crop. Exact factory-verified variant imagery for LivIng AS and CT 70 AS remains outstanding.
 
-To finish exact-model photo and document verification, preserve existing network policy and add `schueco.com`, `www.schueco.com`, `koemmerling.com`, and `www.koemmerling.com` to the allowed domains. Follow documented redirects and add required document hosts separately. Record the actual technical document URL, issue date and page when retrieved.
+## Further primary-source verification
+
+Manufacturer links identify the official sites: https://www.schueco.com/ and https://www.koemmerling.com/. They are not links to newly retrieved technical sheets. The environment draft read also failed with INVALID_ARGUMENT; no unknown network allowlist was replaced.
+
+To finish primary-source checks, preserve existing network policy and add `schueco.com`, `www.schueco.com`, `koemmerling.com`, and `www.koemmerling.com` to allowed domains. Follow documented redirects and add required document hosts separately. Record the actual technical document URL, issue date and page when retrieved. Exact model, regional variant, availability, glazing and declared performance remain subject to the business's technical quotation.

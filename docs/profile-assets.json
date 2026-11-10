@@ -1,0 +1,55 @@
+{
+  "retrieved": "2026-11-10",
+  "images": [
+    {
+      "model": "kommerling-70-ad",
+      "local_path": "images/profiles/kommerling-70-ad.webp",
+      "scope": "catalogue-reference",
+      "source": "https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/assets/konfigurator/profil-koemmerling-70-800.webp",
+      "source_label": "Fenster-WeissenBurger profile reference image; original alt text says Abbildung beispielhaft",
+      "sha256": "a656e669315b046bac6bb3cb1ea1cfa26a34550ce3dbe1a8e3e893bc7ae29ef9"
+    },
+    {
+      "model": "kommerling-76-ad",
+      "local_path": "images/profiles/kommerling-76-ad.webp",
+      "scope": "catalogue-reference",
+      "source": "https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/assets/konfigurator/profil-koemmerling-76-ad-800.webp",
+      "source_label": "Fenster-WeissenBurger profile reference image; original alt text says Abbildung beispielhaft",
+      "sha256": "6e8cf37b0222faf0d9b22c4ebd5d17f97530d3dc9fd5dd7631899bd3e811d0c8"
+    },
+    {
+      "model": "kommerling-76-md",
+      "local_path": "images/profiles/kommerling-76-md.webp",
+      "scope": "catalogue-reference",
+      "source": "https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/assets/konfigurator/profil-koemmerling-76-md-800.webp",
+      "source_label": "Fenster-WeissenBurger profile reference image; original alt text says Abbildung beispielhaft",
+      "sha256": "f32320663fed73396c55f4e1b5eb4d42b97ce77e2c4709bfdbc0c3074a806b44"
+    },
+    {
+      "model": "kommerling-88-md",
+      "local_path": "images/profiles/kommerling-88-md.webp",
+      "scope": "catalogue-reference",
+      "source": "https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/assets/konfigurator/profil-koemmerling-88-800.webp",
+      "source_label": "Fenster-WeissenBurger profile reference image; original alt text says Abbildung beispielhaft",
+      "sha256": "eb350da689eb714d3e53cabc9f4581b824dbed07a65c39886e0771aba71beb5c"
+    },
+    {
+      "model": "schuco-living-as",
+      "local_path": "images/profiles/schuco-living-family.jpg",
+      "scope": "family-reference-not-exact-variant",
+      "source": "https://github.com/cryptoprins-ship-it/renisual/blob/1e38e298411a1abc308f02d1d950135811394d80/public/samples/kozijnen/schuco/lange-levensduur/variant-07.jpg",
+      "original_manufacturer_url": "https://www.schueco.com/resource/responsive-image/351780/m11-text-media-1-3/xs/2/fenster-kunststoff-produkte-schueco-living-image.jpg",
+      "original_url_status": "recorded in the archive index; direct manufacturer request remains blocked",
+      "sha256": "2aa784ba389544dc53c36cc7a4a12abe69bdbb9145549261a8a96b8e45f10761"
+    },
+    {
+      "model": "schuco-ct70",
+      "local_path": "images/profiles/schuco-corona-family.jpg",
+      "scope": "family-reference-not-exact-variant",
+      "source": "https://github.com/cryptoprins-ship-it/renisual/blob/1e38e298411a1abc308f02d1d950135811394d80/public/samples/kozijnen/schuco/lange-levensduur/variant-08.jpg",
+      "original_manufacturer_url": "https://www.schueco.com/resource/responsive-image/351784/m11-text-media-1-3/xs/2/fenster-kunststoff-produkte-schueco-corona-image.jpg",
+      "original_url_status": "recorded in the archive index; direct manufacturer request remains blocked",
+      "sha256": "fb540576c6dea539652315e2f49112f5fd235398c6711d4428a9107d09782513"
+    }
+  ]
+}

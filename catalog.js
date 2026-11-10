@@ -204,6 +204,123 @@ Object.assign(profileReferences["schuco-living-md"], {
     ],
   ],
 });
+// Additional sources are independent published catalogues; see docs/product-sources.md.
+const thirdPartyReference =
+  "https://github.com/OpenAEC-Foundation/open-frame-studio/blob/fb67ef26beb342755e4639f914fb01c15b72ff0e/profiles/pvc/kommerling.json";
+const dealerReference =
+  "https://github.com/DanielGanea45/-Fenster-WeissenBurger/blob/cef16362816145dec234fac0bd4e711cca5f5734/produkte/kunststofffenster-koemmerling/index.html";
+const referenceModels = [
+  {
+    id: "kommerling-70-ad",
+    depth: 70,
+    chambers: 5,
+    levels: 2,
+    uf: 1.2,
+    source: dealerReference,
+  },
+  {
+    id: "kommerling-76-ad",
+    depth: 76,
+    chambers: 5,
+    levels: 2,
+    uf: 1.1,
+    source: thirdPartyReference,
+  },
+  {
+    id: "kommerling-76-md",
+    depth: 76,
+    chambers: 6,
+    levels: 3,
+    uf: 1.0,
+    source: thirdPartyReference,
+  },
+  {
+    id: "kommerling-88-md",
+    depth: 88,
+    chambers: 7,
+    levels: 3,
+    uf: 0.95,
+    source: thirdPartyReference,
+  },
+];
+referenceModels.forEach((model) => {
+  const code = model.levels === 3 ? "MD" : "AD";
+  profileReferences[model.id] = {
+    ...profileReferences[model.id],
+    image: `profiles/${model.id}.webp`,
+    imageScope: "catalogue-reference",
+    imageCaption: [
+      `${model.depth} ${code} · pamje reference e katalogut`,
+      `${model.depth} ${code} · catalogue reference view`,
+    ],
+    technicalSource: model.source,
+    provenance: "independent-catalogue-reference",
+    highlights: [
+      [
+        `${model.chambers} dhoma · thellësi ${model.depth} mm`,
+        `${model.chambers} chambers · ${model.depth} mm depth`,
+      ],
+      [
+        `${code} · ${model.levels} nivele hermetizimi`,
+        `${code} · ${model.levels} sealing levels`,
+      ],
+      [
+        model.levels === 3
+          ? "Guarnicion shtesë në qendër të profilit"
+          : "Guarnicione në ndalesat e kornizës dhe krahut",
+        model.levels === 3
+          ? "Additional centre gasket"
+          : "Seals at the frame and sash rebates",
+      ],
+      [
+        "Përforcimi dhe xhami sipas konfigurimit",
+        "Reinforcement and glazing specified for the configuration",
+      ],
+    ],
+    compactTechnical: [
+      ["Thellësia e sistemit", "System depth", `${model.depth} mm`],
+      ["Materiali", "Material", "PVC-U"],
+      ["Dhoma izoluese", "Insulating chambers", String(model.chambers)],
+      ["Nivele hermetizimi", "Sealing levels", `${model.levels} · ${code}`],
+      [
+        "Uf e kornizës · referencë",
+        "Frame Uf · reference",
+        `${model.uf.toFixed(2).replace(".", ",")} W/(m²·K)`,
+        `${model.uf.toFixed(2)} W/(m²·K)`,
+      ],
+    ],
+  };
+});
+profileReferences["kommerling-88-md"].compactTechnical.push([
+  "Trashësia maksimale e xhamëzimit · referencë",
+  "Maximum glazing thickness · reference",
+  "58 mm",
+]);
+Object.assign(profileReferences["schuco-living-as"], {
+  image: "profiles/schuco-living-family.jpg",
+  imageScope: "family-reference",
+  imageCaption: [
+    "Familja LivIng 82 · pamje reference, jo prerje specifike AS",
+    "LivIng 82 family · reference view, not an AS-specific cutaway",
+  ],
+  imageAlt: [
+    "Familja Schüco LivIng 82: pamje reference e prodhuesit",
+    "Schüco LivIng 82 family: manufacturer reference view",
+  ],
+});
+Object.assign((profileReferences["schuco-ct70"] = {}), {
+  image: "profiles/schuco-corona-family.jpg",
+  imageScope: "family-reference",
+  imageCaption: [
+    "Familja Corona · pamje reference",
+    "Corona family · reference view",
+  ],
+  imageAlt: [
+    "Familja Schüco Corona: pamje reference e prodhuesit",
+    "Schüco Corona family: manufacturer reference view",
+  ],
+});
+
 profileCatalog.forEach((profile) =>
   Object.assign(profile, profileReferences[profile.id] || {}),
 );
@@ -265,9 +382,9 @@ profileCatalog.unshift(
       return `<table class="profile-technical-table"><caption class="sr-only">${fullName} — ${text("të dhëna teknike", "technical data")}</caption><tbody>${data.map((r) => `<tr><th scope="row">${r[en() ? 1 : 0]}</th><td>${r[en() && r[3] ? 3 : 2]}</td></tr>`).join("")}</tbody></table>`;
     }
     const image = p.image
-      ? `<button class="profile-cutaway-button" data-gallery="images/${p.image}" aria-label="${text("Zmadho prerjen", "Enlarge cutaway")}: ${fullName}"><img class="profile-cutaway" src="images/${p.image}" alt="${text("Prerja e profilit", "Profile cutaway")}: ${fullName}" loading="lazy"><span class="cutaway-zoom">${text("Zmadho foton", "Enlarge photo")} ↗</span></button>`
+      ? `<button class="profile-cutaway-button" data-gallery="images/${p.image}" aria-label="${text("Zmadho prerjen", "Enlarge cutaway")}: ${fullName}"><img class="profile-cutaway" src="images/${p.image}" data-photo-scope="${p.imageScope || "existing-catalogue"}" alt="${p.imageAlt ? p.imageAlt[en() ? 1 : 0] : text("Prerja e profilit", "Profile cutaway") + ": " + fullName}" loading="lazy"><span class="cutaway-zoom">${p.imageScope === "family-reference" ? text("Pamje familjeje", "Family reference") : text("Zmadho foton", "Enlarge photo")} ↗</span></button>`
       : `<div class="profile-model-label"><img src="images/${brandImage}" alt="${p.brand}" loading="lazy"><strong>${p.family === "LivIng" ? "LivIng " : ""}${p.model}</strong><span>${p.depth} mm · ${p.seal}</span></div>`;
-    return `<article class="profile-card profile-detail" id="profile-${p.id}" ${p.id === activeProfile ? "" : "hidden"} aria-labelledby="title-${p.id}"><div class="profile-detail-heading"><span class="profile-type">${p.brand} / PVC-U</span><h3 id="title-${p.id}">${fullName}</h3></div><div class="profile-detail-grid"><figure class="profile-cutaway-figure">${image}<figcaption>${fullName}${p.image ? " · " + text("Prerja e profilit", "Profile cutaway") : ""}</figcaption></figure><div class="profile-detail-copy"><h4>${text("Karakteristikat kryesore", "Key characteristics")}</h4><ul class="profile-feature-list">${features.map((f) => `<li>${f[en() ? 1 : 0]}</li>`).join("")}</ul><details class="profile-technical" ${technicalBreakpoint.matches ? "open" : ""} aria-label="${text("Informacion teknik", "Technical information")}: ${fullName}"><summary><span>${text("Informacion teknik", "Technical information")}</span><span>+</span></summary>${table(rows)}${p.extraTechnical ? `<details class="profile-extra"><summary>${text("Parametrat e tjerë", "Additional parameters")}<span>+</span></summary>${table(p.extraTechnical)}</details>` : ""}<p class="profile-reference-note">${p.compactTechnical ? text("Vlera të sistemit sipas materialit të referencës. Varen nga profili, xhami, mekanizmi dhe përmasat; Uf nuk është Uw.", "System values from the supplied reference material. They depend on profile, glazing, hardware and dimensions; Uf is not Uw.") : text("Vlerat e izolimit dhe klasat konfirmohen për variantin konkret.", "Insulation values and classes are confirmed for the exact variant.")}</p></details><div class="profile-detail-actions"><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko ofertë", "Request a quote")}<span>↗</span></a><a class="profile-maker" href="${source(p)}" target="_blank" rel="noopener noreferrer">${p.brand} ↗</a></div></div></div></article>`;
+    return `<article class="profile-card profile-detail" id="profile-${p.id}" ${p.id === activeProfile ? "" : "hidden"} aria-labelledby="title-${p.id}"><div class="profile-detail-heading"><span class="profile-type">${p.brand} / PVC-U</span><h3 id="title-${p.id}">${fullName}</h3></div><div class="profile-detail-grid"><figure class="profile-cutaway-figure">${image}<figcaption>${p.imageCaption ? p.imageCaption[en() ? 1 : 0] : fullName + (p.image ? " · " + text("Prerja e profilit", "Profile cutaway") : "")}</figcaption></figure><div class="profile-detail-copy"><h4>${text("Karakteristikat kryesore", "Key characteristics")}</h4><ul class="profile-feature-list">${features.map((f) => `<li>${f[en() ? 1 : 0]}</li>`).join("")}</ul><details class="profile-technical" ${technicalBreakpoint.matches ? "open" : ""} aria-label="${text("Informacion teknik", "Technical information")}: ${fullName}"><summary><span>${text("Informacion teknik", "Technical information")}</span><span>+</span></summary>${table(rows)}${p.extraTechnical ? `<details class="profile-extra"><summary>${text("Parametrat e tjerë", "Additional parameters")}<span>+</span></summary>${table(p.extraTechnical)}</details>` : ""}<p class="profile-reference-note">${p.provenance === "independent-catalogue-reference" ? text("Të dhëna reference nga katalogë të pavarur. Uf nuk është Uw; konfigurimi dhe vlerat e ofertës konfirmohen veçmas.", "Reference data from independent catalogues. Uf is not Uw; the quotation configuration and values are confirmed separately.") : p.compactTechnical ? text("Vlera të sistemit sipas materialit të referencës. Varen nga profili, xhami, mekanizmi dhe përmasat; Uf nuk është Uw.", "System values from the supplied reference material. They depend on profile, glazing, hardware and dimensions; Uf is not Uw.") : text("Vlerat e izolimit dhe klasat konfirmohen për variantin konkret.", "Insulation values and classes are confirmed for the exact variant.")}</p></details><div class="profile-detail-actions"><a class="profile-quote" href="#oferte" data-profile-quote="${p.id}">${text("Kërko ofertë", "Request a quote")}<span>↗</span></a><a class="profile-maker" href="${p.technicalSource || source(p)}" target="_blank" rel="noopener noreferrer">${p.technicalSource ? text("Burimi teknik", "Technical source") : p.brand} ↗</a></div></div></div></article>`;
   }
   function renderCatalog() {
     const shown = profileCatalog.filter(
