@@ -13,6 +13,7 @@
     <link rel="icon" href="images/logo.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="translations.js" defer=""></script>
+    <script src="catalog.js" defer=""></script>
     <script src="script.js" defer=""></script>
   </head>
   <body>
@@ -25,7 +26,8 @@
         ></a
       >
       <nav id="navigation" aria-label="Navigimi kryesor">
-        <a href="#sistemet" data-i18n="nav_products">Produktet</a
+        <a href="#profilet" data-i18n="nav_products">Produktet</a
+        ><a href="#udhezuesi" data-i18n="guide_nav">Udhëzuesi</a
         ><a href="#filozofia" data-i18n="nav_about">Për ne</a
         ><a href="#koleksioni" data-i18n="collection">Galeria</a
         ><a href="#kontakti" data-i18n="nav_contact">Kontakti</a>
@@ -74,7 +76,7 @@
             komfort në çdo ambient.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#sistemet"
+            <a class="button button-primary" href="#profilet"
               ><span data-i18n="view_products">Zbuloni produktet</span>
               <span>↗</span></a
             ><a
@@ -85,6 +87,51 @@
             >
           </div>
         </div>
+        <aside class="hero-demo" aria-label="Eksploro mënyrat e hapjes">
+          <div class="demo-heading">
+            <span class="eyebrow" data-i18n="demo_kicker">PROVOJE VETË</span>
+            <p data-i18n="demo_title">Një hapje. Më shumë mundësi.</p>
+          </div>
+          <div class="demo-modes" role="group" aria-label="Mënyra e hapjes">
+            <button
+              data-opening="turn"
+              aria-pressed="true"
+              data-i18n="demo_turn"
+            >
+              Dritare</button
+            ><button
+              data-opening="slide"
+              aria-pressed="false"
+              data-i18n="demo_slide"
+            >
+              Rrëshqitje</button
+            ><button
+              data-opening="shutter"
+              aria-pressed="false"
+              data-i18n="demo_shutter"
+            >
+              Roletë
+            </button>
+          </div>
+          <button
+            id="demoToggle"
+            class="window-demo"
+            aria-pressed="false"
+            aria-label="Hap ose mbyll ilustrimin"
+          >
+            <span id="windowDemo" data-mode="turn"
+              ><span class="demo-landscape"></span
+              ><span class="demo-fixed"></span
+              ><span class="demo-leaf"><i class="demo-handle"></i></span
+              ><span class="demo-roller"></span></span
+            ><span class="demo-action"
+              ><span id="demoState">Provoje hapjen</span><span>↗</span></span
+            >
+          </button>
+          <p class="demo-note" data-i18n="demo_note">
+            Ilustrim i mënyrës së hapjes.
+          </p>
+        </aside>
         <div class="hero-bottom">
           <div>
             <span data-i18n="hero_bottom"
@@ -111,17 +158,129 @@
           /><img src="images/logo_asistal_color.png" alt="Asistal" />
         </div>
       </section>
+      <section class="profile-catalog section-pad" id="profilet">
+        <div class="section-heading reveal">
+          <div class="section-kicker">
+            <span class="micro" data-i18n="catalog_kicker">KATALOGU PVC</span>
+          </div>
+          <h2 data-i18n="catalog_title" data-i18n-html="true">
+            Çdo profil veçmas.<br />Çdo dallim i qartë.
+          </h2>
+          <p data-i18n="catalog_intro">
+            Schüco dhe Kömmerling, të ndara sipas familjes, thellësisë dhe
+            mënyrës së vulosjes. Zgjidhni profilin për kërkesën tuaj.
+          </p>
+        </div>
+        <div class="catalog-toolbar">
+          <div
+            class="catalog-filters"
+            role="group"
+            aria-label="Filtro sipas prodhuesit"
+          >
+            <button
+              data-brand="all"
+              aria-pressed="true"
+              data-i18n="all_profiles"
+            >
+              Të gjitha</button
+            ><button data-brand="Schüco" aria-pressed="false">Schüco</button
+            ><button data-brand="Kömmerling" aria-pressed="false">
+              Kömmerling
+            </button>
+          </div>
+          <span id="profileCount" aria-live="polite">7 profile</span
+          ><a class="text-link" href="#krahasimi"
+            ><span data-i18n="compare_profiles">Krahaso profilet</span> ↓</a
+          >
+        </div>
+        <div class="profile-cards" id="profileCards"></div>
+        <noscript
+          ><p>
+            Ju lutem aktivizoni JavaScript për katalogun interaktiv. Për
+            profilet Schüco dhe Kömmerling na kontaktoni në +389 71 442 821.
+          </p></noscript
+        >
+        <div class="seal-guide">
+          <div>
+            <span class="seal-badge">AS / AD</span>
+            <h3 data-i18n="seal_rebate">Vulosje në ndalesë</h3>
+            <p data-i18n="seal_rebate_desc">
+              AS (Anschlagdichtung, Schüco) dhe AD (Anschlagdichtung,
+              Kömmerling) emërtojnë sistemet me guarnicione në ndalesat e
+              kornizës dhe krahut.
+            </p>
+          </div>
+          <div>
+            <span class="seal-badge">MD</span>
+            <h3 data-i18n="seal_centre">Vulosje qendrore</h3>
+            <p data-i18n="seal_centre_desc">
+              MD (Mitteldichtung) shënon një sistem me guarnicion qendror.
+              Dallohet nga AS/AD nga koncepti i hermetizimit, jo vetëm nga
+              thellësia e profilit.
+            </p>
+          </div>
+        </div>
+        <details class="comparison" id="krahasimi">
+          <summary>
+            <span data-i18n="comparison_title"
+              >Krahasimi i shpejtë i 7 profileve</span
+            ><span>+</span>
+          </summary>
+          <div
+            class="comparison-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Tabela e krahasimit"
+          >
+            <table>
+              <caption data-i18n="comparison_caption">
+                Familjet PVC — thellësia bazë dhe koncepti i hermetizimit
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="profile_model">Profili</th>
+                  <th scope="col" data-i18n="profile_depth">Thellësia bazë</th>
+                  <th scope="col" data-i18n="profile_seal">Hermetizimi</th>
+                  <th scope="col" data-i18n="manufacturer">Prodhuesi</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonBody"></tbody>
+            </table>
+          </div>
+        </details>
+        <p class="catalog-note" data-i18n="catalog_note">
+          Thellësia e profilit nuk është trashësia e xhamit dhe nuk është vlerë
+          izolimi. Varianti, përforcimi, xhami dhe disponueshmëria konfirmohen
+          në ofertën teknike. Skemat janë ilustrime, jo prerje fabrike.
+        </p>
+        <div class="manufacturer-references">
+          <span data-i18n="manufacturer_refs">Referenca të prodhuesve:</span
+          ><a
+            href="https://www.schueco.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Schüco ↗</a
+          ><a
+            href="https://www.koemmerling.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Kömmerling ↗</a
+          >
+        </div>
+      </section>
       <section class="systems section-pad" id="sistemet">
         <div class="section-heading reveal">
           <div class="section-kicker reveal">
-            <span class="micro" data-i18n="systems_kicker">PRODUKTET TONA</span>
+            <span class="micro" data-i18n="systems_kicker"
+              >ALUMINI · XHAM · MBROJTJE</span
+            >
           </div>
           <h2 data-i18n="systems_title" data-i18n-html="true">
-            Për çdo hapësirë,<br />zgjidhja e duhur.
+            Përtej dritares.<br />Sisteme për gjithë objektin.
           </h2>
           <p data-i18n="systems_desc">
-            Zbuloni profilet PVC, sistemet e aluminit dhe zgjidhjet panoramike.
-            Zgjidhni produktin për të parë detajet.
+            Dyer e dritare alumini, hapje panoramike, fasada dhe roleta. Çdo
+            kategori me funksionin dhe konfigurimin e vet.
           </p>
         </div>
         <div
@@ -131,27 +290,19 @@
         >
           <button
             role="tab"
-            id="tab-schuco"
-            aria-controls="productPanel"
-            aria-selected="true"
-            data-product="schuco"
-          >
-            <span>Schüco</span></button
-          ><button
-            role="tab"
-            id="tab-kommerling"
+            id="tab-alu"
             aria-controls="productPanel"
             aria-selected="false"
             tabindex="-1"
-            data-product="kommerling"
+            data-product="alu"
           >
-            <span>Kömmerling</span></button
+            <span data-i18n="alu_doors">Dyer &amp; dritare ALU</span></button
           ><button
             role="tab"
             id="tab-sliding"
             aria-controls="productPanel"
-            aria-selected="false"
-            tabindex="-1"
+            aria-selected="true"
+            tabindex="0"
             data-product="sliding"
           >
             <span>Panorama</span></button
@@ -179,26 +330,27 @@
           class="product-panel"
           id="productPanel"
           role="tabpanel"
-          aria-labelledby="tab-schuco"
+          aria-labelledby="tab-sliding"
           tabindex="0"
         >
           <div class="product-image-wrap">
             <div class="technical-grid" aria-hidden="true"></div>
             <img
               id="productImage"
-              src="images/foto_1788827279996.jpg"
-              alt="Profili Schüco LivIng 82 MD"
+              src="images/foto_1788827375791.jpg"
+              alt="Sistem panoramik rrëshqitës"
               loading="lazy"
             />
             <span id="productCaption" hidden=""></span>
           </div>
           <div class="product-info">
-            <span class="micro red" id="productTag">PVC · GJERMANI</span>
-            <h3 id="productTitle">Schüco<br />LivIng 82 MD</h3>
+            <span class="micro red" id="productTag"
+              >ALUMINI · HAPËSIRË PA KUFI</span
+            >
+            <h3 id="productTitle">Panorama Sliding Systems</h3>
             <p id="productDescription">
-              Një profil i menduar për komfort. Shtatë dhoma izolimi dhe tri
-              nivele hermetizimi, në një sistem që bashkon estetikën me
-              performancën.
+              Panele xhami që lidhin ambientin e brendshëm me të jashtmin. Seria
+              dhe konfigurimi përcaktohen sipas projektit.
             </p>
             <div class="product-specs" id="productSpecs"></div>
 
@@ -288,6 +440,102 @@
           </button>
         </div>
       </section>
+      <section class="buying-guide section-pad" id="udhezuesi">
+        <div class="section-heading reveal">
+          <div class="section-kicker">
+            <span class="micro" data-i18n="guide_kicker"
+              >ZGJIDHNI ME INFORMACION</span
+            >
+          </div>
+          <h2 data-i18n="guide_title" data-i18n-html="true">
+            Dritarja e mirë është<br />më shumë se profili.
+          </h2>
+          <p data-i18n="guide_intro">
+            Rezultati vjen nga bashkëpunimi i profilit, xhamit, mekanizmit dhe
+            montimit. Këto janë katër pjesët që ia vlen t’i diskutoni.
+          </p>
+        </div>
+        <div class="guide-grid">
+          <article>
+            <span>01</span>
+            <h3 data-i18n="guide_frame">Profili &amp; hermetizimi</h3>
+            <p data-i18n="guide_frame_desc">
+              Thellësia dhe koncepti AS/AD/MD përshkruajnë sistemin. Numri i
+              dhomave, përforcimi dhe përmasat kontrollohen për variantin
+              konkret.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3 data-i18n="guide_glass">Xhami &amp; distancieri</h3>
+            <p data-i18n="guide_glass_desc">
+              Dy apo tri fletë xhami, veshje low-e, gaz izolues dhe kontroll
+              diellor zgjidhen sipas orientimit dhe nevojave të objektit.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3 data-i18n="guide_hardware">Mekanizmi &amp; hapja</h3>
+            <p data-i18n="guide_hardware_desc">
+              Hapje anësore, kip ose rrëshqitëse: mekanizmi dhe pesha e xhamit
+              duhet të jenë të përshtatshme për përmasat e elementit.
+            </p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3 data-i18n="guide_install">Matja &amp; montimi</h3>
+            <p data-i18n="guide_install_desc">
+              Matja në objekt, fiksimi dhe izolimi i nyjes me murin ndikojnë në
+              funksionim po aq sa përzgjedhja e profilit.
+            </p>
+          </article>
+        </div>
+        <div class="thermal-explainer">
+          <div>
+            <span>Uf</span>
+            <p data-i18n="uf_desc">
+              Përshkruan kalimin e nxehtësisë përmes kornizës.
+            </p>
+          </div>
+          <div>
+            <span>Ug</span>
+            <p data-i18n="ug_desc">
+              Përshkruan kalimin e nxehtësisë përmes xhamit.
+            </p>
+          </div>
+          <div>
+            <span>Uw</span>
+            <p data-i18n="uw_desc">
+              Përshkruan dritaren e plotë: kornizë, xham dhe lidhjen në skaj.
+            </p>
+          </div>
+          <p data-i18n="thermal_note">
+            Më e ulët do të thotë më pak kalim nxehtësie. Uf nuk duhet paraqitur
+            si Uw. Vlerat konkrete jepen për konfigurimin dhe përmasat
+            përkatëse.
+          </p>
+        </div>
+        <div class="process-line">
+          <h3 data-i18n="process_heading">Nga kërkesa te montimi</h3>
+          <ol>
+            <li>
+              <b>01</b
+              ><span data-i18n="process_1">Konsultim për projektin</span>
+            </li>
+            <li>
+              <b>02</b
+              ><span data-i18n="process_2">Matje &amp; ofertë teknike</span>
+            </li>
+            <li>
+              <b>03</b
+              ><span data-i18n="process_3">Përgatitje &amp; prodhim</span>
+            </li>
+            <li>
+              <b>04</b><span data-i18n="process_4">Montim &amp; kontroll</span>
+            </li>
+          </ol>
+        </div>
+      </section>
 
       <section class="quote section-pad" id="oferte">
         <div class="quote-copy reveal">
@@ -343,6 +591,9 @@
                 <option value="" data-i18n="choose">Zgjidhni sistemin</option>
                 <option>Schüco LivIng 82 MD</option>
                 <option>Kömmerling 76 MD</option>
+                <option value="Dyer &amp; dritare ALU" data-i18n="alu_doors">
+                  Dyer &amp; dritare ALU
+                </option>
                 <option value="Panorama" data-i18n="sliding">
                   Sisteme panoramike
                 </option>
@@ -380,6 +631,62 @@
               ></textarea>
             </label>
           </div>
+          <details class="quote-options">
+            <summary data-i18n="optional_details">
+              Detaje shtesë për një ofertë më të qartë (opsionale)
+            </summary>
+            <div class="form-grid">
+              <label
+                ><span data-i18n="quantity">Numri i njësive</span
+                ><input
+                  id="userQuantity"
+                  type="number"
+                  min="1"
+                  max="10000"
+                  placeholder="1" /></label
+              ><label
+                ><span data-i18n="finish">Ngjyra e dëshiruar</span
+                ><select id="userFinish">
+                  <option value="" data-i18n="advise_me">Më këshilloni</option>
+                  <option value="E bardhë" data-i18n="white">E bardhë</option>
+                  <option value="Antracit" data-i18n="anthracite">
+                    Antracit
+                  </option>
+                  <option value="Efekt druri" data-i18n="wood">
+                    Efekt druri
+                  </option>
+                  <option value="Sipas projektit" data-i18n="custom_finish">
+                    Sipas projektit
+                  </option>
+                </select></label
+              ><label
+                ><span data-i18n="glazing">Paketa e xhamit</span
+                ><select id="userGlazing">
+                  <option value="" data-i18n="advise_me">Më këshilloni</option>
+                  <option value="Dy fletë xhami" data-i18n="double_glazing">
+                    Dy fletë xhami
+                  </option>
+                  <option value="Tri fletë xhami" data-i18n="triple_glazing">
+                    Tri fletë xhami
+                  </option>
+                </select></label
+              ><label
+                ><span data-i18n="project_type">Lloji i projektit</span
+                ><select id="userProject">
+                  <option value="" data-i18n="choose_optional">Zgjidhni</option>
+                  <option value="Ndërtim i ri" data-i18n="new_build">
+                    Ndërtim i ri
+                  </option>
+                  <option value="Rinovim" data-i18n="renovation">
+                    Rinovim
+                  </option>
+                  <option value="Objekt afarist" data-i18n="commercial">
+                    Objekt afarist
+                  </option>
+                </select></label
+              >
+            </div>
+          </details>
           <button class="submit-button" type="submit" data-channel="whatsapp">
             <span data-i18n="send">Vazhdo në WhatsApp</span
             ><span>↗</span></button
@@ -402,8 +709,8 @@
           ><span>+</span>
         </div>
         <div class="faq-grid">
-          <h2 data-i18n="faq_title">
-            Ju ndihmojmë&lt;br&gt;të zgjidhni më lehtë.
+          <h2 data-i18n="faq_title" data-i18n-html="true">
+            Ju ndihmojmë<br />të zgjidhni më lehtë.
           </h2>
           <div>
             <details>
@@ -439,10 +746,81 @@
                 përcaktojmë së bashku gjatë konfirmimit të ofertës.
               </p>
             </details>
+            <details>
+              <summary>
+                <span data-i18n="faq4"
+                  >Cili është dallimi mes AS/AD dhe MD?</span
+                ><span>+</span>
+              </summary>
+              <p data-i18n="faq4_desc">
+                AS/AD përdorin vulosje në ndalesë; MD shton një guarnicion
+                qendror në konceptin e sistemit. Dallimi nuk duhet ngatërruar me
+                numrin e dhomave ose me trashësinë e xhamit.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq5"
+                  >A është profili 88 mm gjithmonë zgjedhja më e mirë?</span
+                ><span>+</span>
+              </summary>
+              <p data-i18n="faq5_desc">
+                Thellësia është vetëm një pjesë e zgjedhjes. Duhet parë xhami,
+                përmasat, orientimi, mekanizmi dhe kërkesat e projektit.
+                Vlerësimi bëhet për dritaren e plotë.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq6"
+                  >A i marr të njëjtat vlera izolimi me çdo xham?</span
+                ><span>+</span>
+              </summary>
+              <p data-i18n="faq6_desc">
+                Jo. Uf i përket kornizës, Ug xhamit dhe Uw dritares së plotë.
+                Ndryshimi i xhamit, përmasave ose distancierit mund ta ndryshojë
+                Uw.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq7">Si duhet mirëmbajtur dritarja?</span
+                ><span>+</span>
+              </summary>
+              <p data-i18n="faq7_desc">
+                Pastroni profilet dhe guarnicionet me mjete të buta dhe
+                detergjent të përshtatshëm. Mbani të lira vrimat e kullimit dhe
+                ndiqni udhëzimin e prodhuesit për mekanizmat.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq8"
+                  >Pse mund të shfaqet kondensim në xham?</span
+                ><span>+</span>
+              </summary>
+              <p data-i18n="faq8_desc">
+                Kondensimi lidhet me lagështinë, temperaturën e sipërfaqes dhe
+                ajrosjen. Vendndodhja e tij në xham ka rëndësi; shkaku
+                vlerësohet sipas rastit dhe nuk përcaktohet vetëm nga profili.
+              </p>
+            </details>
           </div>
         </div>
       </section>
     </main>
+    <a
+      class="quick-whatsapp"
+      href="https://wa.me/38971442821"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 11.5a8 8 0 0 1-12 7L3 20l1.5-5A8 8 0 1 1 20 11.5Z"></path>
+        <path
+          d="M9 7.5c0 4 2.5 6.5 6 7l1-2-2-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-2Z"
+        ></path></svg
+      ><span data-i18n="whatsapp_help">Na shkruani</span></a
+    >
     <footer class="footer section-pad" id="kontakti">
       <div class="footer-columns">
         <a class="wordmark" href="#ballina"
@@ -475,7 +853,7 @@
             target="_blank"
             rel="noopener noreferrer"
             >WhatsApp ↗</a
-          ><a href="#sistemet" data-i18n="nav_products">Produktet</a
+          ><a href="#profilet" data-i18n="nav_products">Produktet</a
           ><a href="#oferte" data-i18n="start">Kërko ofertë</a>
         </div>
       </div>

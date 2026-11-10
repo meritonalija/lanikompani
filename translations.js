@@ -17,10 +17,10 @@ const english = {
   value1: "German and European profiles",
   value2: "Thermal and acoustic insulation",
   value3: "Measurement, production and installation",
-  systems_kicker: "OUR PRODUCTS",
-  systems_title: "For every space,<br>the right solution.",
+  systems_kicker: "ALUMINIUM · GLASS · PROTECTION",
+  systems_title: "Beyond the window.<br>Systems for the whole building.",
   systems_desc:
-    "Explore PVC profiles, aluminium systems and panoramic solutions. Select a product to see its details.",
+    "Aluminium doors and windows, panoramic openings, facades and shutters. Each category has its own function and configuration.",
   facades: "Facades",
   shutters: "Shutters / Alubond",
   product_quote: "Request a quote for this system",
@@ -55,7 +55,7 @@ const english = {
   form_note:
     "Your enquiry opens in WhatsApp or email. You confirm sending it there.",
   faq_kicker: "FREQUENTLY ASKED QUESTIONS",
-  faq_title: "Helping you make\nthe right choice.",
+  faq_title: "Helping you make<br>the right choice.",
   faq1: "How do I choose the right system?",
   faq1_desc:
     "The choice depends on your space, insulation needs and design. Contact us to discuss PVC, aluminium and panoramic systems for your project.",
@@ -75,6 +75,93 @@ const english = {
   view_products: "Explore our products",
   hero_quote: "Request a quote",
   hero_bottom_desc: "Solutions for homes and business spaces.",
+  demo_kicker: "TRY IT YOURSELF",
+  demo_title: "One opening. More possibilities.",
+  demo_turn: "Window",
+  demo_slide: "Sliding",
+  demo_shutter: "Shutter",
+  demo_note: "An illustration of the opening concept.",
+  catalog_kicker: "PVC CATALOGUE",
+  catalog_title: "Every profile separate.<br>Every difference clear.",
+  catalog_intro:
+    "Schüco and Kömmerling, organised by family, nominal depth and sealing concept. Choose the profile for your enquiry.",
+  all_profiles: "All profiles",
+  compare_profiles: "Compare profiles",
+  seal_rebate: "Rebate sealing",
+  seal_rebate_desc:
+    "AS (Anschlagdichtung, Schüco) and AD (Anschlagdichtung, Kömmerling) identify systems with seals at the frame and sash rebates.",
+  seal_centre: "Centre sealing",
+  seal_centre_desc:
+    "MD (Mitteldichtung) identifies a centre-seal system. Its sealing concept distinguishes it from AS/AD, independently of profile depth.",
+  comparison_title: "Quick comparison of 7 profiles",
+  comparison_caption: "PVC families — nominal depth and sealing concept",
+  profile_model: "Profile",
+  profile_depth: "Nominal depth",
+  profile_seal: "Sealing",
+  manufacturer: "Manufacturer",
+  catalog_note:
+    "Profile depth is not glazing thickness or an insulation value. The variant, reinforcement, glazing and availability are confirmed in the technical quotation. Diagrams are illustrative, not factory cross-sections.",
+  manufacturer_refs: "Manufacturer references:",
+  alu_doors: "Aluminium doors & windows",
+  guide_nav: "Guide",
+  guide_kicker: "CHOOSE WITH INFORMATION",
+  guide_title: "A good window is<br>more than its profile.",
+  guide_intro:
+    "The result depends on the profile, glazing, hardware and installation working together. These are the four parts worth discussing.",
+  guide_frame: "Profile & sealing",
+  guide_frame_desc:
+    "Depth and AS/AD/MD describe the system. Chamber count, reinforcement and dimensions are checked for the specific variant.",
+  guide_glass: "Glazing & spacer",
+  guide_glass_desc:
+    "Double or triple glazing, low-e coatings, insulating gas and solar control are selected for the building’s orientation and needs.",
+  guide_hardware: "Hardware & opening",
+  guide_hardware_desc:
+    "Side-hung, tilt or sliding: the hardware and glazing weight must be suitable for the element’s dimensions.",
+  guide_install: "Measurement & installation",
+  guide_install_desc:
+    "Site measurements, fixing and sealing the joint with the wall influence performance just as much as profile selection.",
+  uf_desc: "Describes heat transfer through the frame.",
+  ug_desc: "Describes heat transfer through the glazing.",
+  uw_desc: "Describes the complete window: frame, glazing and edge connection.",
+  thermal_note:
+    "Lower means less heat transfer. Uf must not be presented as Uw. Specific values are stated for the relevant configuration and dimensions.",
+  process_heading: "From enquiry to installation",
+  process_1: "Project consultation",
+  process_2: "Measurement & technical quote",
+  process_3: "Preparation & production",
+  process_4: "Installation & inspection",
+  optional_details: "Extra details for a clearer quote (optional)",
+  quantity: "Number of units",
+  finish: "Preferred finish",
+  advise_me: "Please advise me",
+  white: "White",
+  anthracite: "Anthracite",
+  wood: "Wood effect",
+  custom_finish: "Project specific",
+  glazing: "Glazing package",
+  double_glazing: "Double glazing",
+  triple_glazing: "Triple glazing",
+  project_type: "Project type",
+  choose_optional: "Choose",
+  new_build: "New build",
+  renovation: "Renovation",
+  commercial: "Commercial building",
+  faq4: "What is the difference between AS/AD and MD?",
+  faq4_desc:
+    "AS/AD use rebate sealing; MD adds a centre seal to the system concept. This distinction must not be confused with chamber count or glazing thickness.",
+  faq5: "Is an 88 mm profile always the best choice?",
+  faq5_desc:
+    "Depth is just one part of the decision. Glazing, dimensions, orientation, hardware and project requirements all matter. The complete window must be assessed.",
+  faq6: "Do I get the same insulation values with every glazing package?",
+  faq6_desc:
+    "No. Uf refers to the frame, Ug to the glazing and Uw to the complete window. Changing glazing, dimensions or the spacer can change Uw.",
+  faq7: "How should the window be maintained?",
+  faq7_desc:
+    "Clean profiles and seals with soft tools and a suitable cleaner. Keep drainage openings clear and follow the manufacturer’s instructions for the hardware.",
+  faq8: "Why can condensation appear on the glass?",
+  faq8_desc:
+    "Condensation depends on humidity, surface temperature and ventilation. Its position on the glazing matters; the cause is assessed case by case and cannot be determined from the profile alone.",
+  whatsapp_help: "Message us",
 };
 const albanian = {};
 function applyLanguage(lang) {

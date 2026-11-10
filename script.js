@@ -1,35 +1,21 @@
 const $ = (selector) => document.querySelector(selector);
 const products = {
-  schuco: {
-    title: "Schüco\nLivIng 82 MD",
-    image: "foto_1788827279996.jpg",
-    caption: "SCHÜCO / LIVING 82 MD",
-    quote: "Schüco LivIng 82 MD",
-    tag: ["PVC · GJERMANI", "PVC · GERMANY"],
+  alu: {
+    title: "Dyer & dritare\nAlumini",
+    titleEn: "Aluminium\nDoors & windows",
+    image: "foto_1788827375791.jpg",
+    photo: true,
+    caption: "ALUMINIUM",
+    quote: "Dyer & dritare ALU",
+    tag: ["ALUMINI · DYER & DRITARE", "ALUMINIUM · DOORS & WINDOWS"],
     description: [
-      "Një profil i menduar për komfort. Shtatë dhoma izolimi dhe tri nivele hermetizimi, në një sistem që bashkon estetikën me performancën.",
-      "A profile designed for comfort. Seven insulating chambers and three sealing levels, in a system that brings aesthetics and performance together.",
+      "Zgjidhje alumini për dyer dhe dritare. Seria e profilit, prania e ndërprerjes termike, xhami dhe mekanizmat përcaktohen sipas hapësirës dhe kërkesave të projektit.",
+      "Aluminium solutions for doors and windows. The profile series, thermal break, glazing and hardware are specified for the space and project requirements.",
     ],
     specs: [
-      ["82 mm", "Thellësia", "Depth"],
-      ["7", "Dhoma izolimi", "Insulating chambers"],
-      ["3", "Nivele hermetizimi", "Sealing levels"],
-    ],
-  },
-  kommerling: {
-    title: "Kömmerling\n76 MD",
-    image: "profile_kommerling_76.png",
-    caption: "KÖMMERLING / 76 MD",
-    quote: "Kömmerling 76 MD",
-    tag: ["PVC · GJERMANI", "PVC · GERMANY"],
-    description: [
-      "Ekuilibër i menduar mes dizajnit dhe izolimit. Sistem PVC me thellësi 76 mm, për dritare dhe dyer që përshtaten natyrshëm me shtëpinë tuaj.",
-      "A considered balance of design and insulation. A 76 mm PVC system for windows and doors that fit naturally into your home.",
-    ],
-    specs: [
-      ["76 mm", "Thellësia", "Depth"],
-      ["PVC", "Materiali", "Material"],
-      ["MD", "Vulosje qendrore", "Centre seal"],
+      ["ALU", "Materiali", "Material"],
+      ["Dyer / Dritare", "Përdorimi", "Use"],
+      ["Me ofertë", "Seria e profilit", "Profile series"],
     ],
   },
   sliding: {
@@ -64,7 +50,7 @@ const products = {
     specs: [
       ["ALU", "Struktura", "Structure"],
       ["GLASS", "Sipërfaqja", "Surface"],
-      ["↗", "Sipas projektit", "Project specific"],
+      ["Projekt", "Konfigurim individual", "Individual configuration"],
     ],
   },
   shutter: {
@@ -81,11 +67,11 @@ const products = {
     specs: [
       ["ALU", "Materiali", "Material"],
       ["☼", "Kontroll i dritës", "Daylight control"],
-      ["↗", "Sipas projektit", "Project specific"],
+      ["Projekt", "Konfigurim individual", "Individual configuration"],
     ],
   },
 };
-let activeProduct = "schuco";
+let activeProduct = "sliding";
 function renderProduct() {
   const p = products[activeProduct];
   const en = document.documentElement.lang === "en";
@@ -120,6 +106,7 @@ function selectProduct(key, focus = false) {
     btn.tabIndex = active ? 0 : -1;
     if (active && focus) btn.focus();
   });
+  $("#productPanel").setAttribute("aria-labelledby", "tab-" + key);
   renderProduct();
 }
 document.querySelectorAll("[data-product]").forEach((btn) => {
@@ -229,7 +216,19 @@ $("#inquiryForm").addEventListener("submit", (e) => {
   const en = document.documentElement.lang === "en";
   const value = (id) => $("#" + id).value.trim();
   const fields = en
-    ? ["Name", "Phone", "City", "System", "Width (cm)", "Height (cm)", "Notes"]
+    ? [
+        "Name",
+        "Phone",
+        "City",
+        "System",
+        "Width (cm)",
+        "Height (cm)",
+        "Notes",
+        "Quantity",
+        "Finish",
+        "Glazing",
+        "Project type",
+      ]
     : [
         "Emri",
         "Telefoni",
@@ -238,6 +237,10 @@ $("#inquiryForm").addEventListener("submit", (e) => {
         "Gjerësia (cm)",
         "Lartësia (cm)",
         "Shënime",
+        "Numri i njësive",
+        "Ngjyra",
+        "Xhami",
+        "Lloji i projektit",
       ];
   const ids = [
     "userName",
@@ -247,6 +250,10 @@ $("#inquiryForm").addEventListener("submit", (e) => {
     "userWidth",
     "userHeight",
     "userNotes",
+    "userQuantity",
+    "userFinish",
+    "userGlazing",
+    "userProject",
   ];
   const message =
     (en ? "QUOTE REQUEST" : "KËRKESË PËR OFERTË") +
@@ -273,12 +280,18 @@ $("#year").textContent = new Date().getFullYear();
 // Keep existing product links working after the redesign.
 function handleLegacyLink() {
   const links = {
-    "#pvc-schuco": "schuco",
-    "#pvc-kommerling": "kommerling",
     "#sliding-systems": "sliding",
     "#fasada-strukturale": "facade",
     "#roleta-alumini": "shutter",
   };
+  const pvcLinks = {
+    "#pvc-schuco": "schuco-living-md",
+    "#pvc-kommerling": "kommerling-76-md",
+  };
+  if (pvcLinks[location.hash]) {
+    window.revealProfile(pvcLinks[location.hash]);
+    return;
+  }
   if (links[location.hash]) {
     selectProduct(links[location.hash]);
     $("#sistemet").scrollIntoView({ behavior: "instant" });
@@ -290,3 +303,49 @@ function handleLegacyLink() {
 }
 addEventListener("hashchange", handleLegacyLink);
 handleLegacyLink();
+
+// Draw interface arrows as SVG, independent of installed system fonts.
+function decorateArrows() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (
+      /[↗↘↑↓←→]/.test(node.textContent) &&
+      !node.parentElement.closest("script,style,textarea,option,svg")
+    )
+      nodes.push(node);
+  }
+  const paths = {
+    "↗": "M5 19 19 5M5 5h14v14",
+    "↘": "M5 5 19 19M5 19h14V5",
+    "↑": "M12 21V3M5 10l7-7 7 7",
+    "↓": "M12 3v18M5 14l7 7 7-7",
+    "←": "M21 12H3m7-7-7 7 7 7",
+    "→": "M3 12h18m-7-7 7 7-7 7",
+  };
+  nodes.forEach((node) => {
+    const fragment = document.createDocumentFragment();
+    node.textContent.split(/([↗↘↑↓←→])/).forEach((part) => {
+      if (!paths[part]) {
+        fragment.append(document.createTextNode(part));
+        return;
+      }
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("class", "vector-arrow");
+      svg.setAttribute("aria-hidden", "true");
+      const path = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path",
+      );
+      path.setAttribute("d", paths[part]);
+      svg.append(path);
+      fragment.append(svg);
+    });
+    node.replaceWith(fragment);
+  });
+}
+document.addEventListener("languagechange", decorateArrows);
+document.addEventListener("catalogrender", decorateArrows);
+decorateArrows();
