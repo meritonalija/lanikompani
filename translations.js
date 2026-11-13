@@ -1,4 +1,5 @@
 const english = {
+  studio_finish: "ANTHRACITE",
   facade_kicker: "GLASS · ALUMINIUM",
   facade_heading: "Structural facades",
   facade_description:

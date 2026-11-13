@@ -1,0 +1,13 @@
+# Automatic product demonstrations
+
+The existing Blender GLB and its anthracite chambers, grey cut faces, clear glazing and black MD seal remain the base sample. `profile-demonstrations.js` adds winter, summer and security demonstrations in 3D model coordinates. The final hardware reference is the user's supplied **Comfort mushroom cam** photograph. Earlier research images were not substituted for that reference.
+
+There is exactly one headed locking pin at the front of the existing frame/sash rebate, not a separate window or unrelated floating lock. The round cap, supporting cage, visible height-adjustment spring, hexagonal collar and short fitting strip follow the user's photograph. The keeper has an undercut, guide webs and mountings. Its dimensions are an illustrative reconstruction, not verified factory CAD or proof that this hardware is fitted to a particular Schüco product.
+
+The shaft/cage clears the 8 mm keeper opening; the 11.2 mm cap is larger than that opening. The pin slides longitudinally into the keeper. Exterior leverage produces at most 0.2 mm local separation, taking up the axial head clearance until the underside of the cap contacts the keeper. Frame parts stay fixed; sash components translate rigidly by less than 0.14 mm, with no mesh bending. Mounting screws, fitting strip and keeper are physically connected at the rebates. A growing local inspection cutaway reveals the contact; it closes again before the clean view.
+
+Winter, summer and security last 8 seconds each. A 4-second clean view completes a 28-second loop. Transitions fade effects and captions and ease the camera. Pointer, touch, wheel and keyboard interaction stop camera guidance; it resumes gently after 8 seconds without interaction. Keyboard focus retains camera control. Offscreen/hidden views pause; reduced-motion users get a static, manually rotatable scene. Review URLs `?demo=winter`, `?demo=summer`, `?demo=security`, `?demo=clean` select an initial scene.
+
+The winter example displays −10°C / +21°C. Summer displays +35°C / +24°C. The exact user-requested active-heating/cooling qualification accompanies both. Summer describes a solar-control glazing configuration and shows both reflected and weaker transmitted energy, without inventing numerical performance percentages. Security shows resistance, with no RC class and no claim of an unbreakable window.
+
+Jashtë / Brenda labels and leader lines are projected from fixed exterior/interior anchors every rendered frame. They follow the physical sides during manual orbit and camera moves. All assets and modules can be embedded by `scripts/build-offline-preview.py` for review without hosting or deployment.

@@ -1,0 +1,84 @@
+{
+  "source": "Visual reconstruction, not factory CAD",
+  "components": [
+    {
+      "name": "Frame_Chambers",
+      "nonmanifold_edges": 0,
+      "vertices": 5760,
+      "faces": 6309
+    },
+    {
+      "name": "Frame_Steel_Reinforcement",
+      "nonmanifold_edges": 0,
+      "vertices": 192,
+      "faces": 208
+    },
+    {
+      "name": "Sash_Chambers",
+      "nonmanifold_edges": 0,
+      "vertices": 6904,
+      "faces": 7594
+    },
+    {
+      "name": "Sash_Steel_Reinforcement",
+      "nonmanifold_edges": 0,
+      "vertices": 192,
+      "faces": 208
+    },
+    {
+      "name": "EPDM_MD_Central",
+      "nonmanifold_edges": 0,
+      "vertices": 352,
+      "faces": 380
+    },
+    {
+      "name": "EPDM_Frame_Outer",
+      "nonmanifold_edges": 0,
+      "vertices": 216,
+      "faces": 230
+    },
+    {
+      "name": "EPDM_Frame_Inner",
+      "nonmanifold_edges": 0,
+      "vertices": 240,
+      "faces": 256
+    },
+    {
+      "name": "EPDM_Glass_Outer",
+      "nonmanifold_edges": 0,
+      "vertices": 240,
+      "faces": 256
+    },
+    {
+      "name": "EPDM_Glass_Inner",
+      "nonmanifold_edges": 0,
+      "vertices": 224,
+      "faces": 239
+    },
+    {
+      "name": "Warm_Edge_Spacer_1",
+      "nonmanifold_edges": 0,
+      "vertices": 288,
+      "faces": 312
+    },
+    {
+      "name": "IGU_Secondary_Seal_1",
+      "nonmanifold_edges": 0,
+      "vertices": 96,
+      "faces": 100
+    },
+    {
+      "name": "Warm_Edge_Spacer_2",
+      "nonmanifold_edges": 0,
+      "vertices": 288,
+      "faces": 312
+    },
+    {
+      "name": "IGU_Secondary_Seal_2",
+      "nonmanifold_edges": 0,
+      "vertices": 96,
+      "faces": 100
+    }
+  ],
+  "all_closed": true
+}

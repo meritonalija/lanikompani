@@ -12,7 +12,6 @@
     }),
   );
   const en = () => document.documentElement.lang === "en";
-  const text = (sq, english) => (en() ? english : sq);
   function renderCatalog() {
     $("#profileCards").innerHTML = featured
       .map((p) =>
@@ -50,36 +49,6 @@
   if (requested) $("#userService").value = view.name(requested);
   document.addEventListener("languagechange", renderCatalog);
   renderCatalog();
-  // Three opening concepts, illustrated rather than advertised as a specific product.
-  const demo = $("#windowDemo");
-  let mode = "turn",
-    opened = false;
-  function renderDemo() {
-    demo.dataset.mode = mode;
-    demo.classList.toggle("is-open", opened);
-    $("#demoToggle").setAttribute("aria-pressed", String(opened));
-    $("#demoState").textContent = opened
-      ? text("Mbylle pamjen", "Close the preview")
-      : text("Provoje hapjen", "Try the opening");
-    document
-      .querySelectorAll("[data-opening]")
-      .forEach((b) =>
-        b.setAttribute("aria-pressed", String(b.dataset.opening === mode)),
-      );
-  }
-  document.querySelectorAll("[data-opening]").forEach((b) =>
-    b.addEventListener("click", () => {
-      mode = b.dataset.opening;
-      opened = false;
-      renderDemo();
-    }),
-  );
-  $("#demoToggle").addEventListener("click", () => {
-    opened = !opened;
-    renderDemo();
-  });
-  document.addEventListener("languagechange", renderDemo);
-  renderDemo();
   window.revealProfile = (id) => {
     const profile = profileCatalog.find((p) => p.id === id);
     if (!profile) return;

@@ -12,6 +12,8 @@
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="images/logo.png" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="profile-studio.css" />
+    <script type="module" src="profile-studio.js"></script>
     <script src="translations.js" defer=""></script>
     <script src="profiles-data.js" defer=""></script>
     <script src="profile-view.js" defer=""></script>
@@ -56,16 +58,7 @@
       </div>
     </header>
     <main id="main">
-      <section class="hero" id="ballina">
-        <div class="hero-visual">
-          <img
-            class="hero-image"
-            src="images/foto_1788828508241.webp"
-            alt="Hapësirë me dritare panoramike të mëdha dhe dritë natyrale"
-            fetchpriority="high"
-          />
-          <div class="image-shade"></div>
-        </div>
+      <section class="hero hero-studio" id="ballina">
         <div class="hero-copy">
           <span class="eyebrow" data-i18n="hero_eyebrow"
             >DRITARE TË MIRA. JETESË MË E MIRË.</span
@@ -89,50 +82,24 @@
             >
           </div>
         </div>
-        <aside class="hero-demo" aria-label="Eksploro mënyrat e hapjes">
-          <div class="demo-heading">
-            <span class="eyebrow" data-i18n="demo_kicker">PROVOJE VETË</span>
-            <p data-i18n="demo_title">Një hapje. Më shumë mundësi.</p>
+        <aside class="profile-studio" aria-label="Schüco LivIng — pamje e profilit">
+          <div class="studio-heading">
+            <div><span class="studio-brand">SCHÜCO</span><h2>LivIng 82 MD</h2></div>
+            <span class="studio-finish" data-i18n="studio_finish">ANTRACIT</span>
           </div>
-          <div class="demo-modes" role="group" aria-label="Mënyra e hapjes">
-            <button
-              data-opening="turn"
-              aria-pressed="true"
-              data-i18n="demo_turn"
-            >
-              Dritare</button
-            ><button
-              data-opening="slide"
-              aria-pressed="false"
-              data-i18n="demo_slide"
-            >
-              Rrëshqitje</button
-            ><button
-              data-opening="shutter"
-              aria-pressed="false"
-              data-i18n="demo_shutter"
-            >
-              Roletë
-            </button>
+          <div class="studio-viewport" id="profileViewport" tabindex="0" aria-describedby="studioHint" aria-label="Mostër 3D e profilit">
+            <div class="studio-object" id="studioObject"></div>
+            <svg class="studio-leaders" id="studioLeaders" aria-hidden="true"><line id="studioOutsideLeader"/><line id="studioInsideLeader"/></svg>
+            <div class="studio-side-label" id="studioOutsideLabel"><small id="studioOutsideName">JASHTË</small><strong id="studioOutsideTemp">−10°C</strong></div>
+            <div class="studio-side-label" id="studioInsideLabel"><small id="studioInsideName">BRENDA</small><strong id="studioInsideTemp">+21°C</strong></div>
+            <p class="studio-status" id="studioStatus">Duke ngarkuar mostrën 3D…</p>
           </div>
-          <button
-            id="demoToggle"
-            class="window-demo"
-            aria-pressed="false"
-            aria-label="Hap ose mbyll ilustrimin"
-          >
-            <span id="windowDemo" data-mode="turn"
-              ><span class="demo-landscape"></span
-              ><span class="demo-fixed"></span
-              ><span class="demo-leaf"><i class="demo-handle"></i></span
-              ><span class="demo-roller"></span></span
-            ><span class="demo-action"
-              ><span id="demoState">Provoje hapjen</span><span>↗</span></span
-            >
-          </button>
-          <p class="demo-note" data-i18n="demo_note">
-            Ilustrim i mënyrës së hapjes.
-          </p>
+          <div class="studio-demonstration-copy" id="studioDemoCopy">
+            <div class="studio-demonstration-heading"><span id="studioSceneTitle">DIMRI · IZOLIMI TERMIK</span><span id="studioSceneNumber">01 / 03</span></div>
+            <p id="studioMessage">Më pak humbje nxehtësie. Më shumë komfort.</p>
+            <small id="studioSceneNote">Temperatura ilustruese me ngrohje ose ftohje aktive. Performanca varet nga konfigurimi dhe montimi.</small>
+          </div>
+          <p class="studio-hint" id="studioHint">Tërhiq për rrotullim · dy gishta për afrim</p>
         </aside>
         <div class="hero-bottom">
           <div>
@@ -142,10 +109,6 @@
             <p data-i18n="hero_bottom_desc">
               Zgjidhje për shtëpi dhe ambiente afariste.
             </p>
-          </div>
-          <div class="visual-index">
-            <span>01</span><span>/ 03</span
-            ><button id="nextScene" aria-label="Fotografia tjetër">→</button>
           </div>
         </div>
       </section>

@@ -57,18 +57,6 @@ addEventListener(
   { passive: true },
 );
 updateScroll();
-const scenes = [
-  ["foto_1788828508241.webp", "Hapësirë me dritare panoramike"],
-  ["foto_1788827375791.jpg", "Sistem rrëshqitës panoramik"],
-  ["foto_1788828133911.webp", "Fasadë strukturore xhami"],
-];
-let scene = 0;
-$("#nextScene").addEventListener("click", () => {
-  scene = (scene + 1) % scenes.length;
-  $(".hero-image").src = "images/" + scenes[scene][0];
-  $(".hero-image").alt = scenes[scene][1];
-  $(".visual-index>span").textContent = String(scene + 1).padStart(2, "0");
-});
 const gallery = $("#galleryDialog");
 let galleryTrigger;
 document.addEventListener("click", (event) => {

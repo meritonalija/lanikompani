@@ -19,6 +19,7 @@ const models = [
   });
   try {
     const page = await browser.newPage({
+      reducedMotion: "reduce",
       viewport: { width: 1440, height: 1000 },
     });
     const errors = [],
