@@ -12,6 +12,9 @@ const root=process.env.LANI_BASE_URL||'http://127.0.0.1:3000';
  assert.equal(d.slider.position.y,2);assert.ok(sash.position.y>0&&sash.position.y<.0002);assert.deepEqual(sash.scale.toArray(),[1,1,1]);
  let heads=0;d.hardware.traverse(o=>{if(o.name==='Comfort_Mushroom_Cam')heads++});assert.equal(heads,1);
  const validation=JSON.parse(fs.readFileSync('models/profile-mesh-validation.json','utf8'));assert.equal(validation.all_closed,true);
+ const geometry=JSON.parse(fs.readFileSync('models/profile-geometry.json','utf8'));
+ assert.equal(geometry.seal_contacts.length,3);
+ for(const seal of geometry.seal_contacts){assert.ok(seal.frame_clearance_mm<=.06,seal.name+' reaches the frame');assert.ok(seal.sash_clearance_mm<=.06,seal.name+' reaches the sash')}
  const browser=await chromium.launch({executablePath:process.env.LANI_BROWSER_PATH||'/usr/bin/chromium',args:['--no-sandbox','--enable-unsafe-swiftshader']});
  try{
   const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,hasTouch:true,reducedMotion:'reduce'});

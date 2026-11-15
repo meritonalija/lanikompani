@@ -10,6 +10,8 @@ The black `EPDM_MD_Central` component follows the visible curved centre seal in 
 
 Every structural component is checked for closed manifold topology after applying a small Blender bevel. Cap triangulation is constrained to the actual polygons, avoiding triangles across the hollow chambers. Rigid PVC parts do not overlap; the steel fits the central cavities. Mesh validation is recorded in `models/profile-mesh-validation.json`.
 
+The exterior and interior frame seals include continuous curved lips seated against both the frame and sash. Preparation validates all three frame/sash seal contacts with at most 0.06 mm clearance, recorded in `profile-geometry.json`. The broad exterior walls are planar; flat face normals avoid triangulation ripples, while small bevels catch light and curved rubber walls retain smooth shading.
+
 The viewer uses locally vendored Three.js 0.169.0 and GLTFLoader (MIT licence in `vendor/three/LICENSE`), a neutral light studio, broad reflected softboxes, contact shadows, antialiasing, and the actual device pixel ratio. No flat photograph is displayed as a substitute for an interactive model. Unsupported WebGL devices receive a text status.
 
 The linked ChatGPT conversation could not be opened because this session does not expose `read_thread`. The attached technical drawing was used directly. The three demonstrations were enabled only after the user requested them following the base geometry review. Do not publish or push without a new user request.

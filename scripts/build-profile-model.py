@@ -30,11 +30,13 @@ def move_to_collection(obj):
  for old in list(obj.users_collection):old.objects.unlink(obj)
  collection.objects.link(obj)
 def finish(obj,bevel=.00009):
- mod=obj.modifiers.new('Subtle edge radius','BEVEL');mod.width=bevel;mod.segments=3;mod.limit_method='ANGLE';mod.angle_limit=math.radians(24);mod.harden_normals=True
- normal=obj.modifiers.new('Planar weighted normals','WEIGHTED_NORMAL');normal.keep_sharp=True;normal.weight=50
- for p in obj.data.polygons:p.use_smooth=True
+ # Broad CAD faces remain truly flat; smooth only the rubber's curved side walls.
+ for poly in obj.data.polygons:poly.use_smooth=False
+ mod=obj.modifiers.new('Subtle edge radius','BEVEL');mod.width=bevel;mod.segments=3;mod.limit_method='ANGLE';mod.angle_limit=math.radians(24);mod.harden_normals=False
  obj.select_set(True);bpy.context.view_layer.objects.active=obj
- bpy.ops.object.modifier_apply(modifier=mod.name);bpy.ops.object.modifier_apply(modifier=normal.name)
+ bpy.ops.object.modifier_apply(modifier=mod.name)
+ for poly in obj.data.polygons:
+  poly.use_smooth=obj.name.startswith('EPDM_') and abs(poly.normal.y)<.999
  obj.select_set(False)
 data=json.loads((ROOT/'models/profile-geometry.json').read_text())
 checks=[]

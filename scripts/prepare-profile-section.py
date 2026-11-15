@@ -1,6 +1,6 @@
 import json,shapely
-from shapely.geometry import Polygon,box,Point
-from shapely.ops import unary_union
+from shapely.geometry import Polygon,box,Point,LineString
+from shapely.ops import unary_union,transform
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 ps=json.loads((root/'profile-contours.js').read_text().split(' = ',1)[1].rstrip(';\n'))
@@ -58,7 +58,18 @@ for p in ps:
  sx=width/(x1-x0);sy=height/(y1-y0)
  def calibrate(g):
   return affinity.affine_transform(g,[sx,0,0,sy,(0 if is_frame else 20)-sx*x0,(0 if is_frame else 37)-sy*y0])
- sources.append({'name':'Frame' if is_frame else 'Sash','solid':calibrate(solid),'cavity':calibrate(primary_box)})
+ calibrated=calibrate(solid)
+ # Rectify only the broad exterior panel faces. Keep internal chambers and grooves.
+ def planar(x,y,z=None):
+  if is_frame:
+   if x<1.5 and 8<y<63:x=0
+   if x>80.8 and 8<y<35:x=82
+  else:
+   if x<21.5 and 72<y<113:x=20
+   if x>100.8 and 48<y<107:x=102
+  return (x,y) if z is None else (x,y,z)
+ calibrated=transform(planar,calibrated).buffer(0)
+ sources.append({'name':'Frame' if is_frame else 'Sash','solid':calibrated,'cavity':calibrate(primary_box)})
 sources.sort(key=lambda p:p['name'])
 # Restore the drawn glazing rebates rather than projecting their sloping faces from a photo.
 sash=sources[1]
@@ -82,10 +93,24 @@ seals=[
  ('EPDM_Glass_Outer',drawing_poly([(366,179),(367,173),(373,169),(379,170),(383,177),(382,185),(378,190),(373,188),(371,184),(374,179),(377,178),(378,182),(375,185)])),
  ('EPDM_Glass_Inner',drawing_poly([(559,169),(562,166),(565,170),(566,176),(570,180),(573,180),(573,184),(568,186),(563,182),(560,176)])),
 ]
+# Continuous elastic sealing lips must reach the opposite rigid contact face.
+# The earlier bulb-only outlines left a visible 4.7 mm exterior opening.
+def cubic(a,b,c,d,n=24):
+ return [((1-t)**3*a[0]+3*(1-t)**2*t*b[0]+3*(1-t)*t*t*c[0]+t**3*d[0],(1-t)**3*a[1]+3*(1-t)**2*t*b[1]+3*(1-t)*t*t*c[1]+t**3*d[1]) for t in [i/n for i in range(n+1)]]
+outer_lip=LineString(cubic((14.5,65.65),(16.5,65.7),(18.7,66.4),(20.65,67.25))).buffer(.55)
+inner_lip=LineString(cubic((85.5,41.65),(84.3,41.6),(82.5,41.2),(81.35,41.05))).buffer(.5)
+inner_anchor=LineString([(87.9,42.7),(89.05,43.7)]).buffer(.5)
+seals=[(name,(seal.union(outer_lip) if name=='EPDM_Frame_Outer' else seal.union(inner_lip).union(inner_anchor) if name=='EPDM_Frame_Inner' else seal).buffer(0)) for name,seal in seals]
 # Seat each seal in its own rebate; do not hide it by clipping the rubber away.
 for source in sources:
  for name,seal in seals:source['solid']=source['solid'].difference(seal.buffer(.04)).buffer(0)
  assert source['solid'].is_valid and source['solid'].geom_type=='Polygon'
+seal_contacts=[]
+for name,seal in seals:
+ if name not in ['EPDM_MD_Central','EPDM_Frame_Outer','EPDM_Frame_Inner']:continue
+ distances=[seal.distance(source['solid']) for source in sources]
+ assert all(distance<=.06 for distance in distances),(name,'open sealing contact',distances)
+ seal_contacts.append({'name':name,'frame_clearance_mm':distances[0],'sash_clearance_mm':distances[1]})
 shift=lambda g:affinity.translate(g,xoff=-51)
 for source in sources:
  name=source['name'];solid=source['solid'];extrude(name+'_Chambers',shift(solid));solids.append(solid)
@@ -114,7 +139,7 @@ for source in sources:
   if area>.01:print('GLASS_SEAT_CLEARANCE',source['name'],x,round(area,3))
 assert solids[0].intersection(solids[1]).area<1e-6
 panes=[{'center_x':x-51,'bottom':100,'height':54,'thickness':4,'depth':145} for x in centres]
-data={'version':2,'unit':'mm','source':'Interpretation of user-supplied dimensioned section; not a factory CAD export','dimensions':{'frame_depth':82,'frame_height':70,'sash_depth':82,'sash_offset':20,'combined_height':120,'combined_depth':102,'glazing':36},'objects':objects,'panes':panes,'desiccant_centres':[centres[0]+8-51,centres[1]+8-51],'desiccant_height':[105,108],'validation':validation}
+data={'version':2,'unit':'mm','source':'Interpretation of user-supplied dimensioned section; not a factory CAD export','dimensions':{'frame_depth':82,'frame_height':70,'sash_depth':82,'sash_offset':20,'combined_height':120,'combined_depth':102,'glazing':36},'objects':objects,'panes':panes,'desiccant_centres':[centres[0]+8-51,centres[1]+8-51],'desiccant_height':[105,108],'validation':validation,'seal_contacts':seal_contacts}
 (root/'models/profile-geometry.json').write_text(json.dumps(data,separators=(',',':')))
 print('Closed components:',len(objects),'vertices:',sum(len(o['vertices']) for o in objects))
 print('MD centre-seal bounds:',seals[0][1].bounds)

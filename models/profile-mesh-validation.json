@@ -4,8 +4,8 @@
     {
       "name": "Frame_Chambers",
       "nonmanifold_edges": 0,
-      "vertices": 5760,
-      "faces": 6309
+      "vertices": 6240,
+      "faces": 6851
     },
     {
       "name": "Frame_Steel_Reinforcement",
@@ -16,8 +16,8 @@
     {
       "name": "Sash_Chambers",
       "nonmanifold_edges": 0,
-      "vertices": 6904,
-      "faces": 7594
+      "vertices": 7752,
+      "faces": 8552
     },
     {
       "name": "Sash_Steel_Reinforcement",
@@ -34,14 +34,14 @@
     {
       "name": "EPDM_Frame_Outer",
       "nonmanifold_edges": 0,
-      "vertices": 216,
-      "faces": 230
+      "vertices": 960,
+      "faces": 1066
     },
     {
       "name": "EPDM_Frame_Inner",
       "nonmanifold_edges": 0,
-      "vertices": 240,
-      "faces": 256
+      "vertices": 1320,
+      "faces": 1469
     },
     {
       "name": "EPDM_Glass_Outer",
